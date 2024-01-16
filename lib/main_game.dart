@@ -8,7 +8,9 @@ class MainGame extends FlameGame {
   final WorldData worldData;
 
   MainGame(
-      {super.children, super.world, super.camera, required this.worldData});
+      {super.children, super.world, super.camera, required this.worldData}) {
+    globalGameReference.gameReference = this;
+  }
 
   GlobalGameReference globalGameReference = Get.put(GlobalGameReference());
 
@@ -17,7 +19,7 @@ class MainGame extends FlameGame {
   @override
   Future<void> onLoad() async {
     super.onLoad();
-    globalGameReference.gameReference = this;
+
     add(playerComponent);
   }
 }

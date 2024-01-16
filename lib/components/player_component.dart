@@ -18,6 +18,7 @@ class PlayerComponent extends SpriteAnimationComponent {
 
     animation = playerSpriteSheet.createAnimation(row: 0, stepTime: 0.1);
     size = Vector2(100, 100);
+    position = Vector2(100, 500);
   }
 
   @override
@@ -27,6 +28,12 @@ class PlayerComponent extends SpriteAnimationComponent {
             .instance.gameReference.worldData.playerData.componentMotionState ==
         ComponentMotionState.walkingLeft) {
       position.x -= speed;
+    }
+
+    if (GlobalGameReference
+            .instance.gameReference.worldData.playerData.componentMotionState ==
+        ComponentMotionState.walkingRight) {
+      position.x += speed;
     }
   }
 }
