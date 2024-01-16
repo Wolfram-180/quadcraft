@@ -1,8 +1,11 @@
 import 'package:flame/components.dart';
 import 'package:flame/sprite.dart';
 import 'package:flame/flame.dart';
+import 'package:flutter_flame_minecraft/global/global_game_reference.dart';
+import 'package:flutter_flame_minecraft/global/player_data.dart';
 
 class PlayerComponent extends SpriteAnimationComponent {
+  final double speed = 5;
   @override
   Future<void> onLoad() async {
     await super.onLoad();
@@ -20,6 +23,10 @@ class PlayerComponent extends SpriteAnimationComponent {
   @override
   void update(double dt) {
     super.update(dt);
-    position += Vector2(1, 0) * dt * 100;
+    if (GlobalGameReference
+            .instance.gameReference.worldData.playerData.componentMotionState ==
+        ComponentMotionState.walkingLeft) {
+      position.x -= speed;
+    }
   }
 }
