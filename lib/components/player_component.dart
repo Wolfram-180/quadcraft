@@ -25,6 +25,8 @@ class PlayerComponent extends SpriteAnimationComponent {
 
     priority = 2;
 
+    anchor = Anchor.bottomCenter;
+
     playerWalkingSpritesheet = SpriteSheet(
       image: await Flame.images
           .load('sprite_sheets/player/player_walking_sprite_sheet.png'),

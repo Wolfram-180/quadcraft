@@ -1,3 +1,4 @@
+import 'package:flame/components.dart';
 import 'package:flame/game.dart';
 import 'package:flutter_flame_minecraft/components/block_component.dart';
 import 'package:flutter_flame_minecraft/components/player_component.dart';
@@ -17,12 +18,17 @@ class MainGame extends FlameGame {
 
   GlobalGameReference globalGameReference = Get.put(GlobalGameReference());
 
+  late final CameraComponent cameraComponent;
   PlayerComponent playerComponent = PlayerComponent();
 
   @override
   Future<void> onLoad() async {
     super.onLoad();
 
+    cameraComponent = CameraComponent(world: world);
+    camera.follow(playerComponent);
+
+    add(cameraComponent);
     add(playerComponent);
     renderChunk(ChunkGenerationMethods.instance.generateChunk());
   }

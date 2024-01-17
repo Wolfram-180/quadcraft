@@ -1,8 +1,3 @@
-import 'dart:ui';
-import 'package:flame/flame.dart';
-import 'package:flame/game.dart';
-import 'package:flame/sprite.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_flame_minecraft/utils/constants.dart';
 import 'package:flutter_flame_minecraft/resources/blocks.dart';
 
