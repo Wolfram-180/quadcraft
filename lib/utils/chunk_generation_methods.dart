@@ -9,12 +9,9 @@ import 'package:flutter_flame_minecraft/resources/blocks.dart';
 class ChunkGenerationMethods {
   static ChunkGenerationMethods get instance => ChunkGenerationMethods();
 
-  List<Null> getNullRow() {
-    return List.generate(chunkWidth, (index) => null);
-  }
-
   List<List<Blocks?>> generateNullChunk() {
-    return List.generate(chunkHeight, (index) => getNullRow());
+    return List.generate(
+        chunkHeight, (index) => List.generate(chunkWidth, (index) => null));
   }
 
   List<List<Blocks?>> generateChunk() {
@@ -24,6 +21,11 @@ class ChunkGenerationMethods {
       if (indOfRowOfBlocks == 5) {
         rowOfBlocks.asMap().forEach((int index, Blocks? value) {
           chunk[5][index] = Blocks.grass;
+        });
+      }
+      if (indOfRowOfBlocks >= 6) {
+        rowOfBlocks.asMap().forEach((int index, Blocks? value) {
+          chunk[indOfRowOfBlocks][index] = Blocks.dirt;
         });
       }
     });

@@ -23,6 +23,8 @@ class PlayerComponent extends SpriteAnimationComponent {
   Future<void> onLoad() async {
     await super.onLoad();
 
+    priority = 2;
+
     playerWalkingSpritesheet = SpriteSheet(
       image: await Flame.images
           .load('sprite_sheets/player/player_walking_sprite_sheet.png'),

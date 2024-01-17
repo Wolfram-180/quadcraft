@@ -3,6 +3,7 @@ import 'package:flutter_flame_minecraft/components/block_component.dart';
 import 'package:flutter_flame_minecraft/components/player_component.dart';
 import 'package:flutter_flame_minecraft/global/global_game_reference.dart';
 import 'package:flutter_flame_minecraft/global/world_data.dart';
+import 'package:flutter_flame_minecraft/utils/chunk_generation_methods.dart';
 import 'package:get/get.dart';
 import 'package:flutter_flame_minecraft/resources/blocks.dart';
 
@@ -23,6 +24,18 @@ class MainGame extends FlameGame {
     super.onLoad();
 
     add(playerComponent);
-    add(BlockComponent(block: Blocks.grass, blockIndex: Vector2(3, 7)));
+    renderChunk(ChunkGenerationMethods.instance.generateChunk());
+  }
+
+  void renderChunk(List<List<Blocks?>> chunk) {
+    chunk.asMap().forEach((int yIndex, List<Blocks?> rowOfBlocks) {
+      rowOfBlocks.asMap().forEach((int xIndex, Blocks? block) {
+        if (block != null) {
+          add(BlockComponent(
+              block: block,
+              blockIndex: Vector2(xIndex.toDouble(), yIndex.toDouble())));
+        }
+      });
+    });
   }
 }
