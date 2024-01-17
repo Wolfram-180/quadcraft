@@ -11,7 +11,11 @@ class GameLayout extends StatelessWidget {
   Widget build(BuildContext context) {
     return Stack(
       children: [
-        GameWidget(game: MainGame(worldData: WorldData())),
+        GameWidget(
+          game: MainGame(
+            worldData: WorldData(),
+          ),
+        ),
         const ControllerWidget(),
       ],
     );

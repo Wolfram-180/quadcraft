@@ -17,18 +17,17 @@ class MainGame extends FlameGame {
 
   GlobalGameReference globalGameReference = Get.put(GlobalGameReference());
 
-  late final CameraComponent cameraComponent;
   PlayerComponent playerComponent = PlayerComponent();
 
   @override
   Future<void> onLoad() async {
-    super.onLoad();
+    await super.onLoad();
 
-    cameraComponent = CameraComponent(world: world);
+    await add(camera);
+    await add(playerComponent);
+
     camera.follow(playerComponent);
 
-    add(camera);
-    add(playerComponent);
     renderChunk(ChunkGenerationMethods.instance.generateChunk());
   }
 

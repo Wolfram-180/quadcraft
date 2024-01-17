@@ -3,9 +3,10 @@ import 'package:flame/sprite.dart';
 import 'package:flame/flame.dart';
 import 'package:flutter_flame_minecraft/global/global_game_reference.dart';
 import 'package:flutter_flame_minecraft/global/player_data.dart';
+import 'package:flutter_flame_minecraft/main_game.dart';
+import 'package:flutter_flame_minecraft/utils/game_methods.dart';
 
-class PlayerComponent extends SpriteAnimationComponent
-    implements PositionComponent {
+class PlayerComponent extends SpriteAnimationComponent {
   final Vector2 playerDimensions = Vector2.all(60);
   final double stepTime = 0.3;
   final double speed = 5;
@@ -40,7 +41,6 @@ class PlayerComponent extends SpriteAnimationComponent
       srcSize: playerDimensions,
     );
 
-    size = Vector2.all(60);
     position = Vector2(100, 500);
     animation = idleAnimation;
   }
@@ -80,5 +80,11 @@ class PlayerComponent extends SpriteAnimationComponent
         ComponentMotionState.idle) {
       animation = idleAnimation;
     }
+  }
+
+  @override
+  void onGameResize(Vector2 newGameSize) {
+    super.onGameResize(newGameSize);
+    size = GameMethods.instance.blockSize * 1.5;
   }
 }
