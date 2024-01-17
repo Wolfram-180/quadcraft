@@ -4,7 +4,8 @@ import 'package:flame/flame.dart';
 import 'package:flutter_flame_minecraft/global/global_game_reference.dart';
 import 'package:flutter_flame_minecraft/global/player_data.dart';
 
-class PlayerComponent extends SpriteAnimationComponent {
+class PlayerComponent extends SpriteAnimationComponent
+    implements PositionComponent {
   final Vector2 playerDimensions = Vector2.all(60);
   final double stepTime = 0.3;
   final double speed = 5;

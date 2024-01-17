@@ -11,8 +11,7 @@ import 'package:flutter_flame_minecraft/resources/blocks.dart';
 class MainGame extends FlameGame {
   final WorldData worldData;
 
-  MainGame(
-      {super.children, super.world, super.camera, required this.worldData}) {
+  MainGame({required this.worldData}) {
     globalGameReference.gameReference = this;
   }
 
@@ -28,7 +27,7 @@ class MainGame extends FlameGame {
     cameraComponent = CameraComponent(world: world);
     camera.follow(playerComponent);
 
-    add(cameraComponent);
+    add(camera);
     add(playerComponent);
     renderChunk(ChunkGenerationMethods.instance.generateChunk());
   }
