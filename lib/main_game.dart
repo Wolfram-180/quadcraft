@@ -8,11 +8,23 @@ import 'package:flutter_flame_minecraft/utils/chunk_generation_methods.dart';
 import 'package:get/get.dart';
 import 'package:flutter_flame_minecraft/resources/blocks.dart';
 
+/* class MyWorld extends World {
+  @override
+  Future<void> onLoad() async {
+    await super.onLoad();
+    print('World loaded');
+  }
+} */
+
 class MainGame extends FlameGame {
+  @override
+  final debugMode = true;
+
   final WorldData worldData;
 
   MainGame({required this.worldData}) {
     globalGameReference.gameReference = this;
+    // world = MyWorld();
   }
 
   GlobalGameReference globalGameReference = Get.put(GlobalGameReference());
@@ -23,10 +35,14 @@ class MainGame extends FlameGame {
   Future<void> onLoad() async {
     await super.onLoad();
 
-    await add(camera);
+    camera.followComponent(playerComponent);
+
     await add(playerComponent);
 
-    camera.follow(playerComponent);
+//    await add(camera);
+
+/*     print(camera.canSee(playerComponent));
+    print(world.isMounted); */
 
     renderChunk(ChunkGenerationMethods.instance.generateChunk());
   }

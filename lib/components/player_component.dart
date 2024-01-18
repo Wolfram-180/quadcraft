@@ -3,10 +3,11 @@ import 'package:flame/sprite.dart';
 import 'package:flame/flame.dart';
 import 'package:flutter_flame_minecraft/global/global_game_reference.dart';
 import 'package:flutter_flame_minecraft/global/player_data.dart';
-import 'package:flutter_flame_minecraft/main_game.dart';
 import 'package:flutter_flame_minecraft/utils/game_methods.dart';
+import 'package:flame/game.dart';
 
-class PlayerComponent extends SpriteAnimationComponent {
+class PlayerComponent extends SpriteAnimationComponent
+    implements PositionComponent {
   final Vector2 playerDimensions = Vector2.all(60);
   final double stepTime = 0.3;
   final double speed = 5;
@@ -56,6 +57,7 @@ class PlayerComponent extends SpriteAnimationComponent {
             .instance.gameReference.worldData.playerData.componentMotionState ==
         ComponentMotionState.walkingLeft) {
       position.x -= speed;
+
       if (isFacingRight) {
         flipHorizontallyAroundCenter();
         isFacingRight = false;
@@ -68,6 +70,7 @@ class PlayerComponent extends SpriteAnimationComponent {
             .instance.gameReference.worldData.playerData.componentMotionState ==
         ComponentMotionState.walkingRight) {
       position.x += speed;
+
       if (!isFacingRight) {
         flipHorizontallyAroundCenter();
         isFacingRight = true;
