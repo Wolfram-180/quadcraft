@@ -4,6 +4,7 @@ import 'package:flutter_flame_minecraft/components/player_component.dart';
 import 'package:flutter_flame_minecraft/global/global_game_reference.dart';
 import 'package:flutter_flame_minecraft/global/world_data.dart';
 import 'package:flutter_flame_minecraft/utils/chunk_generation_methods.dart';
+import 'package:flutter_flame_minecraft/utils/constants.dart';
 import 'package:flutter_flame_minecraft/utils/game_methods.dart';
 import 'package:get/get.dart';
 import 'package:flutter_flame_minecraft/resources/blocks.dart';
@@ -27,23 +28,28 @@ class MainGame extends FlameGame {
 
     await add(playerComponent);
 
-    GameMethods.instance.addChunkToRightWorldChunks(
-        ChunkGenerationMethods.instance.generateChunk());
-    GameMethods.instance.addChunkToRightWorldChunks(
-        ChunkGenerationMethods.instance.generateChunk());
+    GameMethods.instance.addChunkToWorldChunks(
+        ChunkGenerationMethods.instance.generateChunk(-1), false);
+    GameMethods.instance.addChunkToWorldChunks(
+        ChunkGenerationMethods.instance.generateChunk(0), true);
+    GameMethods.instance.addChunkToWorldChunks(
+        ChunkGenerationMethods.instance.generateChunk(1), true);
 
-    renderChunk();
+    renderChunk(-1);
+    renderChunk(0);
+    renderChunk(1);
   }
 
-  void renderChunk() {
-    worldData.rightWorldChunks
-        .asMap()
-        .forEach((int yIndex, List<Blocks?> rowOfBlocks) {
+  void renderChunk(int chunkIndex) {
+    List<List<Blocks?>> chunk = GameMethods.instance.getChunk(chunkIndex);
+
+    chunk.asMap().forEach((int yIndex, List<Blocks?> rowOfBlocks) {
       rowOfBlocks.asMap().forEach((int xIndex, Blocks? block) {
         if (block != null) {
           add(BlockComponent(
               block: block,
-              blockIndex: Vector2(xIndex.toDouble(), yIndex.toDouble())));
+              blockIndex: Vector2((chunkIndex * chunkWidth) + xIndex.toDouble(),
+                  yIndex.toDouble())));
         }
       });
     });

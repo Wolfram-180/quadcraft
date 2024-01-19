@@ -14,7 +14,7 @@ class GameLayout extends StatelessWidget {
         GameWidget(
           game: MainGame(
             worldData: WorldData(
-              seed: 98765493,
+              seed: 8348478577,
             ),
           ),
         ),
