@@ -3,6 +3,7 @@ import 'package:flame/flame.dart';
 import 'package:flame/game.dart';
 import 'package:flame/sprite.dart';
 import 'package:flutter/widgets.dart';
+import 'package:flutter_flame_minecraft/global/global_game_reference.dart';
 import 'package:flutter_flame_minecraft/utils/constants.dart';
 import 'package:flutter_flame_minecraft/resources/blocks.dart';
 
@@ -39,5 +40,15 @@ class GameMethods {
   Future<Sprite> getSpriteFromBlock(Blocks block) async {
     SpriteSheet spriteSheet = await getBlockSpriteSheet();
     return spriteSheet.getSprite(0, block.index);
+  }
+
+  void addChunkToRightWorldChunks(List<List<Blocks?>> chunk) {
+    GlobalGameReference.instance.gameReference.worldData.rightWorldChunks
+        .asMap()
+        .forEach((int yIndex, List<Blocks?> value) {
+      GlobalGameReference
+          .instance.gameReference.worldData.rightWorldChunks[yIndex]
+          .addAll(value);
+    });
   }
 }

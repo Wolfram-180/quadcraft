@@ -13,7 +13,9 @@ class GameLayout extends StatelessWidget {
       children: [
         GameWidget(
           game: MainGame(
-            worldData: WorldData(),
+            worldData: WorldData(
+              seed: 98765493,
+            ),
           ),
         ),
         const ControllerWidget(),

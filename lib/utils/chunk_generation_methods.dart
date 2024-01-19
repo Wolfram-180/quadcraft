@@ -1,6 +1,7 @@
 import 'dart:math';
 
 import 'package:fast_noise/fast_noise.dart';
+import 'package:flutter_flame_minecraft/global/global_game_reference.dart';
 import 'package:flutter_flame_minecraft/resources/biomes.dart';
 import 'package:flutter_flame_minecraft/utils/constants.dart';
 import 'package:flutter_flame_minecraft/resources/blocks.dart';
@@ -19,8 +20,13 @@ class ChunkGenerationMethods {
 
     List<List<Blocks?>> chunk = generateNullChunk();
 
-    List<List<double>> rawNoise = noise2(chunkWidth, 1,
-        noiseType: NoiseType.perlin, frequency: 0.05, seed: 98765493);
+    List<List<double>> rawNoise = noise2(
+      chunkWidth,
+      1,
+      noiseType: NoiseType.perlin,
+      frequency: 0.05,
+      seed: GlobalGameReference.instance.gameReference.worldData.seed,
+    );
 
     List<int> yValues = getYValuesFromRawNoise(rawNoise);
 
