@@ -1,4 +1,7 @@
+import 'dart:math';
+
 import 'package:fast_noise/fast_noise.dart';
+import 'package:flutter_flame_minecraft/resources/biomes.dart';
 import 'package:flutter_flame_minecraft/utils/constants.dart';
 import 'package:flutter_flame_minecraft/resources/blocks.dart';
 import 'package:flutter_flame_minecraft/utils/game_methods.dart';
@@ -12,6 +15,8 @@ class ChunkGenerationMethods {
   }
 
   List<List<Blocks?>> generateChunk() {
+    Biomes biome = Random().nextBool() ? Biomes.desert : Biomes.birchForest;
+
     List<List<Blocks?>> chunk = generateNullChunk();
 
     List<List<double>> rawNoise = noise2(chunkWidth, 1,
@@ -19,9 +24,9 @@ class ChunkGenerationMethods {
 
     List<int> yValues = getYValuesFromRawNoise(rawNoise);
 
-    chunk = generatePrimarySoil(chunk, yValues, Blocks.grass);
+    chunk = generatePrimarySoil(chunk, yValues, biome);
 
-    chunk = generateSecondarySoil(chunk, yValues, Blocks.dirt);
+    chunk = generateSecondarySoil(chunk, yValues, biome);
 
     chunk = generateStone(chunk);
 
@@ -29,20 +34,20 @@ class ChunkGenerationMethods {
   }
 
   List<List<Blocks?>> generatePrimarySoil(
-      List<List<Blocks?>> chunk, List<int> yValues, Blocks block) {
+      List<List<Blocks?>> chunk, List<int> yValues, Biomes biome) {
     yValues.asMap().forEach((int index, int value) {
-      chunk[value][index] = block;
+      chunk[value][index] = BiomeData.getBiomeDataFor(biome).primarySoil;
     });
     return chunk;
   }
 
   List<List<Blocks?>> generateSecondarySoil(
-      List<List<Blocks?>> chunk, List<int> yValues, Blocks block) {
+      List<List<Blocks?>> chunk, List<int> yValues, Biomes biome) {
     yValues.asMap().forEach((int index, int value) {
       for (int i = value + 1;
           i <= value + GameMethods.instance.maxSecondarySoilExtent;
           i++) {
-        chunk[i][index] = block;
+        chunk[i][index] = BiomeData.getBiomeDataFor(biome).secondarySoil;
       }
     });
     return chunk;
@@ -56,6 +61,15 @@ class ChunkGenerationMethods {
         chunk[i][index] = Blocks.stone;
       }
     }
+
+    int x1 = Random().nextInt(chunkWidth ~/ 2);
+    int x2 = x1 + Random().nextInt(chunkWidth ~/ 2);
+
+    chunk[GameMethods.instance.maxSecondarySoilExtent].fillRange(
+      x1,
+      x2,
+      Blocks.stone,
+    );
 
     return chunk;
   }
