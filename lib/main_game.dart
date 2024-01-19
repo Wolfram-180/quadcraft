@@ -17,8 +17,7 @@ import 'package:flutter_flame_minecraft/resources/blocks.dart';
 } */
 
 class MainGame extends FlameGame {
-  @override
-  final debugMode = true;
+  // final debugMode = true;
 
   final WorldData worldData;
 
