@@ -71,11 +71,8 @@ class ChunkGenerationMethods {
     int x1 = Random().nextInt(chunkWidth ~/ 2);
     int x2 = x1 + Random().nextInt(chunkWidth ~/ 2);
 
-    chunk[GameMethods.instance.maxSecondarySoilExtent].fillRange(
-      x1,
-      x2,
-      Blocks.stone,
-    );
+    chunk[GameMethods.instance.maxSecondarySoilExtent]
+        .fillRange(x1, x2, Blocks.stone);
 
     return chunk;
   }

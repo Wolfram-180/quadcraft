@@ -43,9 +43,7 @@ class GameMethods {
   }
 
   void addChunkToRightWorldChunks(List<List<Blocks?>> chunk) {
-    GlobalGameReference.instance.gameReference.worldData.rightWorldChunks
-        .asMap()
-        .forEach((int yIndex, List<Blocks?> value) {
+    chunk.asMap().forEach((int yIndex, List<Blocks?> value) {
       GlobalGameReference
           .instance.gameReference.worldData.rightWorldChunks[yIndex]
           .addAll(value);
