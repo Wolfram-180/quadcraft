@@ -73,6 +73,16 @@ class MainGame extends FlameGame {
           renderChunk(chunkIndex);
 
           worldData.currentlyRenderedChunks.add(chunkIndex);
+        } else {
+          if (worldData.leftWorldChunks[0].length ~/ chunkWidth <
+              chunkIndex.abs()) {
+            GameMethods.instance.addChunkToWorldChunks(
+                ChunkGenerationMethods.instance.generateChunk(chunkIndex),
+                false);
+          }
+          renderChunk(chunkIndex);
+
+          worldData.currentlyRenderedChunks.add(chunkIndex);
         }
       }
     });
