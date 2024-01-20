@@ -24,6 +24,18 @@ class GameMethods {
     return freeArea + 6;
   }
 
+  double get playerXIndexPosition {
+    return GlobalGameReference
+            .instance.gameReference.playerComponent.position.x /
+        blockSize.x;
+  }
+
+  int get currentChunkIndex {
+    return playerXIndexPosition >= 0
+        ? playerXIndexPosition ~/ chunkWidth
+        : (playerXIndexPosition ~/ chunkWidth) - 1;
+  }
+
   Size getScreenSize() {
     return MediaQueryData.fromView(
             WidgetsBinding.instance.platformDispatcher.views.single)
