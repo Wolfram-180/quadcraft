@@ -58,6 +58,23 @@ class MainGame extends FlameGame {
   @override
   void update(double dt) {
     super.update(dt);
-    print(GameMethods.instance.currentChunkIndex);
+
+    worldData.chunksThatShouldBeRendered
+        .asMap()
+        .forEach((int index, int chunkIndex) {
+      if (!worldData.currentlyRenderedChunks.contains(chunkIndex)) {
+        if (chunkIndex >= 0) {
+          if (worldData.rightWorldChunks[0].length ~/ chunkWidth <
+              chunkIndex + 1) {
+            GameMethods.instance.addChunkToWorldChunks(
+                ChunkGenerationMethods.instance.generateChunk(chunkIndex),
+                true);
+          }
+          renderChunk(chunkIndex);
+
+          worldData.currentlyRenderedChunks.add(chunkIndex);
+        }
+      }
+    });
   }
 }
