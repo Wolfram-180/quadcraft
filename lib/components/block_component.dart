@@ -32,7 +32,7 @@ class BlockComponent extends SpriteComponent {
   void update(double dt) {
     super.update(dt);
 
-    if (GlobalGameReference
+    if (!GlobalGameReference
         .instance.gameReference.worldData.chunksThatShouldBeRendered
         .contains(chunkIndex)) {
       removeFromParent();
