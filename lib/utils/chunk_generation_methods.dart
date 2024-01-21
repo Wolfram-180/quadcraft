@@ -100,7 +100,8 @@ class ChunkGenerationMethods {
     int xPositionOfStructure =
         Random().nextInt(chunkWidth - currentStructure.maxWidth);
 
-    int yPositionOfStructure = yValues[xPositionOfStructure];
+    int yPositionOfStructure =
+        yValues[xPositionOfStructure + (currentStructure.maxWidth ~/ 2)] - 1;
 
     for (int indexOfRow = 0;
         indexOfRow < currentStructure.structure.length;
