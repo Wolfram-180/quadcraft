@@ -3,6 +3,7 @@ import 'dart:math';
 import 'package:fast_noise/fast_noise.dart';
 import 'package:flutter_flame_minecraft/global/global_game_reference.dart';
 import 'package:flutter_flame_minecraft/resources/biomes.dart';
+import 'package:flutter_flame_minecraft/resources/ores.dart';
 import 'package:flutter_flame_minecraft/resources/structure.dart';
 import 'package:flutter_flame_minecraft/utils/constants.dart';
 import 'package:flutter_flame_minecraft/resources/blocks.dart';
@@ -26,7 +27,7 @@ class ChunkGenerationMethods {
           ? chunkWidth * (chunkIndex + 1)
           : chunkWidth * (chunkIndex.abs()),
       1,
-      noiseType: NoiseType.perlin,
+      noiseType: NoiseType.Perlin,
       frequency: 0.05,
       seed: chunkIndex >= 0
           ? GlobalGameReference.instance.gameReference.worldData.seed
@@ -59,6 +60,26 @@ class ChunkGenerationMethods {
       chunk,
       yValues,
       biome,
+    );
+
+    chunk = addOreToChunk(
+      chunk,
+      Ores.coalOre,
+    );
+
+    chunk = addOreToChunk(
+      chunk,
+      Ores.ironOre,
+    );
+
+    chunk = addOreToChunk(
+      chunk,
+      Ores.goldOre,
+    );
+
+    chunk = addOreToChunk(
+      chunk,
+      Ores.diamondOre,
     );
 
     return chunk;
@@ -158,5 +179,41 @@ class ChunkGenerationMethods {
     });
 
     return yValues;
+  }
+
+  List<List<Blocks?>> addOreToChunk(
+    List<List<Blocks?>> chunk,
+    Ores ore,
+  ) {
+    List<List<double>> rawNoise = noise2(
+      chunkHeight,
+      chunkWidth,
+      noiseType: NoiseType.Perlin,
+      frequency: 0.055,
+      seed: Random().nextInt(
+        999999999,
+      ),
+    );
+
+    List<List<int>> processedNoise =
+        GameMethods.instance.processNoise(rawNoise);
+
+    processedNoise.asMap().forEach(
+      (
+        int rowOfProcessedNoiseIndex,
+        List<int> rowOfProcessedNoise,
+      ) {
+        rowOfProcessedNoise.asMap().forEach(
+          (int index, int value) {
+            if (value < ore.rarity &&
+                chunk[rowOfProcessedNoiseIndex][index] == Blocks.stone) {
+              chunk[rowOfProcessedNoiseIndex][index] = ore.block;
+            }
+          },
+        );
+      },
+    );
+
+    return chunk;
   }
 }
