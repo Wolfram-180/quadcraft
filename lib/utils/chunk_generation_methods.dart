@@ -92,21 +92,33 @@ class ChunkGenerationMethods {
 
   List<List<Blocks?>> addStructuresToChunk(
       List<List<Blocks?>> chunk, List<int> yValues) {
+    Structure currentStructure = treeStructure;
+
+    List<List<Blocks?>> structureList =
+        List.from(currentStructure.structure.reversed);
+
     int xPositionOfStructure =
-        Random().nextInt(chunkWidth - treeStructure.maxWidth);
+        Random().nextInt(chunkWidth - currentStructure.maxWidth);
 
     int yPositionOfStructure = yValues[xPositionOfStructure];
 
     for (int indexOfRow = 0;
-        indexOfRow < treeStructure.structure.length;
+        indexOfRow < currentStructure.structure.length;
         indexOfRow++) {
-      List<Blocks?> rowOfBlocksInStructure =
-          treeStructure.structure[indexOfRow];
+      List<Blocks?> rowOfBlocksInStructure = structureList[indexOfRow];
+      //
       rowOfBlocksInStructure
           .asMap()
-          .forEach((int index, Blocks? blockInSructure) {
-        chunk[yPositionOfStructure - indexOfRow][xPositionOfStructure + index] =
-            blockInSructure;
+          .forEach((int index, Blocks? blockInStructure) {
+        //
+        if (chunk[yPositionOfStructure - indexOfRow]
+                [xPositionOfStructure + index] ==
+            null) {
+          //
+          chunk[yPositionOfStructure - indexOfRow]
+              [xPositionOfStructure + index] = blockInStructure;
+        }
+        //
       });
     }
 
