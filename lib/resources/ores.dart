@@ -8,18 +8,18 @@ class Ores {
 
   static Ores ironOre = Ores(
     block: Blocks.ironOre,
-    rarity: 90,
+    rarity: 65,
   );
   static Ores coalOre = Ores(
     block: Blocks.coalOre,
-    rarity: 85,
+    rarity: 60,
   );
   static Ores goldOre = Ores(
     block: Blocks.goldOre,
-    rarity: 70,
+    rarity: 40,
   );
   static Ores diamondOre = Ores(
     block: Blocks.diamondOre,
-    rarity: 65,
+    rarity: 35,
   );
 }

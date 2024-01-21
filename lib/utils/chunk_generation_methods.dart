@@ -189,7 +189,7 @@ class ChunkGenerationMethods {
       chunkHeight,
       chunkWidth,
       noiseType: NoiseType.Perlin,
-      frequency: 0.055,
+      frequency: 0.1,
       seed: Random().nextInt(
         999999999,
       ),
