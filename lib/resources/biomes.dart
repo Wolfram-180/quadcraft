@@ -1,5 +1,6 @@
 import 'package:flutter_flame_minecraft/resources/blocks.dart';
 import 'package:flutter_flame_minecraft/resources/structure.dart';
+import 'package:flutter_flame_minecraft/structures/plants.dart';
 import 'package:flutter_flame_minecraft/structures/trees.dart';
 
 enum Biomes { desert, birchForest }
@@ -20,7 +21,9 @@ class BiomeData {
         return BiomeData(
           primarySoil: Blocks.sand,
           secondarySoil: Blocks.sand,
-          generatingStructures: [],
+          generatingStructures: [
+            cactus,
+          ],
         );
       case Biomes.birchForest:
         return BiomeData(

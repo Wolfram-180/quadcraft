@@ -4,7 +4,6 @@ import 'package:fast_noise/fast_noise.dart';
 import 'package:flutter_flame_minecraft/global/global_game_reference.dart';
 import 'package:flutter_flame_minecraft/resources/biomes.dart';
 import 'package:flutter_flame_minecraft/resources/structure.dart';
-import 'package:flutter_flame_minecraft/structures/trees.dart';
 import 'package:flutter_flame_minecraft/utils/constants.dart';
 import 'package:flutter_flame_minecraft/resources/blocks.dart';
 import 'package:flutter_flame_minecraft/utils/game_methods.dart';
@@ -112,33 +111,38 @@ class ChunkGenerationMethods {
         .generatingStructures
         .asMap()
         .forEach((key, Structure currentStructure) {
-      List<List<Blocks?>> structureList =
-          List.from(currentStructure.structure.reversed);
+      for (int occurence = 0;
+          occurence < currentStructure.maxOccurences;
+          occurence++) {
+        List<List<Blocks?>> structureList =
+            List.from(currentStructure.structure.reversed);
 
-      int xPositionOfStructure =
-          Random().nextInt(chunkWidth - currentStructure.maxWidth);
+        int xPositionOfStructure =
+            Random().nextInt(chunkWidth - currentStructure.maxWidth);
 
-      int yPositionOfStructure =
-          yValues[xPositionOfStructure + (currentStructure.maxWidth ~/ 2)] - 1;
+        int yPositionOfStructure =
+            yValues[xPositionOfStructure + (currentStructure.maxWidth ~/ 2)] -
+                1;
 
-      for (int indexOfRow = 0;
-          indexOfRow < currentStructure.structure.length;
-          indexOfRow++) {
-        List<Blocks?> rowOfBlocksInStructure = structureList[indexOfRow];
-        //
-        rowOfBlocksInStructure
-            .asMap()
-            .forEach((int index, Blocks? blockInStructure) {
+        for (int indexOfRow = 0;
+            indexOfRow < currentStructure.structure.length;
+            indexOfRow++) {
+          List<Blocks?> rowOfBlocksInStructure = structureList[indexOfRow];
           //
-          if (chunk[yPositionOfStructure - indexOfRow]
-                  [xPositionOfStructure + index] ==
-              null) {
+          rowOfBlocksInStructure
+              .asMap()
+              .forEach((int index, Blocks? blockInStructure) {
             //
-            chunk[yPositionOfStructure - indexOfRow]
-                [xPositionOfStructure + index] = blockInStructure;
-          }
-          //
-        });
+            if (chunk[yPositionOfStructure - indexOfRow]
+                    [xPositionOfStructure + index] ==
+                null) {
+              //
+              chunk[yPositionOfStructure - indexOfRow]
+                  [xPositionOfStructure + index] = blockInStructure;
+            }
+            //
+          });
+        }
       }
     });
 
