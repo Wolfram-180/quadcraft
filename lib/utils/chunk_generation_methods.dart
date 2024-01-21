@@ -3,6 +3,7 @@ import 'dart:math';
 import 'package:fast_noise/fast_noise.dart';
 import 'package:flutter_flame_minecraft/global/global_game_reference.dart';
 import 'package:flutter_flame_minecraft/resources/biomes.dart';
+import 'package:flutter_flame_minecraft/resources/structure.dart';
 import 'package:flutter_flame_minecraft/utils/constants.dart';
 import 'package:flutter_flame_minecraft/resources/blocks.dart';
 import 'package:flutter_flame_minecraft/utils/game_methods.dart';
@@ -46,6 +47,8 @@ class ChunkGenerationMethods {
 
     chunk = generateStone(chunk);
 
+    chunk = addStructuresToChunk(chunk, yValues);
+
     return chunk;
   }
 
@@ -83,6 +86,29 @@ class ChunkGenerationMethods {
 
     chunk[GameMethods.instance.maxSecondarySoilExtent]
         .fillRange(x1, x2, Blocks.stone);
+
+    return chunk;
+  }
+
+  List<List<Blocks?>> addStructuresToChunk(
+      List<List<Blocks?>> chunk, List<int> yValues) {
+    int xPositionOfStructure =
+        Random().nextInt(chunkWidth - treeStructure.maxWidth);
+
+    int yPositionOfStructure = yValues[xPositionOfStructure];
+
+    for (int indexOfRow = 0;
+        indexOfRow < treeStructure.structure.length;
+        indexOfRow++) {
+      List<Blocks?> rowOfBlocksInStructure =
+          treeStructure.structure[indexOfRow];
+      rowOfBlocksInStructure
+          .asMap()
+          .forEach((int index, Blocks? blockInSructure) {
+        chunk[yPositionOfStructure - indexOfRow][xPositionOfStructure + index] =
+            blockInSructure;
+      });
+    }
 
     return chunk;
   }
