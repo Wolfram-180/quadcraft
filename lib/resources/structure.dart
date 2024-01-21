@@ -17,15 +17,3 @@ class Structure {
   //   return chunk;
   // }
 }
-
-Structure treeStructure = Structure(
-  structure: [
-    [Blocks.birchLeaf, Blocks.birchLeaf, Blocks.birchLeaf],
-    [Blocks.birchLeaf, Blocks.birchLeaf, Blocks.birchLeaf],
-    [Blocks.birchLeaf, Blocks.birchLeaf, Blocks.birchLeaf],
-    [null, Blocks.birchLog, null],
-    [null, Blocks.birchLog, null],
-  ],
-  maxOccurences: 1,
-  maxWidth: 3,
-);

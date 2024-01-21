@@ -4,6 +4,7 @@ import 'package:fast_noise/fast_noise.dart';
 import 'package:flutter_flame_minecraft/global/global_game_reference.dart';
 import 'package:flutter_flame_minecraft/resources/biomes.dart';
 import 'package:flutter_flame_minecraft/resources/structure.dart';
+import 'package:flutter_flame_minecraft/structures/trees.dart';
 import 'package:flutter_flame_minecraft/utils/constants.dart';
 import 'package:flutter_flame_minecraft/resources/blocks.dart';
 import 'package:flutter_flame_minecraft/utils/game_methods.dart';
@@ -41,13 +42,25 @@ class ChunkGenerationMethods {
             ? chunkWidth * chunkIndex
             : chunkWidth * (chunkIndex.abs() - 1));
 
-    chunk = generatePrimarySoil(chunk, yValues, biome);
+    chunk = generatePrimarySoil(
+      chunk,
+      yValues,
+      biome,
+    );
 
-    chunk = generateSecondarySoil(chunk, yValues, biome);
+    chunk = generateSecondarySoil(
+      chunk,
+      yValues,
+      biome,
+    );
 
     chunk = generateStone(chunk);
 
-    chunk = addStructuresToChunk(chunk, yValues);
+    chunk = addStructuresToChunk(
+      chunk,
+      yValues,
+      biome,
+    );
 
     return chunk;
   }
@@ -91,37 +104,43 @@ class ChunkGenerationMethods {
   }
 
   List<List<Blocks?>> addStructuresToChunk(
-      List<List<Blocks?>> chunk, List<int> yValues) {
-    Structure currentStructure = treeStructure;
+    List<List<Blocks?>> chunk,
+    List<int> yValues,
+    Biomes biome,
+  ) {
+    BiomeData.getBiomeDataFor(biome)
+        .generatingStructures
+        .asMap()
+        .forEach((key, Structure currentStructure) {
+      List<List<Blocks?>> structureList =
+          List.from(currentStructure.structure.reversed);
 
-    List<List<Blocks?>> structureList =
-        List.from(currentStructure.structure.reversed);
+      int xPositionOfStructure =
+          Random().nextInt(chunkWidth - currentStructure.maxWidth);
 
-    int xPositionOfStructure =
-        Random().nextInt(chunkWidth - currentStructure.maxWidth);
+      int yPositionOfStructure =
+          yValues[xPositionOfStructure + (currentStructure.maxWidth ~/ 2)] - 1;
 
-    int yPositionOfStructure =
-        yValues[xPositionOfStructure + (currentStructure.maxWidth ~/ 2)] - 1;
-
-    for (int indexOfRow = 0;
-        indexOfRow < currentStructure.structure.length;
-        indexOfRow++) {
-      List<Blocks?> rowOfBlocksInStructure = structureList[indexOfRow];
-      //
-      rowOfBlocksInStructure
-          .asMap()
-          .forEach((int index, Blocks? blockInStructure) {
+      for (int indexOfRow = 0;
+          indexOfRow < currentStructure.structure.length;
+          indexOfRow++) {
+        List<Blocks?> rowOfBlocksInStructure = structureList[indexOfRow];
         //
-        if (chunk[yPositionOfStructure - indexOfRow]
-                [xPositionOfStructure + index] ==
-            null) {
+        rowOfBlocksInStructure
+            .asMap()
+            .forEach((int index, Blocks? blockInStructure) {
           //
-          chunk[yPositionOfStructure - indexOfRow]
-              [xPositionOfStructure + index] = blockInStructure;
-        }
-        //
-      });
-    }
+          if (chunk[yPositionOfStructure - indexOfRow]
+                  [xPositionOfStructure + index] ==
+              null) {
+            //
+            chunk[yPositionOfStructure - indexOfRow]
+                [xPositionOfStructure + index] = blockInStructure;
+          }
+          //
+        });
+      }
+    });
 
     return chunk;
   }

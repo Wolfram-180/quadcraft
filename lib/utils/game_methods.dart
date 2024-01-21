@@ -16,7 +16,6 @@ class GameMethods {
     return Vector2.all(30);
   }
 
-// TODO: check, should be 0.4, error on 0.3 and more
   int get freeArea {
     return (chunkHeight * 0.4).toInt();
   }
