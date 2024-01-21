@@ -10,10 +10,9 @@ class Structure {
       required this.maxOccurences,
       required this.maxWidth});
 
-  // generateStructure(List<List<Blocks?>> chunk, List<int> yValues, Biomes biome) {
-  //   yValues.asMap().forEach((int index, int value) {
-  //     chunk[value][index] = BiomeData.getBiomeDataFor(biome).primarySoil;
-  //   });
-  //   return chunk;
-  // }
+  factory Structure.getPlantStructureForBlock(Blocks block) {
+    return Structure(structure: [
+      [block]
+    ], maxOccurences: 1, maxWidth: 1);
+  }
 }

@@ -23,6 +23,7 @@ class BiomeData {
           secondarySoil: Blocks.sand,
           generatingStructures: [
             cactus,
+            deadBush,
           ],
         );
       case Biomes.birchForest:
@@ -31,6 +32,10 @@ class BiomeData {
           secondarySoil: Blocks.dirt,
           generatingStructures: [
             birchTree,
+            redFlower,
+            whiteFlower,
+            purpleFlower,
+            drippingWhiteFlower,
           ],
         );
     }
