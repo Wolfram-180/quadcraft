@@ -64,7 +64,7 @@ class ChunkGenerationMethods {
       List<List<Blocks?>> chunk, List<int> yValues, Biomes biome) {
     yValues.asMap().forEach((int index, int value) {
       for (int i = value + 1;
-          i <= value + GameMethods.instance.maxSecondarySoilExtent;
+          i <= GameMethods.instance.maxSecondarySoilExtent;
           i++) {
         chunk[i][index] = BiomeData.getBiomeDataFor(biome).secondarySoil;
       }

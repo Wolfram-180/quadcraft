@@ -18,7 +18,7 @@ class GameMethods {
 
 // TODO: check, should be 0.4, error on 0.3 and more
   int get freeArea {
-    return (chunkHeight * 0.2).toInt();
+    return (chunkHeight * 0.4).toInt();
   }
 
   int get maxSecondarySoilExtent {
