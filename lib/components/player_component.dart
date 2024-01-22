@@ -26,6 +26,7 @@ class PlayerComponent extends SpriteAnimationComponent with CollisionCallbacks {
   bool isCollidingBottom = false;
   bool isCollidingLeft = false;
   bool isCollidingRight = false;
+  bool isCollidingTop = false;
 
   double jumpForce = 0;
 
@@ -41,6 +42,7 @@ class PlayerComponent extends SpriteAnimationComponent with CollisionCallbacks {
 
     intersectionPoints.forEach(
       (Vector2 individualIntersectionPoint) {
+        // bottom collision
         if (individualIntersectionPoint.y > (position.y - (size.y * 0.3)) &&
             (intersectionPoints.first.x - intersectionPoints.last.x).abs() >
                 size.x * 0.4) {
@@ -48,6 +50,15 @@ class PlayerComponent extends SpriteAnimationComponent with CollisionCallbacks {
           yVelocity = 0;
         }
 
+// top collision
+        if ((individualIntersectionPoint.y < (position.y - (size.y * 0.75))) &&
+            ((intersectionPoints.first.x - intersectionPoints.last.x).abs() >
+                size.x * 0.4) &&
+            (jumpForce > 0)) {
+          isCollidingTop = true;
+        }
+
+// sides collision
         if (individualIntersectionPoint.y < (position.y - (size.y * 0.3))) {
           if (individualIntersectionPoint.x > position.x) {
             isCollidingRight = true;
@@ -111,6 +122,10 @@ class PlayerComponent extends SpriteAnimationComponent with CollisionCallbacks {
     if (jumpForce > 0) {
       position.y -= jumpForce;
       jumpForce -= GameMethods.instance.blockSize.x * 0.15;
+      if (isCollidingTop) {
+        jumpForce = 0;
+        isCollidingTop = false;
+      }
     }
   }
 
@@ -129,6 +144,7 @@ class PlayerComponent extends SpriteAnimationComponent with CollisionCallbacks {
     isCollidingBottom = false;
     isCollidingRight = false;
     isCollidingLeft = false;
+    isCollidingTop = false;
   }
 
   void move(ComponentMotionState componentMotionState, double dt) {
@@ -180,9 +196,10 @@ class PlayerComponent extends SpriteAnimationComponent with CollisionCallbacks {
       animation = idleAnimation;
     }
 
-    if (GlobalGameReference
-            .instance.gameReference.worldData.playerData.componentMotionState ==
-        ComponentMotionState.jumping) {
+    if (GlobalGameReference.instance.gameReference.worldData.playerData
+                .componentMotionState ==
+            ComponentMotionState.jumping &&
+        isCollidingBottom) {
       jumpForce = GameMethods.instance.blockSize.x * 0.6;
       // animation = idleAnimation;
     }
