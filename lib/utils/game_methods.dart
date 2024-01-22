@@ -40,6 +40,13 @@ class GameMethods {
     return blockSize.x * 0.8;
   }
 
+  Vector2 getIndexPositionFromPixels(Vector2 clickPosition) {
+    return Vector2(
+      (clickPosition.x / blockSize.x).floorToDouble(),
+      (clickPosition.y / blockSize.x).floorToDouble(),
+    ); //------------------------- x not y (?)
+  }
+
   Size getScreenSize() {
     return MediaQueryData.fromView(
             WidgetsBinding.instance.platformDispatcher.views.single)

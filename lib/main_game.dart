@@ -125,4 +125,18 @@ class MainGame extends FlameGame
 
     return KeyEventResult.ignored;
   }
+
+  @override
+  void onTapDown(int pointerId, TapDownInfo info) {
+    super.onTapDown;
+
+    Vector2 blockPlacingPosition = GameMethods.instance
+        .getIndexPositionFromPixels(info.eventPosition.game);
+
+    add(BlockComponent(
+      chunkIndex: 0,
+      block: Blocks.dirt,
+      blockIndex: blockPlacingPosition,
+    ));
+  }
 }
