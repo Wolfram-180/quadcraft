@@ -30,6 +30,12 @@ class GameMethods {
         blockSize.x;
   }
 
+  double get playerYIndexPosition {
+    return GlobalGameReference
+            .instance.gameReference.playerComponent.position.y /
+        blockSize.x;
+  }
+
   int get currentChunkPlayerIndex {
     return playerXIndexPosition >= 0
         ? playerXIndexPosition ~/ chunkWidth
@@ -138,6 +144,29 @@ class GameMethods {
       GlobalGameReference.instance.gameReference.worldData
               .leftWorldChunks[blockIndex.y.toInt()]
           [blockIndex.x.toInt().abs() - 1] = block;
+    }
+  }
+
+  bool playerIsWithinRange(Vector2 positionIndex) {
+    if ((positionIndex.x - playerXIndexPosition).abs() <= maxReach &&
+        (positionIndex.y - playerYIndexPosition).abs() <= maxReach) {
+      return true;
+    }
+
+    return false;
+  }
+
+  Blocks? getBlockAtIndexPosition(Vector2 blockIndex) {
+    // right chunks
+    if (blockIndex.x >= 0) {
+      return GlobalGameReference.instance.gameReference.worldData
+          .rightWorldChunks[blockIndex.y.toInt()][blockIndex.x.toInt()];
+    } else
+    // left chunks
+    {
+      return GlobalGameReference.instance.gameReference.worldData
+              .leftWorldChunks[blockIndex.y.toInt()]
+          [blockIndex.x.toInt().abs() - 1];
     }
   }
 }

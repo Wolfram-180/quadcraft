@@ -137,7 +137,11 @@ class MainGame extends FlameGame
   }
 
   void placeBlockLogic(Vector2 blockPlacingPosition) {
-    if (blockPlacingPosition.y > 0 && blockPlacingPosition.y < chunkHeight) {
+    if (blockPlacingPosition.y > 0 &&
+        blockPlacingPosition.y < chunkHeight &&
+        GameMethods.instance.playerIsWithinRange(blockPlacingPosition) &&
+        GameMethods.instance.getBlockAtIndexPosition(blockPlacingPosition) ==
+            null) {
       GameMethods.instance.replaceBlockAtWorldChunks(
         Blocks.dirt,
         blockPlacingPosition,
