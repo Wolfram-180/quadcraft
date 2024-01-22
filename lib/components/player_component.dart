@@ -1,17 +1,18 @@
+import 'package:flame/collisions.dart';
 import 'package:flame/components.dart';
 import 'package:flame/sprite.dart';
 import 'package:flame/flame.dart';
 import 'package:flutter_flame_minecraft/global/global_game_reference.dart';
 import 'package:flutter_flame_minecraft/global/player_data.dart';
+import 'package:flutter_flame_minecraft/utils/constants.dart';
 import 'package:flutter_flame_minecraft/utils/game_methods.dart';
-import 'package:flame/game.dart';
 
-class PlayerComponent extends SpriteAnimationComponent
-    implements PositionComponent {
+class PlayerComponent extends SpriteAnimationComponent with CollisionCallbacks {
   final Vector2 playerDimensions = Vector2.all(60);
   final double stepTime = 0.3;
   final double speed = 5;
   bool isFacingRight = true;
+  double yVelocity = 0;
 
   late SpriteSheet playerWalkingSpritesheet;
   late SpriteSheet playerIdleSpritesheet;
@@ -21,6 +22,24 @@ class PlayerComponent extends SpriteAnimationComponent
 
   late SpriteAnimation idleAnimation =
       playerIdleSpritesheet.createAnimation(row: 0, stepTime: stepTime);
+
+  bool isCollidingBottom = false;
+
+  @override
+  void onCollision(
+    Set<Vector2> intersectionPoints,
+    PositionComponent other,
+  ) {
+    super.onCollision(intersectionPoints, other);
+
+    intersectionPoints.forEach(
+      (Vector2 individualIntersectionPoint) {
+        if (individualIntersectionPoint.y > (position.y - (size.y * 0.3))) {
+          isCollidingBottom = true;
+        }
+      },
+    );
+  }
 
   @override
   Future<void> onLoad() async {
@@ -42,7 +61,7 @@ class PlayerComponent extends SpriteAnimationComponent
       srcSize: playerDimensions,
     );
 
-    position = Vector2(100, 500);
+    position = Vector2(100, 100);
     animation = idleAnimation;
   }
 
@@ -50,6 +69,17 @@ class PlayerComponent extends SpriteAnimationComponent
   void update(double dt) {
     super.update(dt);
     movementLogic();
+
+    if (!isCollidingBottom) {
+      if (yVelocity < gravity * 5) {
+        position.y += yVelocity;
+        yVelocity += gravity;
+      } else {
+        position.y += yVelocity;
+      }
+    }
+
+    isCollidingBottom = false;
   }
 
   void movementLogic() {
