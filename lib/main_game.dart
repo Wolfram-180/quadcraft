@@ -5,6 +5,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_flame_minecraft/components/block_component.dart';
 import 'package:flutter_flame_minecraft/components/player_component.dart';
 import 'package:flutter_flame_minecraft/global/global_game_reference.dart';
+import 'package:flutter_flame_minecraft/global/player_data.dart';
 import 'package:flutter_flame_minecraft/global/world_data.dart';
 import 'package:flutter_flame_minecraft/utils/chunk_generation_methods.dart';
 import 'package:flutter_flame_minecraft/utils/constants.dart';
@@ -99,6 +100,28 @@ class MainGame extends FlameGame
     Set<LogicalKeyboardKey> keysPressed,
   ) {
     super.onKeyEvent(event, keysPressed);
+
+    if (keysPressed.contains(LogicalKeyboardKey.arrowRight) ||
+        keysPressed.contains(LogicalKeyboardKey.keyD)) {
+      worldData.playerData.componentMotionState =
+          ComponentMotionState.walkingRight;
+    }
+
+    if (keysPressed.contains(LogicalKeyboardKey.arrowLeft) ||
+        keysPressed.contains(LogicalKeyboardKey.keyA)) {
+      worldData.playerData.componentMotionState =
+          ComponentMotionState.walkingLeft;
+    }
+
+    if (keysPressed.contains(LogicalKeyboardKey.space) ||
+        keysPressed.contains(LogicalKeyboardKey.keyW) ||
+        keysPressed.contains(LogicalKeyboardKey.arrowUp)) {
+      worldData.playerData.componentMotionState = ComponentMotionState.jumping;
+    }
+
+    if (keysPressed.isEmpty) {
+      worldData.playerData.componentMotionState = ComponentMotionState.idle;
+    }
 
     return KeyEventResult.ignored;
   }

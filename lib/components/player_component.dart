@@ -91,8 +91,8 @@ class PlayerComponent extends SpriteAnimationComponent with CollisionCallbacks {
     setAllCollisionToFalse();
 
     if (jumpForce > 0) {
-      position.y -= jumpForce;
-      jumpForce -= GameMethods.instance.blockSize.x * 0.4;
+      position.y = position.y - jumpForce;
+      jumpForce = jumpForce - GameMethods.instance.blockSize.x * 0.4;
     }
   }
 
