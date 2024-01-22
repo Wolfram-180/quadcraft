@@ -30,10 +30,14 @@ class GameMethods {
         blockSize.x;
   }
 
-  int get currentChunkIndex {
+  int get currentChunkPlayerIndex {
     return playerXIndexPosition >= 0
         ? playerXIndexPosition ~/ chunkWidth
         : (playerXIndexPosition ~/ chunkWidth) - 1;
+  }
+
+  double get gravity {
+    return blockSize.x * 0.8;
   }
 
   Size getScreenSize() {

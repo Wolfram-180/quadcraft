@@ -10,7 +10,7 @@ import 'package:flutter_flame_minecraft/utils/game_methods.dart';
 class PlayerComponent extends SpriteAnimationComponent with CollisionCallbacks {
   final Vector2 playerDimensions = Vector2.all(60);
   final double stepTime = 0.3;
-  final double speed = 5;
+
   bool isFacingRight = true;
   double yVelocity = 0;
 
@@ -75,7 +75,7 @@ class PlayerComponent extends SpriteAnimationComponent with CollisionCallbacks {
       srcSize: playerDimensions,
     );
 
-    position = Vector2(50, 200);
+    position = Vector2(50, 50);
 
     animation = idleAnimation;
   }
@@ -83,28 +83,35 @@ class PlayerComponent extends SpriteAnimationComponent with CollisionCallbacks {
   @override
   void update(double dt) {
     super.update(dt);
-    movementLogic();
+    movementLogic(dt);
 
+    fallingLogic(dt);
+    setAllCollisionToFalse();
+  }
+
+  void fallingLogic(double dt) {
     if (!isCollidingBottom) {
-      if (yVelocity < gravity * 5) {
+      if (yVelocity < (GameMethods.instance.gravity * dt) * 5) {
         position.y += yVelocity;
-        yVelocity += gravity;
+        yVelocity += GameMethods.instance.gravity * dt;
       } else {
         position.y += yVelocity;
       }
     }
+  }
 
+  void setAllCollisionToFalse() {
     isCollidingBottom = false;
     isCollidingRight = false;
     isCollidingLeft = false;
   }
 
-  void movementLogic() {
+  void movementLogic(double dt) {
     if (GlobalGameReference.instance.gameReference.worldData.playerData
                 .componentMotionState ==
             ComponentMotionState.walkingLeft &&
         !isCollidingLeft) {
-      position.x -= speed;
+      position.x -= (playerSpeed * GameMethods.instance.blockSize.x) * dt;
 
       if (isFacingRight) {
         flipHorizontallyAroundCenter();
@@ -118,7 +125,7 @@ class PlayerComponent extends SpriteAnimationComponent with CollisionCallbacks {
                 .componentMotionState ==
             ComponentMotionState.walkingRight &&
         !isCollidingRight) {
-      position.x += speed;
+      position.x += (playerSpeed * GameMethods.instance.blockSize.x) * dt;
 
       if (!isFacingRight) {
         flipHorizontallyAroundCenter();

@@ -18,9 +18,9 @@ class WorldData {
 
   List<int> get chunksThatShouldBeRendered {
     return [
-      GameMethods.instance.currentChunkIndex - 1,
-      GameMethods.instance.currentChunkIndex,
-      GameMethods.instance.currentChunkIndex + 1,
+      GameMethods.instance.currentChunkPlayerIndex - 1,
+      GameMethods.instance.currentChunkPlayerIndex,
+      GameMethods.instance.currentChunkPlayerIndex + 1,
     ];
   }
 
