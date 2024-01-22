@@ -29,6 +29,9 @@ class PlayerComponent extends SpriteAnimationComponent with CollisionCallbacks {
 
   double jumpForce = 0;
 
+  double localPlayerSpeed = 0;
+  bool refreshSpeed = false;
+
   @override
   void onCollision(
     Set<Vector2> intersectionPoints,
@@ -81,6 +84,13 @@ class PlayerComponent extends SpriteAnimationComponent with CollisionCallbacks {
     position = Vector2(50, 50);
 
     animation = idleAnimation;
+
+    add(TimerComponent(
+        period: 1,
+        repeat: true,
+        onTick: () {
+          refreshSpeed = true;
+        }));
   }
 
   @override
@@ -88,17 +98,25 @@ class PlayerComponent extends SpriteAnimationComponent with CollisionCallbacks {
     super.update(dt);
     movementLogic(dt);
     fallingLogic(dt);
+    jumpingLogic();
     setAllCollisionToFalse();
 
+    if (refreshSpeed) {
+      localPlayerSpeed = (playerSpeed * GameMethods.instance.blockSize.x) * dt;
+      refreshSpeed = false;
+    }
+  }
+
+  void jumpingLogic() {
     if (jumpForce > 0) {
-      position.y = position.y - jumpForce;
-      jumpForce = jumpForce - GameMethods.instance.blockSize.x * 0.4;
+      position.y -= jumpForce;
+      jumpForce -= GameMethods.instance.blockSize.x * 0.15;
     }
   }
 
   void fallingLogic(double dt) {
     if (!isCollidingBottom) {
-      if (yVelocity < (GameMethods.instance.gravity * dt) * 5) {
+      if (yVelocity < (GameMethods.instance.gravity * dt) * 10) {
         position.y += yVelocity;
         yVelocity += GameMethods.instance.gravity * dt;
       } else {
@@ -117,7 +135,7 @@ class PlayerComponent extends SpriteAnimationComponent with CollisionCallbacks {
     switch (componentMotionState) {
       case ComponentMotionState.walkingLeft:
         if (!isCollidingLeft) {
-          position.x -= (playerSpeed * GameMethods.instance.blockSize.x) * dt;
+          position.x -= localPlayerSpeed;
           if (isFacingRight) {
             flipHorizontallyAroundCenter();
             isFacingRight = false;
@@ -128,7 +146,7 @@ class PlayerComponent extends SpriteAnimationComponent with CollisionCallbacks {
         break;
       case ComponentMotionState.walkingRight:
         if (!isCollidingRight) {
-          position.x += (playerSpeed * GameMethods.instance.blockSize.x) * dt;
+          position.x += localPlayerSpeed;
           if (!isFacingRight) {
             flipHorizontallyAroundCenter();
             isFacingRight = true;

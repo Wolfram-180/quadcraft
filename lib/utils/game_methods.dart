@@ -7,6 +7,8 @@ import 'package:flutter_flame_minecraft/global/global_game_reference.dart';
 import 'package:flutter_flame_minecraft/utils/constants.dart';
 import 'package:flutter_flame_minecraft/resources/blocks.dart';
 
+enum Direction { top, bottom, left, right }
+
 class GameMethods {
   static GameMethods get instance => GameMethods();
 
@@ -168,5 +170,50 @@ class GameMethods {
               .leftWorldChunks[blockIndex.y.toInt()]
           [blockIndex.x.toInt().abs() - 1];
     }
+  }
+
+  Blocks? getBlockAtDirection(Vector2 blockIndex, Direction direction) {
+    switch (direction) {
+      case Direction.top:
+        try {
+          return getBlockAtIndexPosition(
+              Vector2(blockIndex.x, blockIndex.y - 1));
+        } catch (e) {
+          break;
+        }
+      case Direction.bottom:
+        try {
+          return getBlockAtIndexPosition(
+              Vector2(blockIndex.x, blockIndex.y + 1));
+        } catch (e) {
+          break;
+        }
+      case Direction.right:
+        try {
+          return getBlockAtIndexPosition(
+              Vector2(blockIndex.x + 1, blockIndex.y));
+        } catch (e) {
+          break;
+        }
+      case Direction.left:
+        try {
+          return getBlockAtIndexPosition(
+              Vector2(blockIndex.x - 1, blockIndex.y));
+        } catch (e) {
+          break;
+        }
+    }
+    return null;
+  }
+
+  bool adjacentBlocksExist(Vector2 blockIndex) {
+    if (getBlockAtDirection(blockIndex, Direction.top) is Blocks ||
+        getBlockAtDirection(blockIndex, Direction.bottom) is Blocks ||
+        getBlockAtDirection(blockIndex, Direction.left) is Blocks ||
+        getBlockAtDirection(blockIndex, Direction.right) is Blocks) {
+      return true;
+    }
+
+    return false;
   }
 }

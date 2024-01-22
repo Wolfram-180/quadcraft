@@ -141,7 +141,8 @@ class MainGame extends FlameGame
         blockPlacingPosition.y < chunkHeight &&
         GameMethods.instance.playerIsWithinRange(blockPlacingPosition) &&
         GameMethods.instance.getBlockAtIndexPosition(blockPlacingPosition) ==
-            null) {
+            null &&
+        GameMethods.instance.adjacentBlocksExist(blockPlacingPosition)) {
       GameMethods.instance.replaceBlockAtWorldChunks(
         Blocks.dirt,
         blockPlacingPosition,
