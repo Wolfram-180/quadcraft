@@ -1,4 +1,7 @@
 import 'package:flame/game.dart';
+import 'package:flame/input.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_flame_minecraft/components/block_component.dart';
 import 'package:flutter_flame_minecraft/components/player_component.dart';
 import 'package:flutter_flame_minecraft/global/global_game_reference.dart';
@@ -9,7 +12,8 @@ import 'package:flutter_flame_minecraft/utils/game_methods.dart';
 import 'package:get/get.dart';
 import 'package:flutter_flame_minecraft/resources/blocks.dart';
 
-class MainGame extends FlameGame with HasCollisionDetection {
+class MainGame extends FlameGame
+    with HasCollisionDetection, HasTappables, HasKeyboardHandlerComponents {
   final WorldData worldData;
 
   MainGame({required this.worldData}) {
@@ -87,5 +91,15 @@ class MainGame extends FlameGame with HasCollisionDetection {
         }
       }
     });
+  }
+
+  @override
+  KeyEventResult onKeyEvent(
+    RawKeyEvent event,
+    Set<LogicalKeyboardKey> keysPressed,
+  ) {
+    super.onKeyEvent(event, keysPressed);
+
+    return KeyEventResult.ignored;
   }
 }

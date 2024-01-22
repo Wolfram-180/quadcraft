@@ -27,6 +27,8 @@ class PlayerComponent extends SpriteAnimationComponent with CollisionCallbacks {
   bool isCollidingLeft = false;
   bool isCollidingRight = false;
 
+  double jumpForce = 0;
+
   @override
   void onCollision(
     Set<Vector2> intersectionPoints,
@@ -36,13 +38,14 @@ class PlayerComponent extends SpriteAnimationComponent with CollisionCallbacks {
 
     intersectionPoints.forEach(
       (Vector2 individualIntersectionPoint) {
-        if (individualIntersectionPoint.y > (position.y - (size.y * 0.2)) &&
+        if (individualIntersectionPoint.y > (position.y - (size.y * 0.3)) &&
             (intersectionPoints.first.x - intersectionPoints.last.x).abs() >
-                size.x * 0.2) {
+                size.x * 0.4) {
           isCollidingBottom = true;
+          yVelocity = 0;
         }
 
-        if (individualIntersectionPoint.y < (position.y - (size.y * 0.2))) {
+        if (individualIntersectionPoint.y < (position.y - (size.y * 0.3))) {
           if (individualIntersectionPoint.x > position.x) {
             isCollidingRight = true;
           } else {
@@ -84,9 +87,13 @@ class PlayerComponent extends SpriteAnimationComponent with CollisionCallbacks {
   void update(double dt) {
     super.update(dt);
     movementLogic(dt);
-
     fallingLogic(dt);
     setAllCollisionToFalse();
+
+    if (jumpForce > 0) {
+      position.y -= jumpForce;
+      jumpForce -= GameMethods.instance.blockSize.x * 0.4;
+    }
   }
 
   void fallingLogic(double dt) {
@@ -153,6 +160,13 @@ class PlayerComponent extends SpriteAnimationComponent with CollisionCallbacks {
             .instance.gameReference.worldData.playerData.componentMotionState ==
         ComponentMotionState.idle) {
       animation = idleAnimation;
+    }
+
+    if (GlobalGameReference
+            .instance.gameReference.worldData.playerData.componentMotionState ==
+        ComponentMotionState.jumping) {
+      jumpForce = GameMethods.instance.blockSize.x * 0.6;
+      // animation = idleAnimation;
     }
   }
 
