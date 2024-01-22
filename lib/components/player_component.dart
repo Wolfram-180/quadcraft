@@ -24,6 +24,8 @@ class PlayerComponent extends SpriteAnimationComponent with CollisionCallbacks {
       playerIdleSpritesheet.createAnimation(row: 0, stepTime: stepTime);
 
   bool isCollidingBottom = false;
+  bool isCollidingLeft = false;
+  bool isCollidingRight = false;
 
   @override
   void onCollision(
@@ -34,8 +36,18 @@ class PlayerComponent extends SpriteAnimationComponent with CollisionCallbacks {
 
     intersectionPoints.forEach(
       (Vector2 individualIntersectionPoint) {
-        if (individualIntersectionPoint.y > (position.y - (size.y * 0.3))) {
+        if (individualIntersectionPoint.y > (position.y - (size.y * 0.3)) &&
+            (intersectionPoints.first.x - intersectionPoints.last.x).abs() >
+                size.x * 0.4) {
           isCollidingBottom = true;
+        }
+
+        if (individualIntersectionPoint.y < (position.y - (size.y * 0.3))) {
+          if (individualIntersectionPoint.x > position.x) {
+            isCollidingRight = true;
+          } else {
+            isCollidingLeft = true;
+          }
         }
       },
     );
@@ -44,6 +56,8 @@ class PlayerComponent extends SpriteAnimationComponent with CollisionCallbacks {
   @override
   Future<void> onLoad() async {
     await super.onLoad();
+
+    add(RectangleHitbox());
 
     priority = 2;
 
@@ -61,7 +75,8 @@ class PlayerComponent extends SpriteAnimationComponent with CollisionCallbacks {
       srcSize: playerDimensions,
     );
 
-    position = Vector2(100, 100);
+    position = Vector2(50, 200);
+
     animation = idleAnimation;
   }
 
@@ -80,12 +95,15 @@ class PlayerComponent extends SpriteAnimationComponent with CollisionCallbacks {
     }
 
     isCollidingBottom = false;
+    isCollidingRight = false;
+    isCollidingLeft = false;
   }
 
   void movementLogic() {
-    if (GlobalGameReference
-            .instance.gameReference.worldData.playerData.componentMotionState ==
-        ComponentMotionState.walkingLeft) {
+    if (GlobalGameReference.instance.gameReference.worldData.playerData
+                .componentMotionState ==
+            ComponentMotionState.walkingLeft &&
+        !isCollidingLeft) {
       position.x -= speed;
 
       if (isFacingRight) {
@@ -96,9 +114,10 @@ class PlayerComponent extends SpriteAnimationComponent with CollisionCallbacks {
       animation = walkingAnimation;
     }
 
-    if (GlobalGameReference
-            .instance.gameReference.worldData.playerData.componentMotionState ==
-        ComponentMotionState.walkingRight) {
+    if (GlobalGameReference.instance.gameReference.worldData.playerData
+                .componentMotionState ==
+            ComponentMotionState.walkingRight &&
+        !isCollidingRight) {
       position.x += speed;
 
       if (!isFacingRight) {

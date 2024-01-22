@@ -1,3 +1,4 @@
+import 'package:flame/collisions.dart';
 import 'package:flame/components.dart';
 import 'package:flutter_flame_minecraft/global/global_game_reference.dart';
 import 'package:flutter_flame_minecraft/utils/game_methods.dart';
@@ -18,6 +19,7 @@ class BlockComponent extends SpriteComponent {
     super.onLoad();
 
     sprite = await GameMethods.instance.getSpriteFromBlock(block);
+    add(RectangleHitbox());
   }
 
   @override
