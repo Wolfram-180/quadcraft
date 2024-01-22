@@ -36,13 +36,13 @@ class PlayerComponent extends SpriteAnimationComponent with CollisionCallbacks {
 
     intersectionPoints.forEach(
       (Vector2 individualIntersectionPoint) {
-        if (individualIntersectionPoint.y > (position.y - (size.y * 0.3)) &&
+        if (individualIntersectionPoint.y > (position.y - (size.y * 0.2)) &&
             (intersectionPoints.first.x - intersectionPoints.last.x).abs() >
-                size.x * 0.4) {
+                size.x * 0.2) {
           isCollidingBottom = true;
         }
 
-        if (individualIntersectionPoint.y < (position.y - (size.y * 0.3))) {
+        if (individualIntersectionPoint.y < (position.y - (size.y * 0.2))) {
           if (individualIntersectionPoint.x > position.x) {
             isCollidingRight = true;
           } else {
@@ -106,32 +106,47 @@ class PlayerComponent extends SpriteAnimationComponent with CollisionCallbacks {
     isCollidingLeft = false;
   }
 
+  void move(ComponentMotionState componentMotionState, double dt) {
+    switch (componentMotionState) {
+      case ComponentMotionState.walkingLeft:
+        if (!isCollidingLeft) {
+          position.x -= (playerSpeed * GameMethods.instance.blockSize.x) * dt;
+          if (isFacingRight) {
+            flipHorizontallyAroundCenter();
+            isFacingRight = false;
+          }
+
+          animation = walkingAnimation;
+        }
+        break;
+      case ComponentMotionState.walkingRight:
+        if (!isCollidingRight) {
+          position.x += (playerSpeed * GameMethods.instance.blockSize.x) * dt;
+          if (!isFacingRight) {
+            flipHorizontallyAroundCenter();
+            isFacingRight = true;
+          }
+          animation = walkingAnimation;
+        }
+        break;
+      case ComponentMotionState.idle:
+        break;
+      default:
+        break;
+    }
+  }
+
   void movementLogic(double dt) {
-    if (GlobalGameReference.instance.gameReference.worldData.playerData
-                .componentMotionState ==
-            ComponentMotionState.walkingLeft &&
-        !isCollidingLeft) {
-      position.x -= (playerSpeed * GameMethods.instance.blockSize.x) * dt;
-
-      if (isFacingRight) {
-        flipHorizontallyAroundCenter();
-        isFacingRight = false;
-      }
-
-      animation = walkingAnimation;
+    if (GlobalGameReference
+            .instance.gameReference.worldData.playerData.componentMotionState ==
+        ComponentMotionState.walkingLeft) {
+      move(ComponentMotionState.walkingLeft, dt);
     }
 
-    if (GlobalGameReference.instance.gameReference.worldData.playerData
-                .componentMotionState ==
-            ComponentMotionState.walkingRight &&
-        !isCollidingRight) {
-      position.x += (playerSpeed * GameMethods.instance.blockSize.x) * dt;
-
-      if (!isFacingRight) {
-        flipHorizontallyAroundCenter();
-        isFacingRight = true;
-      }
-      animation = walkingAnimation;
+    if (GlobalGameReference
+            .instance.gameReference.worldData.playerData.componentMotionState ==
+        ComponentMotionState.walkingRight) {
+      move(ComponentMotionState.walkingRight, dt);
     }
 
     if (GlobalGameReference
