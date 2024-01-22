@@ -133,10 +133,24 @@ class MainGame extends FlameGame
     Vector2 blockPlacingPosition = GameMethods.instance
         .getIndexPositionFromPixels(info.eventPosition.game);
 
-    add(BlockComponent(
-      chunkIndex: 0,
-      block: Blocks.dirt,
-      blockIndex: blockPlacingPosition,
-    ));
+    placeBlockLogic(blockPlacingPosition);
+  }
+
+  void placeBlockLogic(Vector2 blockPlacingPosition) {
+    if (blockPlacingPosition.y > 0 && blockPlacingPosition.y < chunkHeight) {
+      GameMethods.instance.replaceBlockAtWorldChunks(
+        Blocks.dirt,
+        blockPlacingPosition,
+      );
+
+      add(
+        BlockComponent(
+          chunkIndex: GameMethods.instance
+              .getChunkIndexFromPositionIndex(blockPlacingPosition),
+          block: Blocks.dirt,
+          blockIndex: blockPlacingPosition,
+        ),
+      );
+    }
   }
 }

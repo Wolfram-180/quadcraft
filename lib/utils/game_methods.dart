@@ -40,6 +40,12 @@ class GameMethods {
     return blockSize.x * 0.8;
   }
 
+  int getChunkIndexFromPositionIndex(Vector2 positionIndex) {
+    return positionIndex.x >= 0
+        ? positionIndex.x ~/ chunkWidth
+        : (positionIndex.x ~/ chunkWidth) - 1;
+  }
+
   Vector2 getIndexPositionFromPixels(Vector2 clickPosition) {
     return Vector2(
       (clickPosition.x / blockSize.x).floorToDouble(),
@@ -119,5 +125,19 @@ class GameMethods {
     }
 
     return processedNoise;
+  }
+
+  void replaceBlockAtWorldChunks(Blocks? block, Vector2 blockIndex) {
+    // right chunks
+    if (blockIndex.x >= 0) {
+      GlobalGameReference.instance.gameReference.worldData
+          .rightWorldChunks[blockIndex.y.toInt()][blockIndex.x.toInt()] = block;
+    } else
+    // left chunks
+    {
+      GlobalGameReference.instance.gameReference.worldData
+              .leftWorldChunks[blockIndex.y.toInt()]
+          [blockIndex.x.toInt().abs() - 1] = block;
+    }
   }
 }
