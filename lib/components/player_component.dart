@@ -51,7 +51,7 @@ class PlayerComponent extends SpriteAnimationComponent with CollisionCallbacks {
             yVelocity = 0;
           }
 
-// top collision
+          // top collision
           if ((individualIntersectionPoint.y <
                   (position.y - (size.y * 0.75))) &&
               ((intersectionPoints.first.x - intersectionPoints.last.x).abs() >
@@ -60,7 +60,7 @@ class PlayerComponent extends SpriteAnimationComponent with CollisionCallbacks {
             isCollidingTop = true;
           }
 
-// sides collision
+          // sides collision
           if (individualIntersectionPoint.y < (position.y - (size.y * 0.3))) {
             if (individualIntersectionPoint.x > position.x) {
               isCollidingRight = true;
@@ -84,14 +84,14 @@ class PlayerComponent extends SpriteAnimationComponent with CollisionCallbacks {
     anchor = Anchor.bottomCenter;
 
     playerWalkingSpritesheet = SpriteSheet(
-      image: await Flame.images
-          .load('sprite_sheets/player/player_walking_sprite_sheet.png'),
+      image: Flame.images
+          .fromCache('sprite_sheets/player/player_walking_sprite_sheet.png'),
       srcSize: playerDimensions,
     );
 
     playerIdleSpritesheet = SpriteSheet(
-      image: await Flame.images
-          .load('sprite_sheets/player/player_idle_sprite_sheet.png'),
+      image: Flame.images
+          .fromCache('sprite_sheets/player/player_idle_sprite_sheet.png'),
       srcSize: playerDimensions,
     );
 
@@ -209,8 +209,8 @@ class PlayerComponent extends SpriteAnimationComponent with CollisionCallbacks {
   }
 
   @override
-  void onGameResize(Vector2 newGameSize) {
-    super.onGameResize(newGameSize);
+  void onGameResize(Vector2 size) {
+    super.onGameResize(size);
     size = GameMethods.instance.blockSize * 1.5;
   }
 }

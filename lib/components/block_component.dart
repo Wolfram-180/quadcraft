@@ -37,16 +37,16 @@ class BlockComponent extends SpriteComponent with Tappable {
     add(RectangleHitbox());
 
     animationBlockSpriteSheet = SpriteSheet(
-        image: await Flame.images
-            .load('sprite_sheets/blocks/block_breaking_sprite_sheet.png'),
+        image: Flame.images
+            .fromCache('sprite_sheets/blocks/block_breaking_sprite_sheet.png'),
         srcSize: Vector2.all(60));
 
     sprite = await GameMethods.instance.getSpriteFromBlock(block);
   }
 
   @override
-  void onGameResize(Vector2 newGameSize) {
-    super.onGameResize(newGameSize);
+  void onGameResize(Vector2 size) {
+    super.onGameResize(size);
     size = GameMethods.instance.blockSize;
     position = Vector2(GameMethods.instance.blockSize.x * blockIndex.x,
         GameMethods.instance.blockSize.x * blockIndex.y);

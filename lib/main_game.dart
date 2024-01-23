@@ -2,7 +2,6 @@ import 'package:flame/game.dart';
 import 'package:flame/input.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_flame_minecraft/components/block_breaking_component.dart';
 import 'package:flutter_flame_minecraft/components/block_component.dart';
 import 'package:flutter_flame_minecraft/components/player_component.dart';
 import 'package:flutter_flame_minecraft/global/global_game_reference.dart';
@@ -28,9 +27,9 @@ class MainGame extends FlameGame
 
   @override
   Future<void> onLoad() async {
-    await super.onLoad();
+    super.onLoad();
 
-    camera.followComponent(playerComponent);
+    // camera.followComponent(playerComponent);
 
     await add(playerComponent);
 
@@ -129,7 +128,7 @@ class MainGame extends FlameGame
 
   @override
   bool onTapDown(int pointerId, TapDownInfo info) {
-    super.onTapDown;
+    super.onTapDown(pointerId, info);
 
     Vector2 blockPlacingPosition = GameMethods.instance
         .getIndexPositionFromPixels(info.eventPosition.game);

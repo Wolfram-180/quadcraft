@@ -1,4 +1,3 @@
-import 'dart:ui';
 import 'package:flame/flame.dart';
 import 'package:flame/game.dart';
 import 'package:flame/sprite.dart';
@@ -67,15 +66,15 @@ class GameMethods {
         .size;
   }
 
-  Future<SpriteSheet> getBlockSpriteSheet() async {
+  SpriteSheet getBlockSpriteSheet() {
     return SpriteSheet(
-        image: await Flame.images
-            .load('sprite_sheets/blocks/block_sprite_sheet.png'),
+        image: Flame.images
+            .fromCache('sprite_sheets/blocks/block_sprite_sheet.png'),
         srcSize: Vector2.all(60));
   }
 
   Future<Sprite> getSpriteFromBlock(Blocks block) async {
-    SpriteSheet spriteSheet = await getBlockSpriteSheet();
+    SpriteSheet spriteSheet = getBlockSpriteSheet();
     return spriteSheet.getSprite(0, block.index);
   }
 
