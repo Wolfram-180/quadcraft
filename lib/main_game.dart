@@ -128,13 +128,15 @@ class MainGame extends FlameGame
   }
 
   @override
-  void onTapDown(int pointerId, TapDownInfo info) {
+  bool onTapDown(int pointerId, TapDownInfo info) {
     super.onTapDown;
 
     Vector2 blockPlacingPosition = GameMethods.instance
         .getIndexPositionFromPixels(info.eventPosition.game);
 
     placeBlockLogic(blockPlacingPosition);
+
+    return false;
   }
 
   void placeBlockLogic(Vector2 blockPlacingPosition) {

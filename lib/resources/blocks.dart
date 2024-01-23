@@ -22,3 +22,13 @@ enum Blocks {
   cobblestone,
   bedrock,
 }
+
+class BlockData {
+  final bool isCollidable;
+  final double baseMiningSpeed;
+
+  BlockData({
+    required this.isCollidable,
+    required this.baseMiningSpeed,
+  });
+}
