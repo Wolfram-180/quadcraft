@@ -1,7 +1,6 @@
 import 'package:flame/collisions.dart';
 import 'package:flame/components.dart';
 import 'package:flutter_flame_minecraft/components/block_component.dart';
-import 'package:flutter_flame_minecraft/resources/blocks.dart';
 import 'package:flutter_flame_minecraft/utils/game_methods.dart';
 
 class GravityBlock extends BlockComponent with CollisionCallbacks {

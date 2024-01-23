@@ -9,7 +9,6 @@ import 'package:flutter_flame_minecraft/blocks/iron_ore_block.dart';
 import 'package:flutter_flame_minecraft/blocks/sand_block.dart';
 import 'package:flutter_flame_minecraft/blocks/stone_block.dart';
 import 'package:flutter_flame_minecraft/components/block_component.dart';
-import 'package:flutter_flame_minecraft/global/global_game_reference.dart';
 import 'package:flutter_flame_minecraft/resources/items.dart';
 
 part 'blocks.g.dart';

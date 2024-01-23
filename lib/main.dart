@@ -1,17 +1,14 @@
 import 'package:flame/flame.dart';
-import 'package:flame/game.dart';
 import 'package:flutter/material.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:flutter_flame_minecraft/global/inventory.dart';
 import 'package:flutter_flame_minecraft/global/player_data.dart';
 import 'package:flutter_flame_minecraft/global/world_data.dart';
-import 'package:flutter_flame_minecraft/layout/game_layout.dart';
 import 'package:flutter_flame_minecraft/resources/blocks.dart';
 import 'package:flutter_flame_minecraft/resources/items.dart';
 import 'package:flutter_flame_minecraft/resources/sky_timer.dart';
 import 'package:flutter_flame_minecraft/screens/menu_screen.dart';
 import 'package:flutter_flame_minecraft/utils/constants.dart';
-import 'package:flutter_flame_minecraft/utils/game_methods.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();

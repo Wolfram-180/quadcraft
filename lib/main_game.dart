@@ -1,22 +1,15 @@
-import 'dart:math';
 
-import 'package:flame/components.dart';
 import 'package:flame/game.dart';
 import 'package:flame/input.dart';
-import 'package:flame/parallax.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
-import 'package:flutter_flame_minecraft/components/block_breaking_component.dart';
-import 'package:flutter_flame_minecraft/components/block_component.dart';
 import 'package:flutter_flame_minecraft/components/item_component.dart';
 import 'package:flutter_flame_minecraft/components/player_component.dart';
 import 'package:flutter_flame_minecraft/components/sky_component.dart';
 import 'package:flutter_flame_minecraft/global/global_game_reference.dart';
 import 'package:flutter_flame_minecraft/global/player_data.dart';
 import 'package:flutter_flame_minecraft/global/world_data.dart';
-import 'package:flutter_flame_minecraft/mobs/spider.dart';
-import 'package:flutter_flame_minecraft/mobs/zombie.dart';
 import 'package:flutter_flame_minecraft/resources/blocks.dart';
 import 'package:flutter_flame_minecraft/resources/foods.dart';
 import 'package:flutter_flame_minecraft/resources/items.dart';

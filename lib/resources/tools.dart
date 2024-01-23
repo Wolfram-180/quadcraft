@@ -1,4 +1,3 @@
-import 'package:flame/components.dart';
 import 'package:flutter_flame_minecraft/global/global_game_reference.dart';
 import 'package:flutter_flame_minecraft/global/world_data.dart';
 import 'package:flutter_flame_minecraft/resources/blocks.dart';

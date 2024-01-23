@@ -1,4 +1,3 @@
-import 'package:flutter_flame_minecraft/utils/game_methods.dart';
 
 const int chunkWidth = 16;
 const int chunkHeight = 25;

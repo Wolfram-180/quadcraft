@@ -1,5 +1,3 @@
-import 'package:flame/components.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter_flame_minecraft/resources/blocks.dart';
 import 'package:flutter_flame_minecraft/resources/structures.dart';
 import 'package:flutter_flame_minecraft/structures/plants.dart';

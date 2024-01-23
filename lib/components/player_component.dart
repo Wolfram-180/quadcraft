@@ -48,7 +48,7 @@ class PlayerComponent extends Entity {
 
     GlobalGameReference.instance.gameReference.camera.followComponent(this);
 
-    await Future.delayed(Duration(seconds: 1));
+    await Future.delayed(const Duration(seconds: 1));
 
     health = GlobalGameReference
         .instance.gameReference.worldData.playerData.playerHealth.value;

@@ -1,5 +1,3 @@
-import 'dart:developer';
-import 'dart:io';
 import 'dart:math';
 
 import 'package:fast_noise/fast_noise.dart';
@@ -8,7 +6,6 @@ import 'package:flutter_flame_minecraft/resources/biomes.dart';
 import 'package:flutter_flame_minecraft/resources/blocks.dart';
 import 'package:flutter_flame_minecraft/resources/ores.dart';
 import 'package:flutter_flame_minecraft/resources/structures.dart';
-import 'package:flutter_flame_minecraft/structures/trees.dart';
 import 'package:flutter_flame_minecraft/utils/constants.dart';
 import 'package:flutter_flame_minecraft/utils/game_methods.dart';
 
