@@ -2,8 +2,10 @@ import 'package:flame/collisions.dart';
 import 'package:flame/components.dart';
 import 'package:flame/sprite.dart';
 import 'package:flame/flame.dart';
+import 'package:flutter_flame_minecraft/components/block_component.dart';
 import 'package:flutter_flame_minecraft/global/global_game_reference.dart';
 import 'package:flutter_flame_minecraft/global/player_data.dart';
+import 'package:flutter_flame_minecraft/resources/blocks.dart';
 import 'package:flutter_flame_minecraft/utils/constants.dart';
 import 'package:flutter_flame_minecraft/utils/game_methods.dart';
 
@@ -34,40 +36,41 @@ class PlayerComponent extends SpriteAnimationComponent with CollisionCallbacks {
   bool refreshSpeed = false;
 
   @override
-  void onCollision(
-    Set<Vector2> intersectionPoints,
-    PositionComponent other,
-  ) {
+  void onCollision(Set<Vector2> intersectionPoints, PositionComponent other) {
     super.onCollision(intersectionPoints, other);
 
-    intersectionPoints.forEach(
-      (Vector2 individualIntersectionPoint) {
-        // bottom collision
-        if (individualIntersectionPoint.y > (position.y - (size.y * 0.3)) &&
-            (intersectionPoints.first.x - intersectionPoints.last.x).abs() >
-                size.x * 0.4) {
-          isCollidingBottom = true;
-          yVelocity = 0;
-        }
+    if (other is BlockComponent &&
+        BlockData.getBlockDataFor(other.block).isCollidable) {
+      intersectionPoints.forEach(
+        (Vector2 individualIntersectionPoint) {
+          // bottom collision
+          if (individualIntersectionPoint.y > (position.y - (size.y * 0.3)) &&
+              (intersectionPoints.first.x - intersectionPoints.last.x).abs() >
+                  size.x * 0.4) {
+            isCollidingBottom = true;
+            yVelocity = 0;
+          }
 
 // top collision
-        if ((individualIntersectionPoint.y < (position.y - (size.y * 0.75))) &&
-            ((intersectionPoints.first.x - intersectionPoints.last.x).abs() >
-                size.x * 0.4) &&
-            (jumpForce > 0)) {
-          isCollidingTop = true;
-        }
+          if ((individualIntersectionPoint.y <
+                  (position.y - (size.y * 0.75))) &&
+              ((intersectionPoints.first.x - intersectionPoints.last.x).abs() >
+                  size.x * 0.4) &&
+              (jumpForce > 0)) {
+            isCollidingTop = true;
+          }
 
 // sides collision
-        if (individualIntersectionPoint.y < (position.y - (size.y * 0.3))) {
-          if (individualIntersectionPoint.x > position.x) {
-            isCollidingRight = true;
-          } else {
-            isCollidingLeft = true;
+          if (individualIntersectionPoint.y < (position.y - (size.y * 0.3))) {
+            if (individualIntersectionPoint.x > position.x) {
+              isCollidingRight = true;
+            } else {
+              isCollidingLeft = true;
+            }
           }
-        }
-      },
-    );
+        },
+      );
+    }
   }
 
   @override

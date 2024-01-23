@@ -13,9 +13,9 @@ class GameMethods {
   static GameMethods get instance => GameMethods();
 
   Vector2 get blockSize {
-    // return Vector2.all(getScreenSize().width / chunkWidth);
+    return Vector2.all(getScreenSize().width / chunkWidth);
 
-    return Vector2.all(20);
+    // return Vector2.all(20);
   }
 
   int get freeArea {
