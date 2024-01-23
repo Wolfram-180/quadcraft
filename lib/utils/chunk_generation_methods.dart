@@ -42,46 +42,30 @@ class ChunkGenerationMethods {
             ? chunkWidth * chunkIndex
             : chunkWidth * (chunkIndex.abs() - 1));
 
-    chunk = generatePrimarySoil(
-      chunk,
-      yValues,
-      biome,
-    );
+    chunk = generatePrimarySoil(chunk, yValues, biome);
 
-    chunk = generateSecondarySoil(
-      chunk,
-      yValues,
-      biome,
-    );
+    chunk = generateSecondarySoil(chunk, yValues, biome);
 
     chunk = generateStone(chunk);
 
-    chunk = addStructuresToChunk(
-      chunk,
-      yValues,
-      biome,
-    );
+    chunk = addStructuresToChunk(chunk, yValues, biome);
 
-    chunk = addOreToChunk(
-      chunk,
-      Ores.coalOre,
-    );
+    chunk = addOreToChunk(chunk, Ores.coalOre);
 
-    chunk = addOreToChunk(
-      chunk,
-      Ores.ironOre,
-    );
+    chunk = addOreToChunk(chunk, Ores.ironOre);
 
-    chunk = addOreToChunk(
-      chunk,
-      Ores.goldOre,
-    );
+    chunk = addOreToChunk(chunk, Ores.goldOre);
 
-    chunk = addOreToChunk(
-      chunk,
-      Ores.diamondOre,
-    );
+    chunk = addOreToChunk(chunk, Ores.diamondOre);
 
+    chunk = addBedRock(chunk);
+
+    return chunk;
+  }
+
+  List<List<Blocks?>> addBedRock(List<List<Blocks?>> chunk) {
+    chunk.last.replaceRange(
+        0, chunkWidth, List.generate(chunkWidth, (index) => Blocks.bedrock));
     return chunk;
   }
 

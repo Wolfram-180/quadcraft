@@ -71,9 +71,12 @@ class BlockComponent extends SpriteComponent with Tappable {
   bool onTapDown(TapDownInfo info) {
     super.onTapDown(info);
 
-    if (!blockBreakingComponent.isMounted) {
-      blockBreakingComponent.animation!.reset();
-      add(blockBreakingComponent);
+    if (BlockData.getBlockDataFor(block).isBreakable) {
+      if (!blockBreakingComponent.isMounted) {
+        blockBreakingComponent.animation!.reset();
+
+        add(blockBreakingComponent);
+      }
     }
 
     return true;

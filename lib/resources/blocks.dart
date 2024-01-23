@@ -26,12 +26,12 @@ enum Blocks {
 class BlockData {
   final bool isCollidable;
   final double baseMiningSpeed;
-  final bool breakable;
+  final bool isBreakable;
 
   BlockData({
     required this.isCollidable,
     required this.baseMiningSpeed,
-    this.breakable = true,
+    this.isBreakable = true,
   });
 
   factory BlockData.getBlockDataFor(Blocks block) {
@@ -170,7 +170,7 @@ class BlockData {
   ); //suitableTool: Tools.axe);
 
   static BlockData unbreakable = BlockData(
-    breakable: false,
+    isBreakable: false,
     baseMiningSpeed: 1,
     isCollidable: true,
   );
