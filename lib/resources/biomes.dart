@@ -1,5 +1,7 @@
+import 'package:flame/components.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter_flame_minecraft/resources/blocks.dart';
-import 'package:flutter_flame_minecraft/resources/structure.dart';
+import 'package:flutter_flame_minecraft/resources/structures.dart';
 import 'package:flutter_flame_minecraft/structures/plants.dart';
 import 'package:flutter_flame_minecraft/structures/trees.dart';
 
@@ -11,33 +13,29 @@ class BiomeData {
   final List<Structure> generatingStructures;
 
   BiomeData(
-      {required this.generatingStructures,
-      required this.primarySoil,
-      required this.secondarySoil});
+      {required this.primarySoil,
+      required this.secondarySoil,
+      required this.generatingStructures});
 
   factory BiomeData.getBiomeDataFor(Biomes biome) {
     switch (biome) {
       case Biomes.desert:
         return BiomeData(
-          primarySoil: Blocks.sand,
-          secondarySoil: Blocks.sand,
-          generatingStructures: [
-            cactus,
-            deadBush,
-          ],
-        );
+            primarySoil: Blocks.sand,
+            secondarySoil: Blocks.sand,
+            generatingStructures: [cactus, deadBush]);
+
       case Biomes.birchForest:
         return BiomeData(
-          primarySoil: Blocks.grass,
-          secondarySoil: Blocks.dirt,
-          generatingStructures: [
-            birchTree,
-            redFlower,
-            whiteFlower,
-            purpleFlower,
-            drippingWhiteFlower,
-          ],
-        );
+            primarySoil: Blocks.grass,
+            secondarySoil: Blocks.dirt,
+            generatingStructures: [
+              birchTree,
+              redFlower,
+              whiteFlower,
+              purpleFlower,
+              drippingWhiteFlower
+            ]);
     }
   }
 }

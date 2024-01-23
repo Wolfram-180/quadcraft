@@ -1,29 +1,30 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:flutter_flame_minecraft/global/global_game_reference.dart';
 import 'package:flutter_flame_minecraft/global/player_data.dart';
+import 'package:flutter_flame_minecraft/utils/game_methods.dart';
 
 class ControllerButtonWidget extends StatefulWidget {
-  final double screenRate = 17.0;
   final String path;
   final VoidCallback onPressed;
   const ControllerButtonWidget(
-      {super.key, required this.path, required this.onPressed});
+      {Key? key, required this.path, required this.onPressed})
+      : super(key: key);
 
   @override
-  State<ControllerButtonWidget> createState() => ControllerButtonWidgetState();
+  State<ControllerButtonWidget> createState() => _ControllerButtonWidgetState();
 }
 
-class ControllerButtonWidgetState extends State<ControllerButtonWidget> {
+class _ControllerButtonWidgetState extends State<ControllerButtonWidget> {
   bool isPressed = false;
-
   @override
   Widget build(BuildContext context) {
     Size screenSize = MediaQuery.of(context).size;
 
     return Padding(
-      padding: const EdgeInsets.symmetric(
-        horizontal: 0.0,
-      ),
+      padding: const EdgeInsets.symmetric(horizontal: 20),
       child: GestureDetector(
         onTapDown: (_) {
           setState(() {
@@ -39,10 +40,10 @@ class ControllerButtonWidgetState extends State<ControllerButtonWidget> {
           });
         },
         child: Opacity(
-          opacity: isPressed ? 0.5 : 1.0,
+          opacity: isPressed ? 0.5 : 0.8,
           child: SizedBox(
-            height: screenSize.height / widget.screenRate,
-            width: screenSize.width / widget.screenRate,
+            height: screenSize.width / 17,
+            width: screenSize.width / 17,
             child: Image.asset(widget.path),
           ),
         ),

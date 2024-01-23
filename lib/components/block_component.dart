@@ -4,31 +4,40 @@ import 'package:flame/flame.dart';
 import 'package:flame/input.dart';
 import 'package:flame/sprite.dart';
 import 'package:flutter_flame_minecraft/components/block_breaking_component.dart';
+import 'package:flutter_flame_minecraft/components/item_component.dart';
 import 'package:flutter_flame_minecraft/global/global_game_reference.dart';
-import 'package:flutter_flame_minecraft/utils/game_methods.dart';
 import 'package:flutter_flame_minecraft/resources/blocks.dart';
+import 'package:flutter_flame_minecraft/resources/tools.dart';
+import 'package:flutter_flame_minecraft/utils/game_methods.dart';
 
 class BlockComponent extends SpriteComponent with Tappable {
   final Blocks block;
-  final Vector2 blockIndex;
+  Vector2 blockIndex;
   final int chunkIndex;
 
   BlockComponent(
-      {required this.chunkIndex,
-      required this.block,
-      required this.blockIndex});
+      {required this.block,
+      required this.blockIndex,
+      required this.chunkIndex});
+
+  dynamic itemDropped;
 
   late SpriteSheet animationBlockSpriteSheet;
 
   late BlockBreakingComponent blockBreakingComponent = BlockBreakingComponent()
     ..animation = animationBlockSpriteSheet.createAnimation(
         row: 0,
-        stepTime: BlockData.getBlockDataFor(block).baseMiningSpeed / 6,
+        stepTime: (BlockData.getBlockDataFor(block).baseMiningSpeed / 6) *
+            getMiningSpeedChange(block),
         loop: false)
-    ..animation!.onComplete = () {
-      GameMethods.instance.replaceBlockAtWorldChunks(null, blockIndex);
-      removeFromParent();
-    };
+    ..animation!.onComplete = onBroken;
+
+  void onBroken() {
+    GameMethods.instance.replaceBlockAtWorldChunks(null, blockIndex);
+    GlobalGameReference.instance.gameReference.worldData.items.add(
+        ItemComponent(spawnBlockIndex: blockIndex, item: itemDropped ?? block));
+    removeFromParent();
+  }
 
   @override
   Future<void> onLoad() async {
@@ -37,16 +46,17 @@ class BlockComponent extends SpriteComponent with Tappable {
     add(RectangleHitbox());
 
     animationBlockSpriteSheet = SpriteSheet(
-        image: Flame.images
-            .fromCache('sprite_sheets/blocks/block_breaking_sprite_sheet.png'),
-        srcSize: Vector2.all(60));
+      image: Flame.images
+          .fromCache("sprite_sheets/blocks/block_breaking_sprite_sheet.png"),
+      srcSize: Vector2.all(60),
+    );
 
     sprite = await GameMethods.instance.getSpriteFromBlock(block);
   }
 
   @override
-  void onGameResize(Vector2 size) {
-    super.onGameResize(size);
+  void onGameResize(Vector2 newGameSize) {
+    super.onGameResize(newGameSize);
     size = GameMethods.instance.blockSize;
     position = Vector2(GameMethods.instance.blockSize.x * blockIndex.x,
         GameMethods.instance.blockSize.x * blockIndex.y);
@@ -71,14 +81,16 @@ class BlockComponent extends SpriteComponent with Tappable {
   bool onTapDown(TapDownInfo info) {
     super.onTapDown(info);
 
-    if (BlockData.getBlockDataFor(block).isBreakable) {
+    if (BlockData.getBlockDataFor(block).breakable) {
+      //Adding component twice
       if (!blockBreakingComponent.isMounted) {
         blockBreakingComponent.animation!.reset();
 
         add(blockBreakingComponent);
       }
-    }
 
+      //Add block breaking animation and stuff
+    }
     return true;
   }
 
@@ -86,6 +98,7 @@ class BlockComponent extends SpriteComponent with Tappable {
   bool onTapUp(TapUpInfo info) {
     super.onTapUp(info);
 
+    //stop block braking animation removeing
     if (blockBreakingComponent.isMounted) {
       remove(blockBreakingComponent);
     }
@@ -95,8 +108,7 @@ class BlockComponent extends SpriteComponent with Tappable {
 
   @override
   bool onTapCancel() {
-    super.onTapCancel();
-
+    //sotp block breaking animation
     if (blockBreakingComponent.isMounted) {
       remove(blockBreakingComponent);
     }

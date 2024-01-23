@@ -1,20 +1,32 @@
+import 'dart:math';
+
+import 'package:flame/components.dart';
 import 'package:flame/game.dart';
 import 'package:flame/input.dart';
+import 'package:flame/parallax.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:get/get.dart';
+import 'package:flutter_flame_minecraft/components/block_breaking_component.dart';
 import 'package:flutter_flame_minecraft/components/block_component.dart';
+import 'package:flutter_flame_minecraft/components/item_component.dart';
 import 'package:flutter_flame_minecraft/components/player_component.dart';
+import 'package:flutter_flame_minecraft/components/sky_component.dart';
 import 'package:flutter_flame_minecraft/global/global_game_reference.dart';
 import 'package:flutter_flame_minecraft/global/player_data.dart';
 import 'package:flutter_flame_minecraft/global/world_data.dart';
+import 'package:flutter_flame_minecraft/mobs/spider.dart';
+import 'package:flutter_flame_minecraft/mobs/zombie.dart';
+import 'package:flutter_flame_minecraft/resources/blocks.dart';
+import 'package:flutter_flame_minecraft/resources/foods.dart';
+import 'package:flutter_flame_minecraft/resources/items.dart';
+import 'package:flutter_flame_minecraft/resources/sky_timer.dart';
 import 'package:flutter_flame_minecraft/utils/chunk_generation_methods.dart';
 import 'package:flutter_flame_minecraft/utils/constants.dart';
 import 'package:flutter_flame_minecraft/utils/game_methods.dart';
-import 'package:get/get.dart';
-import 'package:flutter_flame_minecraft/resources/blocks.dart';
 
 class MainGame extends FlameGame
-    with HasTappables, HasCollisionDetection, HasKeyboardHandlerComponents {
+    with HasCollisionDetection, HasTappables, HasKeyboardHandlerComponents {
   final WorldData worldData;
 
   MainGame({required this.worldData}) {
@@ -25,24 +37,15 @@ class MainGame extends FlameGame
 
   PlayerComponent playerComponent = PlayerComponent();
 
+  SkyComponent skyComponent = SkyComponent();
+
   @override
   Future<void> onLoad() async {
     super.onLoad();
 
-    // camera.followComponent(playerComponent);
+    add(playerComponent);
 
-    await add(playerComponent);
-
-    GameMethods.instance.addChunkToWorldChunks(
-        ChunkGenerationMethods.instance.generateChunk(-1), false);
-    GameMethods.instance.addChunkToWorldChunks(
-        ChunkGenerationMethods.instance.generateChunk(0), true);
-    GameMethods.instance.addChunkToWorldChunks(
-        ChunkGenerationMethods.instance.generateChunk(1), true);
-
-    renderChunk(-1);
-    renderChunk(0);
-    renderChunk(1);
+    add(skyComponent);
   }
 
   void renderChunk(int chunkIndex) {
@@ -51,11 +54,11 @@ class MainGame extends FlameGame
     chunk.asMap().forEach((int yIndex, List<Blocks?> rowOfBlocks) {
       rowOfBlocks.asMap().forEach((int xIndex, Blocks? block) {
         if (block != null) {
-          add(BlockComponent(
-              block: block,
-              blockIndex: Vector2((chunkIndex * chunkWidth) + xIndex.toDouble(),
+          add(BlockData.getParentForBlock(
+              block,
+              Vector2((chunkIndex * chunkWidth) + xIndex.toDouble(),
                   yIndex.toDouble()),
-              chunkIndex: chunkIndex));
+              chunkIndex));
         }
       });
     });
@@ -63,35 +66,146 @@ class MainGame extends FlameGame
 
   @override
   void update(double dt) {
+    //10ps
+    //0.1
+
     super.update(dt);
+
+    worldData.skyTimer.updateTimer(dt);
+
+    itemRenderingLogic();
+
+    if (worldData.skyTimer.skyTime == SkyTimerEnum.night) {
+      worldData.mobs.spawnHostileMobs();
+    }
 
     worldData.chunksThatShouldBeRendered
         .asMap()
         .forEach((int index, int chunkIndex) {
+      //chunks isnt rendered
       if (!worldData.currentlyRenderedChunks.contains(chunkIndex)) {
+        //for rightWorldChunks
         if (chunkIndex >= 0) {
+          //Chunk has not been created
           if (worldData.rightWorldChunks[0].length ~/ chunkWidth <
               chunkIndex + 1) {
             GameMethods.instance.addChunkToWorldChunks(
                 ChunkGenerationMethods.instance.generateChunk(chunkIndex),
                 true);
           }
+
           renderChunk(chunkIndex);
 
           worldData.currentlyRenderedChunks.add(chunkIndex);
+
+          //logic for leftWorldChunks
         } else {
+          //0th chunk in leftWolrdChunk, chunkIndex 1
           if (worldData.leftWorldChunks[0].length ~/ chunkWidth <
               chunkIndex.abs()) {
             GameMethods.instance.addChunkToWorldChunks(
                 ChunkGenerationMethods.instance.generateChunk(chunkIndex),
                 false);
           }
+
           renderChunk(chunkIndex);
 
           worldData.currentlyRenderedChunks.add(chunkIndex);
         }
       }
     });
+  }
+
+  void itemRenderingLogic() {
+    //logic
+    worldData.items.asMap().forEach((int index, ItemComponent item) {
+      if (!item.isMounted) {
+        if (worldData.chunksThatShouldBeRendered.contains(GameMethods.instance
+            .getChunkIndexFromPositionIndex(item.spawnBlockIndex))) {
+          add(item);
+        }
+      } else {
+        if (!worldData.chunksThatShouldBeRendered.contains(GameMethods.instance
+            .getChunkIndexFromPositionIndex(item.spawnBlockIndex))) {
+          remove(item);
+        }
+      }
+    });
+  }
+
+  @override
+  void onTapDown(int pointerId, TapDownInfo info) {
+    super.onTapDown(pointerId, info);
+
+    Vector2 blockPlacingPosition = GameMethods.instance
+        .getIndexPositionFromPixels(info.eventPosition.game);
+
+    placeBlockLogic(blockPlacingPosition);
+
+    eatingLogic();
+  }
+
+  void eatingLogic() {
+    dynamic currentItem = worldData
+        .inventoryManager
+        .inventorySlots[
+            worldData.inventoryManager.currentSelectedInventorySlot.value]
+        .block;
+
+    if (currentItem is Items &&
+        ItemData.getItemDataForItem(currentItem).isEatable) {
+      playerComponent.changeHungerBy(getFoodPointsForFood[currentItem] ?? 0);
+      worldData
+          .inventoryManager
+          .inventorySlots[
+              worldData.inventoryManager.currentSelectedInventorySlot.value]
+          .decrementSlot();
+    }
+  }
+
+  void placeBlockLogic(Vector2 blockPlacingPosition) {
+    if (blockPlacingPosition.y > 0 &&
+        blockPlacingPosition.y < chunkHeight &&
+        GameMethods.instance.playerIsWithinRange(blockPlacingPosition) &&
+        GameMethods.instance.getBlockAtIndexPosition(blockPlacingPosition) ==
+            null &&
+        GameMethods.instance.adjacentBlocksExist(blockPlacingPosition) &&
+        worldData
+                .inventoryManager
+                .inventorySlots[worldData
+                    .inventoryManager.currentSelectedInventorySlot.value]
+                .block !=
+            null &&
+        GameMethods.instance.adjacentBlocksExist(blockPlacingPosition) &&
+        worldData
+            .inventoryManager
+            .inventorySlots[
+                worldData.inventoryManager.currentSelectedInventorySlot.value]
+            .block is Blocks) {
+      GameMethods.instance.replaceBlockAtWorldChunks(
+          worldData
+              .inventoryManager
+              .inventorySlots[
+                  worldData.inventoryManager.currentSelectedInventorySlot.value]
+              .block as Blocks,
+          blockPlacingPosition);
+
+      add(BlockData.getParentForBlock(
+          worldData
+              .inventoryManager
+              .inventorySlots[
+                  worldData.inventoryManager.currentSelectedInventorySlot.value]
+              .block! as Blocks,
+          blockPlacingPosition,
+          GameMethods.instance
+              .getChunkIndexFromPositionIndex(blockPlacingPosition)));
+
+      worldData
+          .inventoryManager
+          .inventorySlots[
+              worldData.inventoryManager.currentSelectedInventorySlot.value]
+          .decrementSlot();
+    }
   }
 
   @override
@@ -101,18 +215,17 @@ class MainGame extends FlameGame
   ) {
     super.onKeyEvent(event, keysPressed);
 
+    //Keys that makes the player go right
     if (keysPressed.contains(LogicalKeyboardKey.arrowRight) ||
         keysPressed.contains(LogicalKeyboardKey.keyD)) {
       worldData.playerData.componentMotionState =
           ComponentMotionState.walkingRight;
     }
-
     if (keysPressed.contains(LogicalKeyboardKey.arrowLeft) ||
         keysPressed.contains(LogicalKeyboardKey.keyA)) {
       worldData.playerData.componentMotionState =
           ComponentMotionState.walkingLeft;
     }
-
     if (keysPressed.contains(LogicalKeyboardKey.space) ||
         keysPressed.contains(LogicalKeyboardKey.keyW) ||
         keysPressed.contains(LogicalKeyboardKey.arrowUp)) {
@@ -124,40 +237,5 @@ class MainGame extends FlameGame
     }
 
     return KeyEventResult.ignored;
-  }
-
-  @override
-  bool onTapDown(int pointerId, TapDownInfo info) {
-    super.onTapDown(pointerId, info);
-
-    Vector2 blockPlacingPosition = GameMethods.instance
-        .getIndexPositionFromPixels(info.eventPosition.game);
-
-    placeBlockLogic(blockPlacingPosition);
-
-    return false;
-  }
-
-  void placeBlockLogic(Vector2 blockPlacingPosition) {
-    if (blockPlacingPosition.y > 0 &&
-        blockPlacingPosition.y < chunkHeight &&
-        GameMethods.instance.playerIsWithinRange(blockPlacingPosition) &&
-        GameMethods.instance.getBlockAtIndexPosition(blockPlacingPosition) ==
-            null &&
-        GameMethods.instance.adjacentBlocksExist(blockPlacingPosition)) {
-      GameMethods.instance.replaceBlockAtWorldChunks(
-        Blocks.dirt,
-        blockPlacingPosition,
-      );
-
-      add(
-        BlockComponent(
-          chunkIndex: GameMethods.instance
-              .getChunkIndexFromPositionIndex(blockPlacingPosition),
-          block: Blocks.dirt,
-          blockIndex: blockPlacingPosition,
-        ),
-      );
-    }
   }
 }

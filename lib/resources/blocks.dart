@@ -1,38 +1,98 @@
+import 'package:flame/components.dart';
+import 'package:hive/hive.dart';
+import 'package:flutter_flame_minecraft/blocks/birch_leaf_block.dart';
+import 'package:flutter_flame_minecraft/blocks/coal_ore_block.dart';
+import 'package:flutter_flame_minecraft/blocks/crafting_table_block.dart';
+import 'package:flutter_flame_minecraft/blocks/diamond_ore_block.dart';
+import 'package:flutter_flame_minecraft/blocks/gold_ore_block.dart';
+import 'package:flutter_flame_minecraft/blocks/iron_ore_block.dart';
+import 'package:flutter_flame_minecraft/blocks/sand_block.dart';
+import 'package:flutter_flame_minecraft/blocks/stone_block.dart';
+import 'package:flutter_flame_minecraft/components/block_component.dart';
+import 'package:flutter_flame_minecraft/global/global_game_reference.dart';
+import 'package:flutter_flame_minecraft/resources/items.dart';
+
+part 'blocks.g.dart';
+
+@HiveType(typeId: 1)
 enum Blocks {
+  @HiveField(0)
   grass,
+
+  @HiveField(1)
   dirt,
+
+  @HiveField(2)
   stone,
+
+  @HiveField(3)
   birchLog,
+
+  @HiveField(4)
   birchLeaf,
+
+  @HiveField(5)
   cactus,
+
+  @HiveField(6)
   deadBush,
+
+  @HiveField(7)
   sand,
+
+  @HiveField(8)
   coalOre,
+
+  @HiveField(9)
   ironOre,
+
+  @HiveField(10)
   diamondOre,
+
+  @HiveField(11)
   goldOre,
+  @HiveField(12)
   grassPlant,
+  @HiveField(13)
   redFlower,
+  @HiveField(14)
   purpleFlower,
+  @HiveField(15)
   drippingWhiteFlower,
+
+  @HiveField(16)
   yellowFlower,
+
+  @HiveField(17)
   whiteFlower,
+
+  @HiveField(18)
   birchPlank,
+
+  @HiveField(19)
   craftingTable,
+
+  @HiveField(20)
   cobblestone,
+
+  @HiveField(21)
   bedrock,
 }
 
 class BlockData {
   final bool isCollidable;
-  final double baseMiningSpeed;
-  final bool isBreakable;
 
-  BlockData({
-    required this.isCollidable,
-    required this.baseMiningSpeed,
-    this.isBreakable = true,
-  });
+  //seconds
+  final double baseMiningSpeed;
+  final bool breakable;
+
+  final Tools suitableTool;
+
+  BlockData(
+      {required this.isCollidable,
+      required this.baseMiningSpeed,
+      required this.suitableTool,
+      this.breakable = true});
 
   factory BlockData.getBlockDataFor(Blocks block) {
     switch (block) {
@@ -104,75 +164,63 @@ class BlockData {
     }
   }
 
-  // static BlockComponent getParentForBlock(
-  //     Blocks block, Vector2 blockIndex, int chunkIndex) {
-  //   switch (block) {
-  //     case Blocks.craftingTable:
-  //       return CraftingTableBlock(
-  //           chunkIndex: chunkIndex, blockIndex: blockIndex);
+  static BlockComponent getParentForBlock(
+      Blocks block, Vector2 blockIndex, int chunkIndex) {
+    switch (block) {
+      case Blocks.craftingTable:
+        return CraftingTableBlock(
+            chunkIndex: chunkIndex, blockIndex: blockIndex);
 
-  //     case Blocks.birchLeaf:
-  //       return BirchLeafBlock(blockIndex: blockIndex, chunkIndex: chunkIndex);
+      case Blocks.birchLeaf:
+        return BirchLeafBlock(blockIndex: blockIndex, chunkIndex: chunkIndex);
 
-  //     case Blocks.stone:
-  //       return StoneBlock(blockIndex: blockIndex, chunkIndex: chunkIndex);
+      case Blocks.stone:
+        return StoneBlock(blockIndex: blockIndex, chunkIndex: chunkIndex);
 
-  //     case Blocks.coalOre:
-  //       return CoalOreBlock(blockIndex: blockIndex, chunkIndex: chunkIndex);
+      case Blocks.coalOre:
+        return CoalOreBlock(blockIndex: blockIndex, chunkIndex: chunkIndex);
 
-  //     case Blocks.ironOre:
-  //       return IronOreBlock(blockIndex: blockIndex, chunkIndex: chunkIndex);
+      case Blocks.ironOre:
+        return IronOreBlock(blockIndex: blockIndex, chunkIndex: chunkIndex);
 
-  //     case Blocks.diamondOre:
-  //       return DiamondOreBlock(blockIndex: blockIndex, chunkIndex: chunkIndex);
+      case Blocks.diamondOre:
+        return DiamondOreBlock(blockIndex: blockIndex, chunkIndex: chunkIndex);
 
-  //     case Blocks.goldOre:
-  //       return GoldOreBlock(blockIndex: blockIndex, chunkIndex: chunkIndex);
+      case Blocks.goldOre:
+        return GoldOreBlock(blockIndex: blockIndex, chunkIndex: chunkIndex);
 
-  //     case Blocks.sand:
-  //       return SandBlock(blockIndex: blockIndex, chunkIndex: chunkIndex);
+      case Blocks.sand:
+        return SandBlock(blockIndex: blockIndex, chunkIndex: chunkIndex);
 
-  //     default:
-  //       return BlockComponent(
-  //           block: block, blockIndex: blockIndex, chunkIndex: chunkIndex);
-  //   }
-  // }
+      default:
+        return BlockComponent(
+            block: block, blockIndex: blockIndex, chunkIndex: chunkIndex);
+    }
+  }
 
   static BlockData plant = BlockData(
-    isCollidable: false,
-    baseMiningSpeed: 0.0000001,
-  );
-  // suitableTool: Tools.none);
+      isCollidable: false,
+      baseMiningSpeed: 0.0000001,
+      suitableTool: Tools.none);
 
   static BlockData soil = BlockData(
-    isCollidable: true,
-    baseMiningSpeed: 0.75,
-  ); //suitableTool: Tools.shovel);
+      isCollidable: true, baseMiningSpeed: 0.75, suitableTool: Tools.shovel);
 
   static BlockData wood = BlockData(
-    isCollidable: false,
-    baseMiningSpeed: 3,
-  ); // suitableTool: Tools.axe);
+      isCollidable: false, baseMiningSpeed: 3, suitableTool: Tools.axe);
 
   static BlockData leaf = BlockData(
-    isCollidable: false,
-    baseMiningSpeed: 0.35,
-  ); //suitableTool: Tools.axe);
+      isCollidable: false, baseMiningSpeed: 0.35, suitableTool: Tools.axe);
 
   static BlockData stone = BlockData(
-    isCollidable: true,
-    baseMiningSpeed: 3.5,
-  ); //suitableTool: Tools.pickaxe);
+      isCollidable: true, baseMiningSpeed: 3.5, suitableTool: Tools.pickaxe);
 
   static BlockData woodPlank = BlockData(
-    isCollidable: true,
-    baseMiningSpeed: 2.5,
-  ); //suitableTool: Tools.axe);
+      isCollidable: true, baseMiningSpeed: 2.5, suitableTool: Tools.axe);
 
   static BlockData unbreakable = BlockData(
-    isBreakable: false,
-    baseMiningSpeed: 1,
-    isCollidable: true,
-  );
-  // suitableTool: Tools.none);
+      breakable: false,
+      baseMiningSpeed: 1,
+      isCollidable: true,
+      suitableTool: Tools.none);
 }

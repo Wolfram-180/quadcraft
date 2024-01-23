@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_flame_minecraft/global/global_game_reference.dart';
 import 'package:flutter_flame_minecraft/global/player_data.dart';
@@ -16,25 +18,22 @@ class ControllerWidget extends StatelessWidget {
       child: Row(
         children: [
           ControllerButtonWidget(
-            path: 'assets/controller/left_button.png',
-            onPressed: () {
-              playerData.componentMotionState =
-                  ComponentMotionState.walkingLeft;
-            },
-          ),
+              path: "assets/controller/left_button.png",
+              onPressed: () {
+                playerData.componentMotionState =
+                    ComponentMotionState.walkingLeft;
+              }),
           ControllerButtonWidget(
-            path: 'assets/controller/center_button.png',
-            onPressed: () {
-              playerData.componentMotionState = ComponentMotionState.jumping;
-            },
-          ),
+              path: "assets/controller/center_button.png",
+              onPressed: () {
+                playerData.componentMotionState = ComponentMotionState.jumping;
+              }),
           ControllerButtonWidget(
-            path: 'assets/controller/right_button.png',
-            onPressed: () {
-              playerData.componentMotionState =
-                  ComponentMotionState.walkingRight;
-            },
-          ),
+              path: "assets/controller/right_button.png",
+              onPressed: () {
+                playerData.componentMotionState =
+                    ComponentMotionState.walkingRight;
+              }),
         ],
       ),
     );

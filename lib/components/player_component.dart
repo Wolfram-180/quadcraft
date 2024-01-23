@@ -1,20 +1,19 @@
 import 'package:flame/collisions.dart';
 import 'package:flame/components.dart';
-import 'package:flame/sprite.dart';
 import 'package:flame/flame.dart';
+import 'package:flame/sprite.dart';
 import 'package:flutter_flame_minecraft/components/block_component.dart';
 import 'package:flutter_flame_minecraft/global/global_game_reference.dart';
 import 'package:flutter_flame_minecraft/global/player_data.dart';
 import 'package:flutter_flame_minecraft/resources/blocks.dart';
+import 'package:flutter_flame_minecraft/resources/entity.dart';
 import 'package:flutter_flame_minecraft/utils/constants.dart';
 import 'package:flutter_flame_minecraft/utils/game_methods.dart';
 
-class PlayerComponent extends SpriteAnimationComponent with CollisionCallbacks {
+class PlayerComponent extends Entity {
   final Vector2 playerDimensions = Vector2.all(60);
-  final double stepTime = 0.3;
 
-  bool isFacingRight = true;
-  double yVelocity = 0;
+  final double stepTime = 0.3;
 
   late SpriteSheet playerWalkingSpritesheet;
   late SpriteSheet playerIdleSpritesheet;
@@ -22,60 +21,37 @@ class PlayerComponent extends SpriteAnimationComponent with CollisionCallbacks {
   late SpriteAnimation walkingAnimation =
       playerWalkingSpritesheet.createAnimation(row: 0, stepTime: stepTime);
 
+  late SpriteAnimation walkingHurtAnimation =
+      playerWalkingSpritesheet.createAnimation(row: 1, stepTime: stepTime);
+
   late SpriteAnimation idleAnimation =
       playerIdleSpritesheet.createAnimation(row: 0, stepTime: stepTime);
 
-  bool isCollidingBottom = false;
-  bool isCollidingLeft = false;
-  bool isCollidingRight = false;
-  bool isCollidingTop = false;
-
-  double jumpForce = 0;
+  late SpriteAnimation idleHurtAnimation =
+      playerIdleSpritesheet.createAnimation(row: 1, stepTime: stepTime);
 
   double localPlayerSpeed = 0;
+
   bool refreshSpeed = false;
 
   @override
   void onCollision(Set<Vector2> intersectionPoints, PositionComponent other) {
-    super.onCollision(intersectionPoints, other);
-
     if (other is BlockComponent &&
         BlockData.getBlockDataFor(other.block).isCollidable) {
-      intersectionPoints.forEach(
-        (Vector2 individualIntersectionPoint) {
-          // bottom collision
-          if (individualIntersectionPoint.y > (position.y - (size.y * 0.3)) &&
-              (intersectionPoints.first.x - intersectionPoints.last.x).abs() >
-                  size.x * 0.4) {
-            isCollidingBottom = true;
-            yVelocity = 0;
-          }
-
-          // top collision
-          if ((individualIntersectionPoint.y <
-                  (position.y - (size.y * 0.75))) &&
-              ((intersectionPoints.first.x - intersectionPoints.last.x).abs() >
-                  size.x * 0.4) &&
-              (jumpForce > 0)) {
-            isCollidingTop = true;
-          }
-
-          // sides collision
-          if (individualIntersectionPoint.y < (position.y - (size.y * 0.3))) {
-            if (individualIntersectionPoint.x > position.x) {
-              isCollidingRight = true;
-            } else {
-              isCollidingLeft = true;
-            }
-          }
-        },
-      );
+      super.onCollision(intersectionPoints, other);
     }
   }
 
   @override
   Future<void> onLoad() async {
-    await super.onLoad();
+    super.onLoad();
+
+    GlobalGameReference.instance.gameReference.camera.followComponent(this);
+
+    await Future.delayed(Duration(seconds: 1));
+
+    health = GlobalGameReference
+        .instance.gameReference.worldData.playerData.playerHealth.value;
 
     add(RectangleHitbox());
 
@@ -84,18 +60,16 @@ class PlayerComponent extends SpriteAnimationComponent with CollisionCallbacks {
     anchor = Anchor.bottomCenter;
 
     playerWalkingSpritesheet = SpriteSheet(
-      image: Flame.images
-          .fromCache('sprite_sheets/player/player_walking_sprite_sheet.png'),
-      srcSize: playerDimensions,
-    );
+        image: Flame.images
+            .fromCache("sprite_sheets/player/player_walking_sprite_sheet.png"),
+        srcSize: playerDimensions);
 
     playerIdleSpritesheet = SpriteSheet(
-      image: Flame.images
-          .fromCache('sprite_sheets/player/player_idle_sprite_sheet.png'),
-      srcSize: playerDimensions,
-    );
+        image: Flame.images
+            .fromCache("sprite_sheets/player/player_idle_sprite_sheet.png"),
+        srcSize: playerDimensions);
 
-    position = Vector2(50, 50);
+    position = Vector2(100, 400);
 
     animation = idleAnimation;
 
@@ -105,6 +79,16 @@ class PlayerComponent extends SpriteAnimationComponent with CollisionCallbacks {
         onTick: () {
           refreshSpeed = true;
         }));
+
+    add(TimerComponent(
+        period: 25,
+        repeat: true,
+        onTick: () {
+          changeHungerBy(-1);
+        }));
+
+    position = GameMethods.instance.getSpawnPositionForPlayer() *
+        GameMethods.instance.blockSize.x;
   }
 
   @override
@@ -113,104 +97,129 @@ class PlayerComponent extends SpriteAnimationComponent with CollisionCallbacks {
     movementLogic(dt);
     fallingLogic(dt);
     jumpingLogic();
+    killEntityLogic();
+    healthAndHungerLogic();
     setAllCollisionToFalse();
 
+    //changing our speed
     if (refreshSpeed) {
-      localPlayerSpeed = (playerSpeed * GameMethods.instance.blockSize.x) * dt;
+      double hunger = GlobalGameReference
+          .instance.gameReference.worldData.playerData.playerHunger.value;
+      if (hunger > 3) {
+        localPlayerSpeed =
+            (playerSpeed * GameMethods.instance.blockSize.x) * dt;
+      } else {
+        localPlayerSpeed =
+            (playerSpeed * GameMethods.instance.blockSize.x) * dt;
+
+        localPlayerSpeed /= 2;
+      }
       refreshSpeed = false;
     }
-  }
 
-  void jumpingLogic() {
-    if (jumpForce > 0) {
-      position.y -= jumpForce;
-      jumpForce -= GameMethods.instance.blockSize.x * 0.15;
-      if (isCollidingTop) {
-        jumpForce = 0;
-        isCollidingTop = false;
-      }
+    double playerHealth = GlobalGameReference
+        .instance.gameReference.worldData.playerData.playerHealth.value;
+
+    if (playerHealth != health) {
+      GlobalGameReference.instance.gameReference.worldData.playerData
+          .playerHealth.value = health;
     }
   }
 
-  void fallingLogic(double dt) {
-    if (!isCollidingBottom) {
-      if (yVelocity < (GameMethods.instance.gravity * dt) * 10) {
-        position.y += yVelocity;
-        yVelocity += GameMethods.instance.gravity * dt;
+  void changeHungerBy(double value) {
+    //currentHunger
+    double hunger = GlobalGameReference
+        .instance.gameReference.worldData.playerData.playerHunger.value;
+
+    if (hunger + value <= 10) {
+      if (hunger + value >= 0) {
+        GlobalGameReference.instance.gameReference.worldData.playerData
+            .playerHunger.value += value;
       } else {
-        position.y += yVelocity;
+        GlobalGameReference
+            .instance.gameReference.worldData.playerData.playerHunger.value = 0;
       }
+    } else {
+      GlobalGameReference
+          .instance.gameReference.worldData.playerData.playerHunger.value = 10;
     }
   }
 
-  void setAllCollisionToFalse() {
-    isCollidingBottom = false;
-    isCollidingRight = false;
-    isCollidingLeft = false;
-    isCollidingTop = false;
-  }
-
-  void move(ComponentMotionState componentMotionState, double dt) {
-    switch (componentMotionState) {
-      case ComponentMotionState.walkingLeft:
-        if (!isCollidingLeft) {
-          position.x -= localPlayerSpeed;
-          if (isFacingRight) {
-            flipHorizontallyAroundCenter();
-            isFacingRight = false;
-          }
-
-          animation = walkingAnimation;
-        }
-        break;
-      case ComponentMotionState.walkingRight:
-        if (!isCollidingRight) {
-          position.x += localPlayerSpeed;
-          if (!isFacingRight) {
-            flipHorizontallyAroundCenter();
-            isFacingRight = true;
-          }
-          animation = walkingAnimation;
-        }
-        break;
-      case ComponentMotionState.idle:
-        break;
-      default:
-        break;
+  void healthAndHungerLogic() {
+    //regeneraitionLogic
+    if (GlobalGameReference
+            .instance.gameReference.worldData.playerData.playerHunger.value >
+        9) {
+      changeHealthBy(0.075);
     }
   }
 
   void movementLogic(double dt) {
+    //Moving left
     if (GlobalGameReference
             .instance.gameReference.worldData.playerData.componentMotionState ==
         ComponentMotionState.walkingLeft) {
-      move(ComponentMotionState.walkingLeft, dt);
+      if (move(ComponentMotionState.walkingLeft, dt, localPlayerSpeed)) {
+        GlobalGameReference.instance.gameReference.skyComponent
+            .componentMotionState = ComponentMotionState.walkingRight;
+      } else {
+        GlobalGameReference.instance.gameReference.skyComponent
+            .componentMotionState = ComponentMotionState.idle;
+      }
+      if (isHurt) {
+        animation = walkingHurtAnimation;
+      } else {
+        animation = walkingAnimation;
+      }
     }
 
+    //Moving right
     if (GlobalGameReference
             .instance.gameReference.worldData.playerData.componentMotionState ==
         ComponentMotionState.walkingRight) {
-      move(ComponentMotionState.walkingRight, dt);
+      if (move(ComponentMotionState.walkingRight, dt, localPlayerSpeed)) {
+        GlobalGameReference.instance.gameReference.skyComponent
+            .componentMotionState = ComponentMotionState.walkingLeft;
+      } else {
+        GlobalGameReference.instance.gameReference.skyComponent
+            .componentMotionState = ComponentMotionState.idle;
+      }
+      if (isHurt) {
+        animation = walkingHurtAnimation;
+      } else {
+        animation = walkingAnimation;
+      }
     }
-
     if (GlobalGameReference
             .instance.gameReference.worldData.playerData.componentMotionState ==
         ComponentMotionState.idle) {
-      animation = idleAnimation;
+      if (isHurt) {
+        animation = idleHurtAnimation;
+      } else {
+        animation = idleAnimation;
+      }
+      GlobalGameReference.instance.gameReference.skyComponent
+          .componentMotionState = ComponentMotionState.idle;
     }
-
     if (GlobalGameReference.instance.gameReference.worldData.playerData
                 .componentMotionState ==
             ComponentMotionState.jumping &&
         isCollidingBottom) {
-      jumpForce = GameMethods.instance.blockSize.x * 0.6;
-      // animation = idleAnimation;
+      jump();
     }
   }
 
   @override
-  void onGameResize(Vector2 size) {
-    super.onGameResize(size);
+  void onGameResize(Vector2 newGameSize) {
+    super.onGameResize(newGameSize);
     size = GameMethods.instance.blockSize * 1.5;
+  }
+
+  @override
+  void onRemove() {
+    super.onRemove();
+
+    GlobalGameReference
+        .instance.gameReference.worldData.playerData.playerIsDead.value = true;
   }
 }
