@@ -14,7 +14,7 @@ class Mobs {
     if (totalMobs < mobCap) {
       GlobalGameReference.instance.gameReference.add(returnRandomHostileMob());
     } else {
-      print('mobCap full');
+      //print('mobCap full');
     }
   }
 

@@ -50,7 +50,7 @@ void main() async {
   /* Hive.box(worldDataBox)
       .put(seed, WorldData(seed: seed, worldName: 'New World Test')); */
 
-  print(Hive.box(worldDataBox).keys);
+  // print(Hive.box(worldDataBox).keys);
 
   runApp(const MaterialApp(
     debugShowCheckedModeBanner: false,
