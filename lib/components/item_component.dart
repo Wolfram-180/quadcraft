@@ -46,8 +46,8 @@ class ItemComponent extends Entity {
   }
 
   @override
-  void onGameResize(Vector2 newSize) {
-    super.onGameResize(newSize);
+  void onGameResize(Vector2 size) {
+    super.onGameResize(size);
     size = GameMethods.instance.blockSize * 0.6;
   }
 
