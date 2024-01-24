@@ -1,6 +1,4 @@
 import 'package:flutter/cupertino.dart';
-import 'package:flutter/src/foundation/key.dart';
-import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter_flame_minecraft/widgets/player_health_bar.dart';
 import 'package:flutter_flame_minecraft/widgets/player_hunger_bar.dart';
 
@@ -9,10 +7,10 @@ class HungerAndHealthBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.all(8.0),
+    return const Padding(
+      padding: EdgeInsets.all(8.0),
       child: Column(
-        children: const [PlayerHealthBarWidget(), PlayerHungerBarWidget()],
+        children: [PlayerHealthBarWidget(), PlayerHungerBarWidget()],
       ),
     );
   }

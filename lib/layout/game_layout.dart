@@ -7,13 +7,8 @@ import 'package:flutter_flame_minecraft/layout/hunger_and_health_bar.dart';
 import 'package:flutter_flame_minecraft/layout/quit_and_save_button.dart';
 import 'package:flutter_flame_minecraft/screens/respawn_screen.dart';
 import 'package:flutter_flame_minecraft/utils/constants.dart';
-import 'package:flutter_flame_minecraft/widgets/player_health_bar.dart';
-import 'package:flutter_flame_minecraft/widgets/player_hunger_bar.dart';
 import 'package:flutter_flame_minecraft/main_game.dart';
-import 'package:flutter_flame_minecraft/utils/game_methods.dart';
 import 'package:flutter_flame_minecraft/widgets/crafting/crafting_inventory.dart';
-import 'package:flutter_flame_minecraft/widgets/inventory/inventory_slot.dart';
-import 'package:flutter_flame_minecraft/widgets/inventory/inventory_storage_widget.dart';
 import 'package:flutter_flame_minecraft/widgets/inventory/item_bar.dart';
 import 'package:flutter_flame_minecraft/widgets/inventory/player_inventory.dart';
 

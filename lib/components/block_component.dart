@@ -51,7 +51,7 @@ class BlockComponent extends SpriteComponent with Tappable {
       srcSize: Vector2.all(60),
     );
 
-    sprite = await GameMethods.instance.getSpriteFromBlock(block);
+    sprite = GameMethods.instance.getSpriteFromBlock(block);
   }
 
   @override

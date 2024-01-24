@@ -3,7 +3,6 @@ import 'dart:math';
 import 'package:flame/components.dart';
 import 'package:flame/flame.dart';
 import 'package:flame/sprite.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_flame_minecraft/global/global_game_reference.dart';
 import 'package:flutter_flame_minecraft/resources/blocks.dart';
@@ -75,7 +74,7 @@ class GameMethods {
   }
 
   Size getScreenSize() {
-    return MediaQueryData.fromWindow(WidgetsBinding.instance.window).size;
+    return MediaQueryData.fromView(WidgetsBinding.instance.window).size;
   }
 
   SpriteSheet getBlockSpriteSheet() {

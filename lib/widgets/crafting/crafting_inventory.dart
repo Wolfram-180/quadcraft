@@ -1,6 +1,4 @@
 import 'package:flutter/cupertino.dart';
-import 'package:flutter/src/foundation/key.dart';
-import 'package:flutter/src/widgets/framework.dart';
 import 'package:get/get.dart';
 import 'package:flutter_flame_minecraft/global/global_game_reference.dart';
 import 'package:flutter_flame_minecraft/widgets/crafting/standard_crafting_grid.dart';
@@ -13,11 +11,11 @@ class CraftingInventory extends StatelessWidget {
   Widget build(BuildContext context) {
     return Obx(() => GlobalGameReference.instance.gameReference.worldData
             .craftingManager.craftingInventoryIsOpen.value
-        ? Positioned.fill(
+        ? const Positioned.fill(
             child: Align(
               alignment: Alignment.center,
               child: Stack(
-                children: const [
+                children: [
                   InventoryStorageWidget(),
                   StandardCraftingGrid()
                 ],

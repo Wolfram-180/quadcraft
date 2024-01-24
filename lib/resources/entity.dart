@@ -39,7 +39,7 @@ class Entity extends SpriteAnimationComponent with CollisionCallbacks {
   void onCollision(Set<Vector2> intersectionPoints, PositionComponent other) {
     super.onCollision(intersectionPoints, other);
 
-    intersectionPoints.forEach((Vector2 individualIntersectionPoint) {
+    for (var individualIntersectionPoint in intersectionPoints) {
       //player is colliding with the ground
 
       //Ground collision
@@ -74,7 +74,7 @@ class Entity extends SpriteAnimationComponent with CollisionCallbacks {
           isCollidingLeft = true;
         }
       }
-    });
+    }
   }
 
   void jumpingLogic() {
