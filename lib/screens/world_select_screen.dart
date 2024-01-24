@@ -42,7 +42,7 @@ class _WorldSelectScreenState extends State<WorldSelectScreen> {
         height: screenSize.height,
         decoration: const BoxDecoration(
           image: DecorationImage(
-              image: AssetImage("assets/images/launcher/dirt_background.png"),
+              image: AssetImage('assets/images/launcher/dirt_background.png'),
               fit: BoxFit.fill),
         ),
         child: Column(
@@ -51,10 +51,10 @@ class _WorldSelectScreenState extends State<WorldSelectScreen> {
             const Padding(
               padding: EdgeInsets.symmetric(vertical: 10),
               child: Text(
-                "Select World",
+                'Select World',
                 style: TextStyle(
                   color: Colors.white,
-                  fontFamily: "MinecraftFont",
+                  fontFamily: 'MinecraftFont',
                   fontSize: 20,
                   shadows: [
                     BoxShadow(
@@ -74,7 +74,7 @@ class _WorldSelectScreenState extends State<WorldSelectScreen> {
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
                 MinecraftButtonWidget(
-                    text: "Back",
+                    text: 'Back',
                     onPressed: () {
                       Navigator.pushReplacement(
                           context,
@@ -82,7 +82,7 @@ class _WorldSelectScreenState extends State<WorldSelectScreen> {
                               builder: (context) => const MenuScreen()));
                     }),
                 MinecraftButtonWidget(
-                    text: "Create World",
+                    text: 'Create World',
                     onPressed: () {
                       Navigator.pushReplacement(
                           context,

@@ -19,23 +19,23 @@ class SkyComponent extends ParallaxComponent {
 
     morningSky =
         await GlobalGameReference.instance.gameReference.loadParallaxComponent([
-      ParallaxImageData("parallax/morning/sky.png"),
-      ParallaxImageData("parallax/morning/second_parallax.png"),
-      ParallaxImageData("parallax/morning/first_parallax.png"),
+      ParallaxImageData('parallax/morning/sky.png'),
+      ParallaxImageData('parallax/morning/second_parallax.png'),
+      ParallaxImageData('parallax/morning/first_parallax.png'),
     ], baseVelocity: Vector2(0, 0), velocityMultiplierDelta: Vector2(3, 0));
 
     eveningSky =
         await GlobalGameReference.instance.gameReference.loadParallaxComponent([
-      ParallaxImageData("parallax/evening/sky.png"),
-      ParallaxImageData("parallax/evening/second_parallax.png"),
-      ParallaxImageData("parallax/evening/first_parallax.png"),
+      ParallaxImageData('parallax/evening/sky.png'),
+      ParallaxImageData('parallax/evening/second_parallax.png'),
+      ParallaxImageData('parallax/evening/first_parallax.png'),
     ], baseVelocity: Vector2(0, 0), velocityMultiplierDelta: Vector2(3, 0));
 
     nightSky =
         await GlobalGameReference.instance.gameReference.loadParallaxComponent([
-      ParallaxImageData("parallax/night/sky.png"),
-      ParallaxImageData("parallax/night/second_parallax.png"),
-      ParallaxImageData("parallax/night/first_parallax.png"),
+      ParallaxImageData('parallax/night/sky.png'),
+      ParallaxImageData('parallax/night/second_parallax.png'),
+      ParallaxImageData('parallax/night/first_parallax.png'),
     ], baseVelocity: Vector2(0, 0), velocityMultiplierDelta: Vector2(3, 0));
 
     switch (

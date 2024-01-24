@@ -47,7 +47,7 @@ class BlockComponent extends SpriteComponent with Tappable {
 
     animationBlockSpriteSheet = SpriteSheet(
       image: Flame.images
-          .fromCache("sprite_sheets/blocks/block_breaking_sprite_sheet.png"),
+          .fromCache('sprite_sheets/blocks/block_breaking_sprite_sheet.png'),
       srcSize: Vector2.all(60),
     );
 

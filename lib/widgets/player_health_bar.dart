@@ -39,9 +39,9 @@ class PlayerHealthBarWidget extends StatelessWidget {
       child: FittedBox(
         child: Stack(
           children: [
-            Image.asset("assets/images/gui/empty_heart.png"),
+            Image.asset('assets/images/gui/empty_heart.png'),
             fullHeart
-                ? Image.asset("assets/images/gui/full_heart.png")
+                ? Image.asset('assets/images/gui/full_heart.png')
                 : Container(),
           ],
         ),

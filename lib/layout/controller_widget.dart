@@ -18,18 +18,18 @@ class ControllerWidget extends StatelessWidget {
       child: Row(
         children: [
           ControllerButtonWidget(
-              path: "assets/controller/left_button.png",
+              path: 'assets/controller/left_button.png',
               onPressed: () {
                 playerData.componentMotionState =
                     ComponentMotionState.walkingLeft;
               }),
           ControllerButtonWidget(
-              path: "assets/controller/center_button.png",
+              path: 'assets/controller/center_button.png',
               onPressed: () {
                 playerData.componentMotionState = ComponentMotionState.jumping;
               }),
           ControllerButtonWidget(
-              path: "assets/controller/right_button.png",
+              path: 'assets/controller/right_button.png',
               onPressed: () {
                 playerData.componentMotionState =
                     ComponentMotionState.walkingRight;

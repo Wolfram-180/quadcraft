@@ -31,27 +31,27 @@ void main() async {
 
   //load
   await Flame.images
-      .load("sprite_sheets/blocks/block_breaking_sprite_sheet.png");
+      .load('sprite_sheets/blocks/block_breaking_sprite_sheet.png');
 
   await Flame.images
-      .load("sprite_sheets/player/player_walking_sprite_sheet.png");
+      .load('sprite_sheets/player/player_walking_sprite_sheet.png');
 
-  await Flame.images.load("sprite_sheets/player/player_idle_sprite_sheet.png");
+  await Flame.images.load('sprite_sheets/player/player_idle_sprite_sheet.png');
 
-  await Flame.images.load("sprite_sheets/blocks/block_sprite_sheet.png");
+  await Flame.images.load('sprite_sheets/blocks/block_sprite_sheet.png');
 
-  await Flame.images.load("sprite_sheets/item/item_sprite_sheet.png");
+  await Flame.images.load('sprite_sheets/item/item_sprite_sheet.png');
 
-  await Flame.images.load("sprite_sheets/mobs/sprite_sheet_zombie.png");
+  await Flame.images.load('sprite_sheets/mobs/sprite_sheet_zombie.png');
 
-  await Flame.images.load("sprite_sheets/mobs/sprite_sheet_spider.png");
+  await Flame.images.load('sprite_sheets/mobs/sprite_sheet_spider.png');
 
   await Hive.openBox(worldDataBox);
 
   //int seed = GameMethods.instance.getRandomSeed();
 
   /* Hive.box(worldDataBox)
-      .put(seed, WorldData(seed: seed, worldName: "New World Test")); */
+      .put(seed, WorldData(seed: seed, worldName: 'New World Test')); */
 
   print(Hive.box(worldDataBox).keys);
 

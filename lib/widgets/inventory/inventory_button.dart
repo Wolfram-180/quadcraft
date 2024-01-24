@@ -20,7 +20,7 @@ class InventoryButtonWidget extends StatelessWidget {
         height: GameMethods.instance.slotSize,
         width: GameMethods.instance.slotSize,
         child: FittedBox(
-          child: Image.asset("assets/images/inventory/inventory_button.png"),
+          child: Image.asset('assets/images/inventory/inventory_button.png'),
         ),
       ),
     );

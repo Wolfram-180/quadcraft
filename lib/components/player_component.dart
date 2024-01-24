@@ -61,12 +61,12 @@ class PlayerComponent extends Entity {
 
     playerWalkingSpritesheet = SpriteSheet(
         image: Flame.images
-            .fromCache("sprite_sheets/player/player_walking_sprite_sheet.png"),
+            .fromCache('sprite_sheets/player/player_walking_sprite_sheet.png'),
         srcSize: playerDimensions);
 
     playerIdleSpritesheet = SpriteSheet(
         image: Flame.images
-            .fromCache("sprite_sheets/player/player_idle_sprite_sheet.png"),
+            .fromCache('sprite_sheets/player/player_idle_sprite_sheet.png'),
         srcSize: playerDimensions);
 
     position = Vector2(100, 400);

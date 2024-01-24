@@ -27,11 +27,11 @@ class RespawnScreen extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               const Text(
-                "You Died!",
+                'You Died!',
                 style: TextStyle(
                   fontSize: 50,
                   color: Colors.white,
-                  fontFamily: "MinecraftFont",
+                  fontFamily: 'MinecraftFont',
                   shadows: [
                     BoxShadow(color: Colors.black, offset: Offset(3, 3))
                   ],
@@ -40,7 +40,7 @@ class RespawnScreen extends StatelessWidget {
               Padding(
                 padding: const EdgeInsets.all(70.0),
                 child: MinecraftButtonWidget(
-                  text: "Respawn",
+                  text: 'Respawn',
                   onPressed: () {
                     GlobalGameReference.instance.gameReference.worldData
                         .playerData.playerIsDead.value = false;
