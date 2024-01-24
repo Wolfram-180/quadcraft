@@ -1,4 +1,6 @@
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/src/foundation/key.dart';
+import 'package:flutter/src/widgets/framework.dart';
 import 'package:get/get.dart';
 import 'package:flutter_flame_minecraft/global/global_game_reference.dart';
 import 'package:flutter_flame_minecraft/utils/game_methods.dart';
@@ -12,6 +14,7 @@ class PlayerHealthBarWidget extends StatelessWidget {
       List<Widget> children = [];
 
       for (int i = 10; i > 0; i--) {
+        //i=10, health 3
         bool isFullHeart = false;
 
         if (GlobalGameReference.instance.gameReference.worldData.playerData
@@ -36,9 +39,9 @@ class PlayerHealthBarWidget extends StatelessWidget {
       child: FittedBox(
         child: Stack(
           children: [
-            Image.asset('assets/images/gui/empty_heart.png'),
+            Image.asset("assets/images/gui/empty_heart.png"),
             fullHeart
-                ? Image.asset('assets/images/gui/full_heart.png')
+                ? Image.asset("assets/images/gui/full_heart.png")
                 : Container(),
           ],
         ),

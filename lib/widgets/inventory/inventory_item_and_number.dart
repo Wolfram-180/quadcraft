@@ -1,5 +1,8 @@
 import 'package:flame/widgets.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/src/foundation/key.dart';
+import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter_flame_minecraft/resources/items.dart';
 import 'package:get/get.dart';
 import 'package:flutter_flame_minecraft/global/inventory.dart';
@@ -47,7 +50,7 @@ class InventoryItemAndNumberWidget extends StatelessWidget {
                           style: TextStyle(
                               color: Colors.white,
                               fontSize: GameMethods.instance.slotSize / 4,
-                              fontFamily: 'MinecraftFont',
+                              fontFamily: "MinecraftFont",
                               shadows: const [
                                 BoxShadow(
                                     color: Colors.black, offset: Offset(1, 1))

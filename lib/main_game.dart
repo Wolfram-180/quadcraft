@@ -1,14 +1,22 @@
+import 'dart:math';
+
+import 'package:flame/components.dart';
 import 'package:flame/game.dart';
 import 'package:flame/input.dart';
+import 'package:flame/parallax.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
+import 'package:flutter_flame_minecraft/components/block_breaking_component.dart';
+import 'package:flutter_flame_minecraft/components/block_component.dart';
 import 'package:flutter_flame_minecraft/components/item_component.dart';
 import 'package:flutter_flame_minecraft/components/player_component.dart';
 import 'package:flutter_flame_minecraft/components/sky_component.dart';
 import 'package:flutter_flame_minecraft/global/global_game_reference.dart';
 import 'package:flutter_flame_minecraft/global/player_data.dart';
 import 'package:flutter_flame_minecraft/global/world_data.dart';
+import 'package:flutter_flame_minecraft/mobs/spider.dart';
+import 'package:flutter_flame_minecraft/mobs/zombie.dart';
 import 'package:flutter_flame_minecraft/resources/blocks.dart';
 import 'package:flutter_flame_minecraft/resources/foods.dart';
 import 'package:flutter_flame_minecraft/resources/items.dart';
@@ -58,6 +66,9 @@ class MainGame extends FlameGame
 
   @override
   void update(double dt) {
+    //10ps
+    //0.1
+
     super.update(dt);
 
     worldData.skyTimer.updateTimer(dt);
@@ -71,6 +82,7 @@ class MainGame extends FlameGame
     worldData.chunksThatShouldBeRendered
         .asMap()
         .forEach((int index, int chunkIndex) {
+      //chunks isnt rendered
       if (!worldData.currentlyRenderedChunks.contains(chunkIndex)) {
         //for rightWorldChunks
         if (chunkIndex >= 0) {
@@ -203,6 +215,7 @@ class MainGame extends FlameGame
   ) {
     super.onKeyEvent(event, keysPressed);
 
+    //Keys that makes the player go right
     if (keysPressed.contains(LogicalKeyboardKey.arrowRight) ||
         keysPressed.contains(LogicalKeyboardKey.keyD)) {
       worldData.playerData.componentMotionState =

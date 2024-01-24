@@ -1,6 +1,14 @@
+import 'package:flame/collisions.dart';
 import 'package:flame/components.dart';
+import 'package:flame/flame.dart';
+import 'package:flame/sprite.dart';
+import 'package:flutter/services.dart';
+import 'package:flutter_flame_minecraft/components/block_component.dart';
+import 'package:flutter_flame_minecraft/components/player_component.dart';
 import 'package:flutter_flame_minecraft/global/global_game_reference.dart';
 import 'package:flutter_flame_minecraft/global/player_data.dart';
+import 'package:flutter_flame_minecraft/resources/blocks.dart';
+import 'package:flutter_flame_minecraft/resources/entity.dart';
 import 'package:flutter_flame_minecraft/resources/hostile_entity.dart';
 import 'package:flutter_flame_minecraft/utils/constants.dart';
 import 'package:flutter_flame_minecraft/utils/game_methods.dart';
@@ -8,7 +16,7 @@ import 'package:flutter_flame_minecraft/utils/game_methods.dart';
 class Zombie extends HostileEntity {
   Zombie({required super.spawnIndexPosition})
       : super(
-          path: 'sprite_sheets/mobs/sprite_sheet_zombie.png',
+          path: "sprite_sheets/mobs/sprite_sheet_zombie.png",
           srcSize: Vector2(67, 99),
         );
 
@@ -58,8 +66,8 @@ class Zombie extends HostileEntity {
   }
 
   @override
-  void onGameResize(Vector2 size) {
-    super.onGameResize(size);
+  void onGameResize(Vector2 newScreenSize) {
+    super.onGameResize(newScreenSize);
 
     size = srcSize * ((GameMethods.instance.blockSize.x * 2) / srcSize.y);
   }

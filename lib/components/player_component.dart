@@ -48,7 +48,7 @@ class PlayerComponent extends Entity {
 
     GlobalGameReference.instance.gameReference.camera.followComponent(this);
 
-    await Future.delayed(const Duration(seconds: 1));
+    await Future.delayed(Duration(seconds: 1));
 
     health = GlobalGameReference
         .instance.gameReference.worldData.playerData.playerHealth.value;
@@ -61,12 +61,12 @@ class PlayerComponent extends Entity {
 
     playerWalkingSpritesheet = SpriteSheet(
         image: Flame.images
-            .fromCache('sprite_sheets/player/player_walking_sprite_sheet.png'),
+            .fromCache("sprite_sheets/player/player_walking_sprite_sheet.png"),
         srcSize: playerDimensions);
 
     playerIdleSpritesheet = SpriteSheet(
         image: Flame.images
-            .fromCache('sprite_sheets/player/player_idle_sprite_sheet.png'),
+            .fromCache("sprite_sheets/player/player_idle_sprite_sheet.png"),
         srcSize: playerDimensions);
 
     position = Vector2(100, 400);
@@ -127,7 +127,7 @@ class PlayerComponent extends Entity {
   }
 
   void changeHungerBy(double value) {
-    //current hunger
+    //currentHunger
     double hunger = GlobalGameReference
         .instance.gameReference.worldData.playerData.playerHunger.value;
 
@@ -146,7 +146,7 @@ class PlayerComponent extends Entity {
   }
 
   void healthAndHungerLogic() {
-    //regeneraition logic
+    //regeneraitionLogic
     if (GlobalGameReference
             .instance.gameReference.worldData.playerData.playerHunger.value >
         9) {
@@ -190,8 +190,6 @@ class PlayerComponent extends Entity {
         animation = walkingAnimation;
       }
     }
-
-    // idle
     if (GlobalGameReference
             .instance.gameReference.worldData.playerData.componentMotionState ==
         ComponentMotionState.idle) {
@@ -203,8 +201,6 @@ class PlayerComponent extends Entity {
       GlobalGameReference.instance.gameReference.skyComponent
           .componentMotionState = ComponentMotionState.idle;
     }
-
-    // jump
     if (GlobalGameReference.instance.gameReference.worldData.playerData
                 .componentMotionState ==
             ComponentMotionState.jumping &&
@@ -214,8 +210,8 @@ class PlayerComponent extends Entity {
   }
 
   @override
-  void onGameResize(Vector2 size) {
-    super.onGameResize(size);
+  void onGameResize(Vector2 newGameSize) {
+    super.onGameResize(newGameSize);
     size = GameMethods.instance.blockSize * 1.5;
   }
 

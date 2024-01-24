@@ -1,5 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/src/foundation/key.dart';
+import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter_flame_minecraft/global/global_game_reference.dart';
 import 'package:flutter_flame_minecraft/utils/game_methods.dart';
 import 'package:flutter_flame_minecraft/widgets/inventory/inventory_slot.dart';
@@ -70,7 +72,7 @@ class PlayerInventoryCraftingGridWidget extends StatelessWidget {
                 SizedBox(
                     height: (GameMethods.instance.slotSize * 9.5) / 8,
                     child: Image.asset(
-                        'assets/images/inventory/inventory_arrow.png')),
+                        "assets/images/inventory/inventory_arrow.png")),
                 InventorySlotWidget(
                     slotType: SlotType.craftingOutput,
                     inventorySlot: GlobalGameReference

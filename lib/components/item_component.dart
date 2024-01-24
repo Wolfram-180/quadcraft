@@ -3,6 +3,7 @@ import 'package:flame/components.dart';
 import 'package:flutter_flame_minecraft/components/block_component.dart';
 import 'package:flutter_flame_minecraft/components/player_component.dart';
 import 'package:flutter_flame_minecraft/global/global_game_reference.dart';
+import 'package:flutter_flame_minecraft/global/inventory.dart';
 import 'package:flutter_flame_minecraft/resources/blocks.dart';
 import 'package:flutter_flame_minecraft/resources/entity.dart';
 import 'package:flutter_flame_minecraft/resources/items.dart';
@@ -20,7 +21,7 @@ class ItemComponent extends Entity {
         BlockData.getBlockDataFor(other.block).isCollidable) {
       super.onCollision(intersectionPoints, other);
 
-      // player collided with the item
+      //player collided with the item
     } else if (other is PlayerComponent) {
       if (GlobalGameReference.instance.gameReference.worldData.inventoryManager
           .addBlockToInventory(item)) {
@@ -46,8 +47,8 @@ class ItemComponent extends Entity {
   }
 
   @override
-  void onGameResize(Vector2 size) {
-    super.onGameResize(size);
+  void onGameResize(Vector2 newSize) {
+    super.onGameResize(newSize);
     size = GameMethods.instance.blockSize * 0.6;
   }
 

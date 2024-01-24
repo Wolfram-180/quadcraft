@@ -39,7 +39,7 @@ class Entity extends SpriteAnimationComponent with CollisionCallbacks {
   void onCollision(Set<Vector2> intersectionPoints, PositionComponent other) {
     super.onCollision(intersectionPoints, other);
 
-    for (var individualIntersectionPoint in intersectionPoints) {
+    intersectionPoints.forEach((Vector2 individualIntersectionPoint) {
       //player is colliding with the ground
 
       //Ground collision
@@ -74,7 +74,7 @@ class Entity extends SpriteAnimationComponent with CollisionCallbacks {
           isCollidingLeft = true;
         }
       }
-    }
+    });
   }
 
   void jumpingLogic() {
@@ -120,7 +120,7 @@ class Entity extends SpriteAnimationComponent with CollisionCallbacks {
 
         return false;
       case ComponentMotionState.walkingRight:
-        // print('inside move $isCollidingRight');
+        print("inside move $isCollidingRight");
         if (!isCollidingRight) {
           position.x += speed;
           if (!isFacingRight) {

@@ -1,4 +1,7 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/src/foundation/key.dart';
+import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter_flame_minecraft/utils/game_methods.dart';
 
 class MinecraftButtonWidget extends StatelessWidget {
@@ -19,7 +22,7 @@ class MinecraftButtonWidget extends StatelessWidget {
         child: FittedBox(
           child: Stack(
             children: [
-              Image.asset('assets/images/launcher/button_background.png'),
+              Image.asset("assets/images/launcher/button_background.png"),
               Positioned.fill(
                 child: Align(
                   alignment: Alignment.center,
@@ -28,7 +31,7 @@ class MinecraftButtonWidget extends StatelessWidget {
                     style: TextStyle(
                       fontSize: 45,
                       color: Colors.grey[200],
-                      fontFamily: 'MinecraftFont',
+                      fontFamily: "MinecraftFont",
                       shadows: const [
                         BoxShadow(
                           color: Colors.black,

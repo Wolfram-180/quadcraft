@@ -1,4 +1,7 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/src/foundation/key.dart';
+import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter_flame_minecraft/layout/game_layout.dart';
 import 'package:flutter_flame_minecraft/utils/game_methods.dart';
 
@@ -36,7 +39,7 @@ class WorldPreViewWidget extends StatelessWidget {
                     Padding(
                       padding: const EdgeInsets.only(right: 8.0),
                       child: Image.asset(
-                          'assets/images/launcher/new_world_icon.jpg'),
+                          "assets/images/launcher/new_world_icon.jpg"),
                     ),
                     Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
@@ -47,7 +50,7 @@ class WorldPreViewWidget extends StatelessWidget {
                               .copyWith(color: Colors.grey[400]),
                         ),
                         Text(
-                          'Seed: $seed',
+                          "Seed: $seed",
                           style: GameMethods.instance.minecraftTextStyle
                               .copyWith(color: Colors.grey, fontSize: 15),
                         )

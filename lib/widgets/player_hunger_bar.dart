@@ -1,4 +1,8 @@
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/src/foundation/key.dart';
+import 'package:flutter/src/widgets/framework.dart';
+import 'package:flutter_flame_minecraft/global/global_game_reference.dart';
+import 'package:flutter_flame_minecraft/utils/game_methods.dart';
 import 'package:get/get.dart';
 import 'package:flutter_flame_minecraft/global/global_game_reference.dart';
 import 'package:flutter_flame_minecraft/utils/game_methods.dart';
@@ -15,6 +19,7 @@ class PlayerHungerBarWidget extends StatelessWidget {
           .instance.gameReference.worldData.playerData.playerHunger.value;
 
       for (int i = 10; i > 0; i--) {
+        //i=10, health 3
         bool isFullHeart = false;
 
         if (health >= i) {
@@ -37,10 +42,10 @@ class PlayerHungerBarWidget extends StatelessWidget {
         child: Stack(
           children: [
             //background
-            Image.asset('assets/images/gui/empty_hunger.png'),
+            Image.asset("assets/images/gui/empty_hunger.png"),
 
             fullHeart
-                ? Image.asset('assets/images/gui/full_hunger.png')
+                ? Image.asset("assets/images/gui/full_hunger.png")
                 : Container(),
           ],
         ),
