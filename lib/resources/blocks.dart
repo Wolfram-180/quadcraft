@@ -50,12 +50,16 @@ enum Blocks {
 
   @HiveField(11)
   goldOre,
+
   @HiveField(12)
   grassPlant,
+
   @HiveField(13)
   redFlower,
+
   @HiveField(14)
   purpleFlower,
+
   @HiveField(15)
   drippingWhiteFlower,
 

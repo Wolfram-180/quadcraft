@@ -20,7 +20,7 @@ class ItemComponent extends Entity {
         BlockData.getBlockDataFor(other.block).isCollidable) {
       super.onCollision(intersectionPoints, other);
 
-      //player collided with the item
+      // player collided with the item
     } else if (other is PlayerComponent) {
       if (GlobalGameReference.instance.gameReference.worldData.inventoryManager
           .addBlockToInventory(item)) {

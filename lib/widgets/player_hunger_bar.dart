@@ -15,7 +15,6 @@ class PlayerHungerBarWidget extends StatelessWidget {
           .instance.gameReference.worldData.playerData.playerHunger.value;
 
       for (int i = 10; i > 0; i--) {
-        //i=10, health 3
         bool isFullHeart = false;
 
         if (health >= i) {
@@ -38,10 +37,10 @@ class PlayerHungerBarWidget extends StatelessWidget {
         child: Stack(
           children: [
             //background
-            Image.asset("assets/images/gui/empty_hunger.png"),
+            Image.asset('assets/images/gui/empty_hunger.png'),
 
             fullHeart
-                ? Image.asset("assets/images/gui/full_hunger.png")
+                ? Image.asset('assets/images/gui/full_hunger.png')
                 : Container(),
           ],
         ),

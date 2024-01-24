@@ -8,7 +8,7 @@ import 'package:flutter_flame_minecraft/utils/game_methods.dart';
 class Zombie extends HostileEntity {
   Zombie({required super.spawnIndexPosition})
       : super(
-          path: "sprite_sheets/mobs/sprite_sheet_zombie.png",
+          path: 'sprite_sheets/mobs/sprite_sheet_zombie.png',
           srcSize: Vector2(67, 99),
         );
 
@@ -58,8 +58,8 @@ class Zombie extends HostileEntity {
   }
 
   @override
-  void onGameResize(Vector2 newScreenSize) {
-    super.onGameResize(newScreenSize);
+  void onGameResize(Vector2 size) {
+    super.onGameResize(size);
 
     size = srcSize * ((GameMethods.instance.blockSize.x * 2) / srcSize.y);
   }

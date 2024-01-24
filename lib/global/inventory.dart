@@ -21,7 +21,6 @@ class InventoryManager {
   List<InventorySlotSave> inventorySlotsSave =
       List.generate(36, (index) => InventorySlotSave());
 
-  //[purpleFlower, grass, , null]
   bool addBlockToInventory(dynamic block) {
     for (InventorySlot slot in inventorySlots) {
       //item

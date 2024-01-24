@@ -21,7 +21,6 @@ class GameLayout extends StatelessWidget {
     return Scaffold(
       body: Stack(
         children: [
-          //This is the main game
           GameWidget(
             game: MainGame(
               worldData: Hive.box(worldDataBox).get(seed) as WorldData,

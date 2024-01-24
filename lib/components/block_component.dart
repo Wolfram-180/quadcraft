@@ -95,7 +95,7 @@ class BlockComponent extends SpriteComponent with Tappable {
   bool onTapUp(TapUpInfo info) {
     super.onTapUp(info);
 
-    //stop block braking animation removing
+    //stop block breaking animation
     if (blockBreakingComponent.isMounted) {
       remove(blockBreakingComponent);
     }

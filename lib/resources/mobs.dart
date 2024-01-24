@@ -13,9 +13,7 @@ class Mobs {
   void spawnHostileMobs() {
     if (totalMobs < mobCap) {
       GlobalGameReference.instance.gameReference.add(returnRandomHostileMob());
-    } else {
-      print("mobCap full");
-    }
+    } else {}
   }
 
   HostileEntity returnRandomHostileMob() {

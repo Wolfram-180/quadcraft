@@ -15,9 +15,7 @@ class InventoryStorageWidget extends StatelessWidget {
     double inventoryStorageSize = GameMethods.instance.slotSize * 9.5;
     return Row(
       children: [
-        //dragtarge here
         getDragTarget(Direction.left),
-
         Padding(
           padding: EdgeInsets.only(bottom: GameMethods.instance.slotSize / 1.5),
           child: SizedBox(
@@ -26,17 +24,15 @@ class InventoryStorageWidget extends StatelessWidget {
             child: FittedBox(
               child: Stack(
                 children: [
-                  //This is the background image
                   SizedBox(
                     width: inventoryStorageSize,
                     height: inventoryStorageSize,
                     child: FittedBox(
                       fit: BoxFit.fill,
                       child: Image.asset(
-                          "assets/images/inventory/inventory_background.png"),
+                          'assets/images/inventory/inventory_background.png'),
                     ),
                   ),
-
                   Positioned.fill(
                     child: Align(
                         alignment: Alignment.bottomCenter,
@@ -59,8 +55,6 @@ class InventoryStorageWidget extends StatelessWidget {
             ),
           ),
         ),
-
-        //dragtarge here
         getDragTarget(Direction.right)
       ],
     );
@@ -70,7 +64,7 @@ class InventoryStorageWidget extends StatelessWidget {
     return Expanded(
         child: InkWell(
       onTap: () {
-        //if crafting inventory i sopen
+        //if crafting inventory is open
         if (GlobalGameReference.instance.gameReference.worldData.craftingManager
             .craftingInventoryIsOpen.value) {
           GlobalGameReference.instance.gameReference.worldData.craftingManager
@@ -108,7 +102,7 @@ class InventoryStorageWidget extends StatelessWidget {
   }
 
   Widget getRow(int rowIndex) {
-    int newRowIndex = rowIndex * 9; //0 : 0, 1 : 9, 2 : 18
+    int newRowIndex = rowIndex * 9;
     return Row(
       mainAxisSize: MainAxisSize.min,
       children: [
