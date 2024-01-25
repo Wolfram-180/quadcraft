@@ -22,14 +22,8 @@ class MenuScreen extends StatelessWidget {
               child: Column(
                 mainAxisSize: MainAxisSize.max,
                 children: [
-/*                   ColorFiltered(
-                    colorFilter: const ColorFilter.mode(
-                        Color.fromRGBO(67, 79, 89, 0.5), BlendMode.srcATop),
-                    child: Image.asset('assets/images/launcher/logo.png',
-                        height: 350),
-                  ), */
-                  Image.asset('assets/images/launcher/logo.png', height: 350),
-                  Expanded(child: Container()),
+                  Image.asset('assets/images/launcher/logo.png', height: 500),
+                  //Expanded(child: Container()),
                   MinecraftButtonWidget(
                     text: 'Singleplayer',
                     onPressed: () {

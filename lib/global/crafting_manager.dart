@@ -41,7 +41,6 @@ class CraftingManager {
         }
       }
     } else {
-      //
       for (int index = 0; index < Recipe.standardGridRecipe.length; index++) {
         Recipe recipe = Recipe.standardGridRecipe[index] as Recipe;
         if (recipe.recipe.hasMatch(
@@ -85,10 +84,10 @@ class CraftingManager {
 }
 
 class Recipe {
-  final RegExp recipe; //WEEW
+  final RegExp recipe;
   final dynamic product;
   final int productCount;
-  final Map key; // {Blocks.birchPlanks : 'W'}
+  final Map key;
 
   Recipe(
       {required this.recipe,
@@ -133,13 +132,6 @@ class Recipe {
         key: {Blocks.deadBush: 'S'},
         product: Items.stick,
         productCount: 1),
-
-/*     //stick for standardGrid
-    Recipe(
-        recipe: RegExp('^E*WEEWE*\$'),
-        key: {Blocks.birchPlank: 'W'},
-        product: Items.stick,
-        productCount: 4), */
 
     //birch planks
     Recipe(

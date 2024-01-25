@@ -82,14 +82,11 @@ class BlockComponent extends SpriteComponent with Tappable {
     super.onTapDown(info);
 
     if (BlockData.getBlockDataFor(block).breakable) {
-      //Adding component twice
       if (!blockBreakingComponent.isMounted) {
         blockBreakingComponent.animation!.reset();
 
         add(blockBreakingComponent);
       }
-
-      //Add block breaking animation and stuff
     }
     return true;
   }
@@ -98,7 +95,6 @@ class BlockComponent extends SpriteComponent with Tappable {
   bool onTapUp(TapUpInfo info) {
     super.onTapUp(info);
 
-    //stop block braking animation removeing
     if (blockBreakingComponent.isMounted) {
       remove(blockBreakingComponent);
     }
@@ -108,7 +104,6 @@ class BlockComponent extends SpriteComponent with Tappable {
 
   @override
   bool onTapCancel() {
-    //sotp block breaking animation
     if (blockBreakingComponent.isMounted) {
       remove(blockBreakingComponent);
     }
