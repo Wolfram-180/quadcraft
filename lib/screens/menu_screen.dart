@@ -22,7 +22,13 @@ class MenuScreen extends StatelessWidget {
               child: Column(
                 mainAxisSize: MainAxisSize.max,
                 children: [
-                  Image.asset('assets/images/launcher/logo.png'),
+/*                   ColorFiltered(
+                    colorFilter: const ColorFilter.mode(
+                        Color.fromRGBO(67, 79, 89, 0.5), BlendMode.srcATop),
+                    child: Image.asset('assets/images/launcher/logo.png',
+                        height: 350),
+                  ), */
+                  Image.asset('assets/images/launcher/logo.png', height: 350),
                   Expanded(child: Container()),
                   MinecraftButtonWidget(
                     text: 'Singleplayer',
@@ -38,9 +44,9 @@ class MenuScreen extends StatelessWidget {
                   const SizedBox(
                     height: 30,
                   ),
-                  MinecraftButtonWidget(text: 'Multiplayer', onPressed: () {}),
+                  //MinecraftButtonWidget(text: 'Multiplayer', onPressed: () {}),
                   Expanded(child: Container()),
-                  Padding(
+/*                   Padding(
                     padding: const EdgeInsets.only(bottom: 5),
                     child: Text(
                       'This is an expiremental game made for education. Check out the actual game- Minecraft',
@@ -49,7 +55,7 @@ class MenuScreen extends StatelessWidget {
                           fontSize: 10,
                           fontFamily: 'MinecraftFont'),
                     ),
-                  )
+                  ) */
                 ],
               ),
             ),
