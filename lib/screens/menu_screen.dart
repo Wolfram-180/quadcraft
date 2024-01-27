@@ -8,6 +8,7 @@ class MenuScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    Size screenSize = MediaQuery.of(context).size;
     return Scaffold(
       body: Stack(
         children: [
@@ -22,7 +23,10 @@ class MenuScreen extends StatelessWidget {
               child: Column(
                 mainAxisSize: MainAxisSize.max,
                 children: [
-                  Image.asset('assets/images/launcher/logo.png', height: 500),
+                  Image.asset(
+                    'assets/images/launcher/logo.png',
+                    height: screenSize.height / 1.5,
+                  ),
                   //Expanded(child: Container()),
                   MinecraftButtonWidget(
                     text: 'Singleplayer',

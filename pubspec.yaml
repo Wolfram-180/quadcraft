@@ -41,6 +41,13 @@ dependencies:
   hive: 
   hive_flutter: 
   panorama: 0.4.1
+  
+
+dependency_overrides:
+ motion_sensors:
+    git:
+      url: https://github.com/zesage/motion_sensors
+      ref: master  
 
 
 dev_dependencies:
