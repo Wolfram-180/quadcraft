@@ -19,7 +19,6 @@ class InventorySlotWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     switch (slotType) {
-
       //item bar
       case SlotType.itemBar:
         return GestureDetector(
@@ -56,7 +55,7 @@ class InventorySlotWidget extends StatelessWidget {
               ),
               data: inventorySlot,
 
-              //core part of our inventory slot
+              //core part of inventory slot
               child: getChild()),
         );
 

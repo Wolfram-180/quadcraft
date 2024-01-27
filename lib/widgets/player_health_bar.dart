@@ -12,7 +12,6 @@ class PlayerHealthBarWidget extends StatelessWidget {
       List<Widget> children = [];
 
       for (int i = 10; i > 0; i--) {
-        //i=10, health 3
         bool isFullHeart = false;
 
         if (GlobalGameReference.instance.gameReference.worldData.playerData

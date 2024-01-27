@@ -104,7 +104,6 @@ class GameMethods {
   void addChunkToWorldChunks(
       List<List<Blocks?>> chunk, bool isInRightWorldChunks) {
     if (isInRightWorldChunks) {
-      //chunk
       chunk.asMap().forEach((int yIndex, List<Blocks?> value) {
         //
         GlobalGameReference
@@ -113,7 +112,6 @@ class GameMethods {
       });
     } else {
       chunk.asMap().forEach((int yIndex, List<Blocks?> value) {
-        //
         GlobalGameReference
             .instance.gameReference.worldData.leftWorldChunks[yIndex]
             .addAll(value);

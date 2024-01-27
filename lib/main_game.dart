@@ -72,9 +72,7 @@ class MainGame extends FlameGame
         .asMap()
         .forEach((int index, int chunkIndex) {
       if (!worldData.currentlyRenderedChunks.contains(chunkIndex)) {
-        //for rightWorldChunks
         if (chunkIndex >= 0) {
-          //Chunk has not been created
           if (worldData.rightWorldChunks[0].length ~/ chunkWidth <
               chunkIndex + 1) {
             GameMethods.instance.addChunkToWorldChunks(
@@ -85,10 +83,7 @@ class MainGame extends FlameGame
           renderChunk(chunkIndex);
 
           worldData.currentlyRenderedChunks.add(chunkIndex);
-
-          //logic for leftWorldChunks
         } else {
-          //0th chunk in leftWolrdChunk, chunkIndex 1
           if (worldData.leftWorldChunks[0].length ~/ chunkWidth <
               chunkIndex.abs()) {
             GameMethods.instance.addChunkToWorldChunks(
