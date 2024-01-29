@@ -53,6 +53,7 @@ flutter:
     - assets/images/sprite_sheets/item/
     - assets/images/sprite_sheets/mobs/
     - assets/images/sprite_sheets/player/
+    - assets/icon/
 
   fonts:
     - family: MinecraftFont
