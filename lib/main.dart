@@ -10,6 +10,8 @@ import 'package:flutter_flame_minecraft/resources/sky_timer.dart';
 import 'package:flutter_flame_minecraft/screens/menu_screen.dart';
 import 'package:flutter_flame_minecraft/utils/constants.dart';
 
+// dart run build_runner build --delete-conflicting-outputs
+
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
 

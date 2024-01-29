@@ -1,5 +1,5 @@
 name: flutter_flame_minecraft
-description: "Minecraft clone made using Flutter and Flame"
+description: "Quadcraft made using Flutter & Flame (with GetX, Hive)"
 # The following line prevents the package from being accidentally published to
 # pub.dev using `flutter pub publish`. This is preferred for private packages.
 publish_to: 'none' # Remove this line if you wish to publish to pub.dev
