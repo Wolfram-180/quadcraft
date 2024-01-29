@@ -14,7 +14,7 @@ class QuitAndSaveButton extends StatelessWidget {
       child: Align(
         alignment: Alignment.topRight,
         child: Padding(
-          padding: const EdgeInsets.only(right: 20),
+          padding: const EdgeInsets.only(right: 20, top: 40),
           child: IconButton(
             onPressed: () {
               //saving world and exiting
@@ -26,9 +26,9 @@ class QuitAndSaveButton extends StatelessWidget {
                               .instance.gameReference.worldData.seed,
                           GlobalGameReference.instance.gameReference.worldData)
                       .then(
-                    (_) {
+                    (_) async {
                       if (Platform.isAndroid) {
-                        SystemChannels.platform
+                        await SystemChannels.platform
                             .invokeMethod('SystemNavigator.pop');
                       } else if (Platform.isWindows) {
                         exit(0);
