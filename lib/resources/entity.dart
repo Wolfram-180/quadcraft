@@ -39,18 +39,11 @@ class Entity extends SpriteAnimationComponent with CollisionCallbacks {
   void onCollision(Set<Vector2> intersectionPoints, PositionComponent other) {
     super.onCollision(intersectionPoints, other);
 
-    // const grndCoeffY = 0.3;
-    // const grndCoeffX = 0.4;
-
-    const grndCoeffY = 0.2;
-    const grndCoeffX = 0.2;
-
     for (var individualIntersectionPoint in intersectionPoints) {
       //Ground collision
-      if (individualIntersectionPoint.y >
-              (position.y - (size.y * grndCoeffY)) &&
+      if (individualIntersectionPoint.y > (position.y - (size.y * 0.3)) &&
           (intersectionPoints.first.x - intersectionPoints.last.x).abs() >
-              size.x * grndCoeffX) {
+              size.x * 0.4) {
         if (blocksFallen > 3 && doFallDamage) {
           changeHealthBy(-(blocksFallen / 2));
         }
