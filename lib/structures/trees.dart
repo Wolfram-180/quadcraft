@@ -1,5 +1,5 @@
-import 'package:quadcraft/resources/blocks.dart';
-import 'package:quadcraft/resources/structures.dart';
+import 'package:flutter_flame_minecraft/resources/blocks.dart';
+import 'package:flutter_flame_minecraft/resources/structures.dart';
 
 Structure birchTree = Structure(structure: [
   [null, Blocks.birchLeaf, Blocks.birchLeaf, Blocks.birchLeaf, null],

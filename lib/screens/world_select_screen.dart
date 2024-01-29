@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:hive/hive.dart';
-import 'package:quadcraft/global/world_data.dart';
-import 'package:quadcraft/screens/create_world_screen.dart';
-import 'package:quadcraft/screens/menu_screen.dart';
-import 'package:quadcraft/utils/constants.dart';
-import 'package:quadcraft/utils/game_methods.dart';
-import 'package:quadcraft/widgets/launcher/minecraft_button.dart';
-import 'package:quadcraft/widgets/launcher/world_preview_widget.dart';
+import 'package:flutter_flame_minecraft/global/world_data.dart';
+import 'package:flutter_flame_minecraft/screens/create_world_screen.dart';
+import 'package:flutter_flame_minecraft/screens/menu_screen.dart';
+import 'package:flutter_flame_minecraft/utils/constants.dart';
+import 'package:flutter_flame_minecraft/utils/game_methods.dart';
+import 'package:flutter_flame_minecraft/widgets/launcher/minecraft_button.dart';
+import 'package:flutter_flame_minecraft/widgets/launcher/world_preview_widget.dart';
 
 class WorldSelectScreen extends StatefulWidget {
   const WorldSelectScreen({Key? key}) : super(key: key);

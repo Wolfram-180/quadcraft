@@ -4,10 +4,10 @@ import 'package:flame/components.dart';
 import 'package:flame/flame.dart';
 import 'package:flame/sprite.dart';
 import 'package:flutter/material.dart';
-import 'package:quadcraft/global/global_game_reference.dart';
-import 'package:quadcraft/resources/blocks.dart';
-import 'package:quadcraft/resources/items.dart';
-import 'package:quadcraft/utils/constants.dart';
+import 'package:flutter_flame_minecraft/global/global_game_reference.dart';
+import 'package:flutter_flame_minecraft/resources/blocks.dart';
+import 'package:flutter_flame_minecraft/resources/items.dart';
+import 'package:flutter_flame_minecraft/utils/constants.dart';
 
 enum Direction {
   top,

@@ -1,8 +1,8 @@
 import 'package:get/get.dart';
-import 'package:quadcraft/global/global_game_reference.dart';
-import 'package:quadcraft/global/inventory.dart';
-import 'package:quadcraft/resources/blocks.dart';
-import 'package:quadcraft/resources/items.dart';
+import 'package:flutter_flame_minecraft/global/global_game_reference.dart';
+import 'package:flutter_flame_minecraft/global/inventory.dart';
+import 'package:flutter_flame_minecraft/resources/blocks.dart';
+import 'package:flutter_flame_minecraft/resources/items.dart';
 
 class CraftingManager {
   Rx<bool> craftingInventoryIsOpen = false.obs;

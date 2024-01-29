@@ -1,13 +1,13 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:quadcraft/global/crafting_manager.dart';
-import 'package:quadcraft/global/global_game_reference.dart';
-import 'package:quadcraft/global/inventory.dart';
-import 'package:quadcraft/resources/items.dart';
-import 'package:quadcraft/utils/constants.dart';
-import 'package:quadcraft/utils/game_methods.dart';
-import 'package:quadcraft/widgets/inventory/inventory_item_and_number.dart';
-import 'package:quadcraft/widgets/inventory/inventory_slot_background.dart';
+import 'package:flutter_flame_minecraft/global/crafting_manager.dart';
+import 'package:flutter_flame_minecraft/global/global_game_reference.dart';
+import 'package:flutter_flame_minecraft/global/inventory.dart';
+import 'package:flutter_flame_minecraft/resources/items.dart';
+import 'package:flutter_flame_minecraft/utils/constants.dart';
+import 'package:flutter_flame_minecraft/utils/game_methods.dart';
+import 'package:flutter_flame_minecraft/widgets/inventory/inventory_item_and_number.dart';
+import 'package:flutter_flame_minecraft/widgets/inventory/inventory_slot_background.dart';
 
 class InventorySlotWidget extends StatelessWidget {
   final SlotType slotType;

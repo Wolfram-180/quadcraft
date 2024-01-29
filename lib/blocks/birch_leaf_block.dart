@@ -1,8 +1,8 @@
 import 'dart:math';
 
-import 'package:quadcraft/components/block_component.dart';
-import 'package:quadcraft/resources/blocks.dart';
-import 'package:quadcraft/resources/items.dart';
+import 'package:flutter_flame_minecraft/components/block_component.dart';
+import 'package:flutter_flame_minecraft/resources/blocks.dart';
+import 'package:flutter_flame_minecraft/resources/items.dart';
 
 class BirchLeafBlock extends BlockComponent {
   BirchLeafBlock({required super.blockIndex, required super.chunkIndex})

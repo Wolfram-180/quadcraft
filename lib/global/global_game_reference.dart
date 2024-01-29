@@ -1,5 +1,5 @@
 import 'package:get/get.dart';
-import 'package:quadcraft/main_game.dart';
+import 'package:flutter_flame_minecraft/main_game.dart';
 
 class GlobalGameReference {
   late MainGame gameReference;

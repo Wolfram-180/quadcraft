@@ -3,12 +3,12 @@ import 'package:flame/components.dart';
 import 'package:flame/flame.dart';
 import 'package:flame/input.dart';
 import 'package:flame/sprite.dart';
-import 'package:quadcraft/components/block_breaking_component.dart';
-import 'package:quadcraft/components/item_component.dart';
-import 'package:quadcraft/global/global_game_reference.dart';
-import 'package:quadcraft/resources/blocks.dart';
-import 'package:quadcraft/resources/tools.dart';
-import 'package:quadcraft/utils/game_methods.dart';
+import 'package:flutter_flame_minecraft/components/block_breaking_component.dart';
+import 'package:flutter_flame_minecraft/components/item_component.dart';
+import 'package:flutter_flame_minecraft/global/global_game_reference.dart';
+import 'package:flutter_flame_minecraft/resources/blocks.dart';
+import 'package:flutter_flame_minecraft/resources/tools.dart';
+import 'package:flutter_flame_minecraft/utils/game_methods.dart';
 
 class BlockComponent extends SpriteComponent with Tappable {
   final Blocks block;

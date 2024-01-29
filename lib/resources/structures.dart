@@ -1,4 +1,4 @@
-import 'package:quadcraft/resources/blocks.dart';
+import 'package:flutter_flame_minecraft/resources/blocks.dart';
 
 class Structure {
   final List<List<Blocks?>> structure;

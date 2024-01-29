@@ -1,11 +1,11 @@
 import 'package:flame/components.dart';
 import 'package:flutter/material.dart';
-import 'package:quadcraft/components/item_component.dart';
-import 'package:quadcraft/global/global_game_reference.dart';
-import 'package:quadcraft/global/inventory.dart';
-import 'package:quadcraft/utils/constants.dart';
-import 'package:quadcraft/utils/game_methods.dart';
-import 'package:quadcraft/widgets/inventory/inventory_slot.dart';
+import 'package:flutter_flame_minecraft/components/item_component.dart';
+import 'package:flutter_flame_minecraft/global/global_game_reference.dart';
+import 'package:flutter_flame_minecraft/global/inventory.dart';
+import 'package:flutter_flame_minecraft/utils/constants.dart';
+import 'package:flutter_flame_minecraft/utils/game_methods.dart';
+import 'package:flutter_flame_minecraft/widgets/inventory/inventory_slot.dart';
 
 class InventoryStorageWidget extends StatelessWidget {
   const InventoryStorageWidget({Key? key}) : super(key: key);

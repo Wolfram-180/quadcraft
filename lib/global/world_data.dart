@@ -1,13 +1,13 @@
 import 'package:hive/hive.dart';
-import 'package:quadcraft/components/item_component.dart';
-import 'package:quadcraft/global/crafting_manager.dart';
-import 'package:quadcraft/global/inventory.dart';
-import 'package:quadcraft/global/player_data.dart';
-import 'package:quadcraft/resources/blocks.dart';
-import 'package:quadcraft/resources/mobs.dart';
-import 'package:quadcraft/resources/sky_timer.dart';
-import 'package:quadcraft/utils/constants.dart';
-import 'package:quadcraft/utils/game_methods.dart';
+import 'package:flutter_flame_minecraft/components/item_component.dart';
+import 'package:flutter_flame_minecraft/global/crafting_manager.dart';
+import 'package:flutter_flame_minecraft/global/inventory.dart';
+import 'package:flutter_flame_minecraft/global/player_data.dart';
+import 'package:flutter_flame_minecraft/resources/blocks.dart';
+import 'package:flutter_flame_minecraft/resources/mobs.dart';
+import 'package:flutter_flame_minecraft/resources/sky_timer.dart';
+import 'package:flutter_flame_minecraft/utils/constants.dart';
+import 'package:flutter_flame_minecraft/utils/game_methods.dart';
 
 part 'world_data.g.dart';
 

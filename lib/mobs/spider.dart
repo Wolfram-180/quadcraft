@@ -1,9 +1,9 @@
 import 'package:flame/components.dart';
-import 'package:quadcraft/global/global_game_reference.dart';
-import 'package:quadcraft/global/player_data.dart';
-import 'package:quadcraft/resources/hostile_entity.dart';
-import 'package:quadcraft/utils/constants.dart';
-import 'package:quadcraft/utils/game_methods.dart';
+import 'package:flutter_flame_minecraft/global/global_game_reference.dart';
+import 'package:flutter_flame_minecraft/global/player_data.dart';
+import 'package:flutter_flame_minecraft/resources/hostile_entity.dart';
+import 'package:flutter_flame_minecraft/utils/constants.dart';
+import 'package:flutter_flame_minecraft/utils/game_methods.dart';
 
 class Spider extends HostileEntity {
   Spider({required super.spawnIndexPosition})

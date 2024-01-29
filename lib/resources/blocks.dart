@@ -1,15 +1,15 @@
 import 'package:flame/components.dart';
 import 'package:hive/hive.dart';
-import 'package:quadcraft/blocks/birch_leaf_block.dart';
-import 'package:quadcraft/blocks/coal_ore_block.dart';
-import 'package:quadcraft/blocks/crafting_table_block.dart';
-import 'package:quadcraft/blocks/diamond_ore_block.dart';
-import 'package:quadcraft/blocks/gold_ore_block.dart';
-import 'package:quadcraft/blocks/iron_ore_block.dart';
-import 'package:quadcraft/blocks/sand_block.dart';
-import 'package:quadcraft/blocks/stone_block.dart';
-import 'package:quadcraft/components/block_component.dart';
-import 'package:quadcraft/resources/items.dart';
+import 'package:flutter_flame_minecraft/blocks/birch_leaf_block.dart';
+import 'package:flutter_flame_minecraft/blocks/coal_ore_block.dart';
+import 'package:flutter_flame_minecraft/blocks/crafting_table_block.dart';
+import 'package:flutter_flame_minecraft/blocks/diamond_ore_block.dart';
+import 'package:flutter_flame_minecraft/blocks/gold_ore_block.dart';
+import 'package:flutter_flame_minecraft/blocks/iron_ore_block.dart';
+import 'package:flutter_flame_minecraft/blocks/sand_block.dart';
+import 'package:flutter_flame_minecraft/blocks/stone_block.dart';
+import 'package:flutter_flame_minecraft/components/block_component.dart';
+import 'package:flutter_flame_minecraft/resources/items.dart';
 
 part 'blocks.g.dart';
 

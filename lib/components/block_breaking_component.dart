@@ -1,5 +1,5 @@
 import 'package:flame/components.dart';
-import 'package:quadcraft/utils/game_methods.dart';
+import 'package:flutter_flame_minecraft/utils/game_methods.dart';
 
 class BlockBreakingComponent extends SpriteAnimationComponent {
   @override

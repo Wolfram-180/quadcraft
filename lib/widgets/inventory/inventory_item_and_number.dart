@@ -1,10 +1,10 @@
 import 'package:flame/widgets.dart';
 import 'package:flutter/material.dart';
-import 'package:quadcraft/resources/items.dart';
+import 'package:flutter_flame_minecraft/resources/items.dart';
 import 'package:get/get.dart';
-import 'package:quadcraft/global/inventory.dart';
-import 'package:quadcraft/resources/blocks.dart';
-import 'package:quadcraft/utils/game_methods.dart';
+import 'package:flutter_flame_minecraft/global/inventory.dart';
+import 'package:flutter_flame_minecraft/resources/blocks.dart';
+import 'package:flutter_flame_minecraft/utils/game_methods.dart';
 
 class InventoryItemAndNumberWidget extends StatelessWidget {
   final InventorySlot inventorySlot;

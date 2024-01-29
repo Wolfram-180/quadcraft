@@ -1,6 +1,6 @@
 import 'package:hive/hive.dart';
-import 'package:quadcraft/global/global_game_reference.dart';
-import 'package:quadcraft/utils/constants.dart';
+import 'package:flutter_flame_minecraft/global/global_game_reference.dart';
+import 'package:flutter_flame_minecraft/utils/constants.dart';
 
 part 'sky_timer.g.dart';
 
