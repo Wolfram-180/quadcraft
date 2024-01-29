@@ -1,8 +1,8 @@
 
 import 'package:flutter/material.dart';
-import 'package:flutter_flame_minecraft/global/global_game_reference.dart';
-import 'package:flutter_flame_minecraft/global/player_data.dart';
-import 'package:flutter_flame_minecraft/widgets/controller_button_widget.dart';
+import 'package:quadcraft/global/global_game_reference.dart';
+import 'package:quadcraft/global/player_data.dart';
+import 'package:quadcraft/widgets/controller_button_widget.dart';
 
 class ControllerWidget extends StatelessWidget {
   const ControllerWidget({Key? key}) : super(key: key);

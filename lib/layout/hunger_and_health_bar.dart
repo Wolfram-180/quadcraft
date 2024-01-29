@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
-import 'package:flutter_flame_minecraft/widgets/player_health_bar.dart';
-import 'package:flutter_flame_minecraft/widgets/player_hunger_bar.dart';
+import 'package:quadcraft/widgets/player_health_bar.dart';
+import 'package:quadcraft/widgets/player_hunger_bar.dart';
 
 class HungerAndHealthBar extends StatelessWidget {
   const HungerAndHealthBar({Key? key}) : super(key: key);

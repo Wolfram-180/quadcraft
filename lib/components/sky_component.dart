@@ -1,8 +1,8 @@
 import 'package:flame/components.dart';
 import 'package:flame/parallax.dart';
-import 'package:flutter_flame_minecraft/global/global_game_reference.dart';
-import 'package:flutter_flame_minecraft/global/player_data.dart';
-import 'package:flutter_flame_minecraft/resources/sky_timer.dart';
+import 'package:quadcraft/global/global_game_reference.dart';
+import 'package:quadcraft/global/player_data.dart';
+import 'package:quadcraft/resources/sky_timer.dart';
 
 class SkyComponent extends ParallaxComponent {
   ComponentMotionState componentMotionState = ComponentMotionState.walkingLeft;

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_flame_minecraft/utils/game_methods.dart';
+import 'package:quadcraft/utils/game_methods.dart';
 
 class MinecraftButtonWidget extends StatelessWidget {
   final String text;

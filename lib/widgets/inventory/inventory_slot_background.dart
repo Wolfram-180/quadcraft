@@ -1,8 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/state_manager.dart';
-import 'package:flutter_flame_minecraft/global/global_game_reference.dart';
-import 'package:flutter_flame_minecraft/utils/game_methods.dart';
+import 'package:quadcraft/global/global_game_reference.dart';
+import 'package:quadcraft/utils/game_methods.dart';
 
 class InventorySlotBackgroundWidget extends StatelessWidget {
   final SlotType slotType;

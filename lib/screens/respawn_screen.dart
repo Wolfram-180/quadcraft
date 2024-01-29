@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:flutter_flame_minecraft/components/player_component.dart';
-import 'package:flutter_flame_minecraft/global/global_game_reference.dart';
-import 'package:flutter_flame_minecraft/utils/game_methods.dart';
-import 'package:flutter_flame_minecraft/widgets/launcher/minecraft_button.dart';
+import 'package:quadcraft/components/player_component.dart';
+import 'package:quadcraft/global/global_game_reference.dart';
+import 'package:quadcraft/utils/game_methods.dart';
+import 'package:quadcraft/widgets/launcher/minecraft_button.dart';
 
 class RespawnScreen extends StatelessWidget {
   const RespawnScreen({Key? key}) : super(key: key);

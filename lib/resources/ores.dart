@@ -1,4 +1,4 @@
-import 'package:flutter_flame_minecraft/resources/blocks.dart';
+import 'package:quadcraft/resources/blocks.dart';
 
 class Ores {
   final Blocks block;

@@ -1,6 +1,6 @@
-import 'package:flutter_flame_minecraft/components/block_component.dart';
-import 'package:flutter_flame_minecraft/resources/blocks.dart';
-import 'package:flutter_flame_minecraft/resources/items.dart';
+import 'package:quadcraft/components/block_component.dart';
+import 'package:quadcraft/resources/blocks.dart';
+import 'package:quadcraft/resources/items.dart';
 
 class GoldOreBlock extends BlockComponent {
   GoldOreBlock({required super.blockIndex, required super.chunkIndex})
