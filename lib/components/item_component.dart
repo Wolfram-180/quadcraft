@@ -1,12 +1,12 @@
 import 'package:flame/collisions.dart';
 import 'package:flame/components.dart';
-import 'package:flutter_flame_minecraft/components/block_component.dart';
-import 'package:flutter_flame_minecraft/components/player_component.dart';
-import 'package:flutter_flame_minecraft/global/global_game_reference.dart';
-import 'package:flutter_flame_minecraft/resources/blocks.dart';
-import 'package:flutter_flame_minecraft/resources/entity.dart';
-import 'package:flutter_flame_minecraft/resources/items.dart';
-import 'package:flutter_flame_minecraft/utils/game_methods.dart';
+import 'package:quadcraft/components/block_component.dart';
+import 'package:quadcraft/components/player_component.dart';
+import 'package:quadcraft/global/global_game_reference.dart';
+import 'package:quadcraft/resources/blocks.dart';
+import 'package:quadcraft/resources/entity.dart';
+import 'package:quadcraft/resources/items.dart';
+import 'package:quadcraft/utils/game_methods.dart';
 
 class ItemComponent extends Entity {
   final Vector2 spawnBlockIndex;

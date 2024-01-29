@@ -1,8 +1,8 @@
 import 'package:get/get.dart';
-import 'package:flutter_flame_minecraft/global/global_game_reference.dart';
-import 'package:flutter_flame_minecraft/global/inventory.dart';
-import 'package:flutter_flame_minecraft/resources/blocks.dart';
-import 'package:flutter_flame_minecraft/resources/items.dart';
+import 'package:quadcraft/global/global_game_reference.dart';
+import 'package:quadcraft/global/inventory.dart';
+import 'package:quadcraft/resources/blocks.dart';
+import 'package:quadcraft/resources/items.dart';
 
 class CraftingManager {
   Rx<bool> craftingInventoryIsOpen = false.obs;
@@ -73,7 +73,7 @@ class CraftingManager {
 
     craftingGrid.asMap().forEach((int index, InventorySlot inventorySlot) {
       if (inventorySlot.block == null) {
-        gridString.add("E");
+        gridString.add('E');
       } else if (key.containsKey(inventorySlot.block)) {
         gridString.add(key[inventorySlot.block]);
       }
@@ -98,28 +98,28 @@ class Recipe {
   static List<Recipe> playerInventoryGridRecipe = [
     //dead bush stick
     Recipe(
-        recipe: RegExp("^E*SE*\$"),
+        recipe: RegExp('^E*SE*\$'),
         key: {Blocks.deadBush: "S"},
         product: Items.stick,
         productCount: 1),
 
     //stick
     Recipe(
-        recipe: RegExp("^E*WEWE*\$"),
+        recipe: RegExp('^E*WEWE*\$'),
         product: Items.stick,
         productCount: 4,
         key: {Blocks.birchPlank: "W"}),
 
     //birch planks
     Recipe(
-        recipe: RegExp("^E*WE*\$"),
+        recipe: RegExp('^E*WE*\$'),
         key: {Blocks.birchLog: "W"},
         product: Blocks.birchPlank,
         productCount: 4),
 
     //crafting table
     Recipe(
-        recipe: RegExp("^E*BBBBE*\$"),
+        recipe: RegExp('^E*BBBBE*\$'),
         key: {Blocks.birchPlank: "B"},
         product: Blocks.craftingTable,
         productCount: 1),
@@ -128,161 +128,161 @@ class Recipe {
   static List standardGridRecipe = [
     //dead bush stick
     Recipe(
-        recipe: RegExp("^E*SE*\$"),
+        recipe: RegExp('^E*SE*\$'),
         key: {Blocks.deadBush: "S"},
         product: Items.stick,
         productCount: 1),
 
     //birch planks
     Recipe(
-        recipe: RegExp("^E*WE*\$"),
+        recipe: RegExp('^E*WE*\$'),
         key: {Blocks.birchLog: "W"},
         product: Blocks.birchPlank,
         productCount: 4),
 
     //crafting table
     Recipe(
-        recipe: RegExp("^E*BBEBBEE*\$"),
+        recipe: RegExp('^E*BBEBBEE*\$'),
         key: {Blocks.birchPlank: "B"},
         product: Blocks.craftingTable,
         productCount: 1),
 
     //wooden sword
     Recipe(
-        recipe: RegExp("^E*WEEWEESE*\$"),
+        recipe: RegExp('^E*WEEWEESE*\$'),
         key: {Blocks.birchPlank: "W", Items.stick: "S"},
         product: Items.woodenSword,
         productCount: 1),
 
     //wooden shovel
     Recipe(
-        recipe: RegExp("^E*WEESEESE*\$"),
+        recipe: RegExp('^E*WEESEESE*\$'),
         key: {Blocks.birchPlank: "W", Items.stick: "S"},
         product: Items.woodenShovel,
         productCount: 1),
 
     //wooden pickaxe
     Recipe(
-        recipe: RegExp("WWWESEESE"),
+        recipe: RegExp('WWWESEESE'),
         key: {Blocks.birchPlank: "W", Items.stick: "S"},
         product: Items.woodenPickaxe,
         productCount: 1),
 
     //wooden axe
     Recipe(
-        recipe: RegExp("^E*WWESWESE*\$"),
+        recipe: RegExp('^E*WWESWESE*\$'),
         key: {Blocks.birchPlank: "W", Items.stick: "S"},
         product: Items.woodenAxe,
         productCount: 1),
 
     //Stone sword
     Recipe(
-        recipe: RegExp("^E*CEECEESE*\$"),
+        recipe: RegExp('^E*CEECEESE*\$'),
         key: {Blocks.cobblestone: "C", Items.stick: "S"},
         product: Items.stoneSword,
         productCount: 1),
 
     //stone shovel
     Recipe(
-        recipe: RegExp("^E*CEESEESE*\$"),
+        recipe: RegExp('^E*CEESEESE*\$'),
         key: {Blocks.cobblestone: "C", Items.stick: "S"},
         product: Items.stoneShovel,
         productCount: 1),
 
     //stone pickaxe
     Recipe(
-        recipe: RegExp("CCCESEESE"),
+        recipe: RegExp('CCCESEESE'),
         key: {Blocks.cobblestone: "C", Items.stick: "S"},
         product: Items.stonePickaxe,
         productCount: 1),
 
     //stone axe
     Recipe(
-        recipe: RegExp("^E*CCESCESE*\$"),
+        recipe: RegExp('^E*CCESCESE*\$'),
         key: {Blocks.cobblestone: "C", Items.stick: "S"},
         product: Items.stoneAxe,
         productCount: 1),
 
     //iron sword
     Recipe(
-        recipe: RegExp("^E*IEEIEESE*\$"),
+        recipe: RegExp('^E*IEEIEESE*\$'),
         key: {Items.ironIngot: "I", Items.stick: "S"},
         product: Items.ironSword,
         productCount: 1),
 
     //iron shovel
     Recipe(
-        recipe: RegExp("^E*IEESEESE*\$"),
+        recipe: RegExp('^E*IEESEESE*\$'),
         key: {Items.ironIngot: "I", Items.stick: "S"},
         product: Items.ironShovel,
         productCount: 1),
 
     //iron pickaxe
     Recipe(
-        recipe: RegExp("IIIESEESE"),
+        recipe: RegExp('IIIESEESE'),
         key: {Items.ironIngot: "I", Items.stick: "S"},
         product: Items.ironPickaxe,
         productCount: 1),
 
     //iron axe
     Recipe(
-        recipe: RegExp("^E*IIESIESE*\$"),
+        recipe: RegExp('^E*IIESIESE*\$'),
         key: {Items.ironIngot: "I", Items.stick: "S"},
         product: Items.ironAxe,
         productCount: 1),
 
     //gold sword
     Recipe(
-        recipe: RegExp("^E*GEEGEESE*\$"),
+        recipe: RegExp('^E*GEEGEESE*\$'),
         key: {Items.goldIngot: "G", Items.stick: "S"},
         product: Items.goldenSword,
         productCount: 1),
 
     //gold shovel
     Recipe(
-        recipe: RegExp("^E*GEESEESE*\$"),
+        recipe: RegExp('^E*GEESEESE*\$'),
         key: {Items.goldIngot: "G", Items.stick: "S"},
         product: Items.goldenShovel,
         productCount: 1),
 
     //gold pickaxe
     Recipe(
-        recipe: RegExp("GGGESEESE"),
+        recipe: RegExp('GGGESEESE'),
         key: {Items.goldIngot: "G", Items.stick: "S"},
         product: Items.goldenPickaxe,
         productCount: 1),
 
     //gold axe
     Recipe(
-        recipe: RegExp("^E*GGESGESE*\$"),
+        recipe: RegExp('^E*GGESGESE*\$'),
         key: {Items.goldIngot: "G", Items.stick: "S"},
         product: Items.goldenAxe,
         productCount: 1),
 
     //diamond sword
     Recipe(
-        recipe: RegExp("^E*DEEDEESE*\$"),
+        recipe: RegExp('^E*DEEDEESE*\$'),
         key: {Items.diamond: "D", Items.stick: "S"},
         product: Items.diamondSword,
         productCount: 1),
 
     //diamond shovel
     Recipe(
-        recipe: RegExp("^E*DEESEESE*\$"),
+        recipe: RegExp('^E*DEESEESE*\$'),
         key: {Items.diamond: "D", Items.stick: "S"},
         product: Items.diamondShovel,
         productCount: 1),
 
     //diamond pickaxe
     Recipe(
-        recipe: RegExp("DDDESEESE"),
+        recipe: RegExp('DDDESEESE'),
         key: {Items.diamondAxe: "D", Items.stick: "S"},
         product: Items.diamondPickaxe,
         productCount: 1),
 
     //diamond axe
     Recipe(
-        recipe: RegExp("^E*DDESDESE*\$"),
+        recipe: RegExp('^E*DDESDESE*\$'),
         key: {Items.diamond: "D", Items.stick: "S"},
         product: Items.diamondAxe,
         productCount: 1),

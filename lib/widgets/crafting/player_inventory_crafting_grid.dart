@@ -1,8 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_flame_minecraft/global/global_game_reference.dart';
-import 'package:flutter_flame_minecraft/utils/game_methods.dart';
-import 'package:flutter_flame_minecraft/widgets/inventory/inventory_slot.dart';
+import 'package:quadcraft/global/global_game_reference.dart';
+import 'package:quadcraft/utils/game_methods.dart';
+import 'package:quadcraft/widgets/inventory/inventory_slot.dart';
 
 class PlayerInventoryCraftingGridWidget extends StatelessWidget {
   const PlayerInventoryCraftingGridWidget({Key? key}) : super(key: key);

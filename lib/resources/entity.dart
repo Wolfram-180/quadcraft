@@ -1,7 +1,7 @@
 import 'package:flame/collisions.dart';
 import 'package:flame/components.dart';
-import 'package:flutter_flame_minecraft/global/player_data.dart';
-import 'package:flutter_flame_minecraft/utils/game_methods.dart';
+import 'package:quadcraft/global/player_data.dart';
+import 'package:quadcraft/utils/game_methods.dart';
 
 class Entity extends SpriteAnimationComponent with CollisionCallbacks {
   bool isFacingRight = true;
@@ -118,7 +118,7 @@ class Entity extends SpriteAnimationComponent with CollisionCallbacks {
 
         return false;
       case ComponentMotionState.walkingRight:
-        // print("inside move $isCollidingRight");
+        // print('inside move $isCollidingRight');
         if (!isCollidingRight) {
           position.x += speed;
           if (!isFacingRight) {

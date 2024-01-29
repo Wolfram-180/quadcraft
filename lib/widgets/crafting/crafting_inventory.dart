@@ -1,8 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
-import 'package:flutter_flame_minecraft/global/global_game_reference.dart';
-import 'package:flutter_flame_minecraft/widgets/crafting/standard_crafting_grid.dart';
-import 'package:flutter_flame_minecraft/widgets/inventory/inventory_storage_widget.dart';
+import 'package:quadcraft/global/global_game_reference.dart';
+import 'package:quadcraft/widgets/crafting/standard_crafting_grid.dart';
+import 'package:quadcraft/widgets/inventory/inventory_storage_widget.dart';
 
 class CraftingInventory extends StatelessWidget {
   const CraftingInventory({Key? key}) : super(key: key);

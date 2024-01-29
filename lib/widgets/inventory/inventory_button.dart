@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
-import 'package:flutter_flame_minecraft/global/global_game_reference.dart';
-import 'package:flutter_flame_minecraft/utils/game_methods.dart';
+import 'package:quadcraft/global/global_game_reference.dart';
+import 'package:quadcraft/utils/game_methods.dart';
 
 class InventoryButtonWidget extends StatelessWidget {
   const InventoryButtonWidget({Key? key}) : super(key: key);
@@ -18,7 +18,7 @@ class InventoryButtonWidget extends StatelessWidget {
         height: GameMethods.instance.slotSize,
         width: GameMethods.instance.slotSize,
         child: FittedBox(
-          child: Image.asset("assets/images/inventory/inventory_button.png"),
+          child: Image.asset('assets/images/inventory/inventory_button.png'),
         ),
       ),
     );

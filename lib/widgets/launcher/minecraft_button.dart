@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_flame_minecraft/utils/game_methods.dart';
+import 'package:quadcraft/utils/game_methods.dart';
 
 class MinecraftButtonWidget extends StatelessWidget {
   final String text;
@@ -19,7 +19,7 @@ class MinecraftButtonWidget extends StatelessWidget {
         child: FittedBox(
           child: Stack(
             children: [
-              Image.asset("assets/images/launcher/button_background.png"),
+              Image.asset('assets/images/launcher/button_background.png'),
               Positioned.fill(
                 child: Align(
                   alignment: Alignment.center,

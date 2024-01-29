@@ -90,12 +90,12 @@ BEGIN
         BLOCK "040904e4"
         BEGIN
             VALUE "CompanyName", "wolfram-180.app" "\0"
-            VALUE "FileDescription", "flutter_flame_minecraft" "\0"
+            VALUE "FileDescription", "quadcraft" "\0"
             VALUE "FileVersion", VERSION_AS_STRING "\0"
-            VALUE "InternalName", "flutter_flame_minecraft" "\0"
+            VALUE "InternalName", "quadcraft" "\0"
             VALUE "LegalCopyright", "Copyright (C) 2024 wolfram-180.app. All rights reserved." "\0"
-            VALUE "OriginalFilename", "flutter_flame_minecraft.exe" "\0"
-            VALUE "ProductName", "flutter_flame_minecraft" "\0"
+            VALUE "OriginalFilename", "quadcraft.exe" "\0"
+            VALUE "ProductName", "quadcraft" "\0"
             VALUE "ProductVersion", VERSION_AS_STRING "\0"
         END
     END

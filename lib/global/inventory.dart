@@ -1,8 +1,8 @@
 import 'package:get/get.dart';
 import 'package:hive/hive.dart';
-import 'package:flutter_flame_minecraft/resources/blocks.dart';
-import 'package:flutter_flame_minecraft/resources/items.dart';
-import 'package:flutter_flame_minecraft/utils/constants.dart';
+import 'package:quadcraft/resources/blocks.dart';
+import 'package:quadcraft/resources/items.dart';
+import 'package:quadcraft/utils/constants.dart';
 
 part 'inventory.g.dart';
 

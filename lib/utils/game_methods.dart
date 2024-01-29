@@ -4,10 +4,10 @@ import 'package:flame/components.dart';
 import 'package:flame/flame.dart';
 import 'package:flame/sprite.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_flame_minecraft/global/global_game_reference.dart';
-import 'package:flutter_flame_minecraft/resources/blocks.dart';
-import 'package:flutter_flame_minecraft/resources/items.dart';
-import 'package:flutter_flame_minecraft/utils/constants.dart';
+import 'package:quadcraft/global/global_game_reference.dart';
+import 'package:quadcraft/resources/blocks.dart';
+import 'package:quadcraft/resources/items.dart';
+import 'package:quadcraft/utils/constants.dart';
 
 enum Direction {
   top,
@@ -80,14 +80,14 @@ class GameMethods {
   SpriteSheet getBlockSpriteSheet() {
     return SpriteSheet(
         image: Flame.images
-            .fromCache("sprite_sheets/blocks/block_sprite_sheet.png"),
+            .fromCache('sprite_sheets/blocks/block_sprite_sheet.png'),
         srcSize: Vector2.all(60));
   }
 
   SpriteSheet getItemSpriteSheet() {
     return SpriteSheet(
         image:
-            Flame.images.fromCache("sprite_sheets/item/item_sprite_sheet.png"),
+            Flame.images.fromCache('sprite_sheets/item/item_sprite_sheet.png'),
         srcSize: Vector2.all(60));
   }
 

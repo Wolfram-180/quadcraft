@@ -1,8 +1,8 @@
 import 'package:flame/input.dart';
-import 'package:flutter_flame_minecraft/components/block_component.dart';
-import 'package:flutter_flame_minecraft/global/global_game_reference.dart';
-import 'package:flutter_flame_minecraft/global/inventory.dart';
-import 'package:flutter_flame_minecraft/resources/blocks.dart';
+import 'package:quadcraft/components/block_component.dart';
+import 'package:quadcraft/global/global_game_reference.dart';
+import 'package:quadcraft/global/inventory.dart';
+import 'package:quadcraft/resources/blocks.dart';
 
 class CraftingTableBlock extends BlockComponent {
   CraftingTableBlock({required super.chunkIndex, required super.blockIndex})

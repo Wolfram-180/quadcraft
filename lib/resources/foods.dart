@@ -1,3 +1,3 @@
-import 'package:flutter_flame_minecraft/resources/items.dart';
+import 'package:quadcraft/resources/items.dart';
 
 Map<Items, double> getFoodPointsForFood = {Items.apple: 2};

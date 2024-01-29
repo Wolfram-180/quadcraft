@@ -1,4 +1,4 @@
-package wolfram180.app.flutter_flame_minecraft
+package wolfram180.app.quadcraft
 
 import io.flutter.embedding.android.FlutterActivity
 

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_flame_minecraft/screens/world_select_screen.dart';
-import 'package:flutter_flame_minecraft/widgets/launcher/minecraft_button.dart';
+import 'package:quadcraft/screens/world_select_screen.dart';
+import 'package:quadcraft/widgets/launcher/minecraft_button.dart';
 import 'package:panorama/panorama.dart';
 import 'package:just_audio/just_audio.dart';
 

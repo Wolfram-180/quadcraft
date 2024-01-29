@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
-import 'package:flutter_flame_minecraft/global/global_game_reference.dart';
-import 'package:flutter_flame_minecraft/utils/game_methods.dart';
+import 'package:quadcraft/global/global_game_reference.dart';
+import 'package:quadcraft/utils/game_methods.dart';
 
 class PlayerHungerBarWidget extends StatelessWidget {
   const PlayerHungerBarWidget({Key? key}) : super(key: key);
@@ -36,9 +36,9 @@ class PlayerHungerBarWidget extends StatelessWidget {
       child: FittedBox(
         child: Stack(
           children: [
-            Image.asset("assets/images/gui/empty_hunger.png"),
+            Image.asset('assets/images/gui/empty_hunger.png'),
             fullHeart
-                ? Image.asset("assets/images/gui/full_hunger.png")
+                ? Image.asset('assets/images/gui/full_hunger.png')
                 : Container(),
           ],
         ),

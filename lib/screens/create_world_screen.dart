@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:hive/hive.dart';
-import 'package:flutter_flame_minecraft/global/world_data.dart';
-import 'package:flutter_flame_minecraft/screens/world_select_screen.dart';
-import 'package:flutter_flame_minecraft/utils/constants.dart';
-import 'package:flutter_flame_minecraft/utils/game_methods.dart';
-import 'package:flutter_flame_minecraft/widgets/launcher/minecraft_button.dart';
-import 'package:flutter_flame_minecraft/widgets/launcher/minecraft_text_field.dart';
+import 'package:quadcraft/global/world_data.dart';
+import 'package:quadcraft/screens/world_select_screen.dart';
+import 'package:quadcraft/utils/constants.dart';
+import 'package:quadcraft/utils/game_methods.dart';
+import 'package:quadcraft/widgets/launcher/minecraft_button.dart';
+import 'package:quadcraft/widgets/launcher/minecraft_text_field.dart';
 
 class CreateWorldScreen extends StatefulWidget {
   const CreateWorldScreen({Key? key}) : super(key: key);
@@ -48,7 +48,7 @@ class _CreateWorldScreenState extends State<CreateWorldScreen> {
         height: screenSize.height,
         decoration: const BoxDecoration(
           image: DecorationImage(
-            image: AssetImage("assets/images/launcher/dirt_background.png"),
+            image: AssetImage('assets/images/launcher/dirt_background.png'),
             fit: BoxFit.fill,
           ),
         ),

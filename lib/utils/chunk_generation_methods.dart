@@ -1,13 +1,13 @@
 import 'dart:math';
 
 import 'package:fast_noise/fast_noise.dart';
-import 'package:flutter_flame_minecraft/global/global_game_reference.dart';
-import 'package:flutter_flame_minecraft/resources/biomes.dart';
-import 'package:flutter_flame_minecraft/resources/blocks.dart';
-import 'package:flutter_flame_minecraft/resources/ores.dart';
-import 'package:flutter_flame_minecraft/resources/structures.dart';
-import 'package:flutter_flame_minecraft/utils/constants.dart';
-import 'package:flutter_flame_minecraft/utils/game_methods.dart';
+import 'package:quadcraft/global/global_game_reference.dart';
+import 'package:quadcraft/resources/biomes.dart';
+import 'package:quadcraft/resources/blocks.dart';
+import 'package:quadcraft/resources/ores.dart';
+import 'package:quadcraft/resources/structures.dart';
+import 'package:quadcraft/utils/constants.dart';
+import 'package:quadcraft/utils/game_methods.dart';
 
 class ChunkGenerationMethods {
   static ChunkGenerationMethods get instance {

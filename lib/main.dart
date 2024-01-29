@@ -1,14 +1,14 @@
 import 'package:flame/flame.dart';
 import 'package:flutter/material.dart';
 import 'package:hive_flutter/hive_flutter.dart';
-import 'package:flutter_flame_minecraft/global/inventory.dart';
-import 'package:flutter_flame_minecraft/global/player_data.dart';
-import 'package:flutter_flame_minecraft/global/world_data.dart';
-import 'package:flutter_flame_minecraft/resources/blocks.dart';
-import 'package:flutter_flame_minecraft/resources/items.dart';
-import 'package:flutter_flame_minecraft/resources/sky_timer.dart';
-import 'package:flutter_flame_minecraft/screens/menu_screen.dart';
-import 'package:flutter_flame_minecraft/utils/constants.dart';
+import 'package:quadcraft/global/inventory.dart';
+import 'package:quadcraft/global/player_data.dart';
+import 'package:quadcraft/global/world_data.dart';
+import 'package:quadcraft/resources/blocks.dart';
+import 'package:quadcraft/resources/items.dart';
+import 'package:quadcraft/resources/sky_timer.dart';
+import 'package:quadcraft/screens/menu_screen.dart';
+import 'package:quadcraft/utils/constants.dart';
 
 // dart run build_runner build --delete-conflicting-outputs
 
@@ -29,20 +29,20 @@ void main() async {
   Hive.registerAdapter(SkyTimerEnumAdapter());
 
   await Flame.images
-      .load("sprite_sheets/blocks/block_breaking_sprite_sheet.png");
+      .load('sprite_sheets/blocks/block_breaking_sprite_sheet.png');
 
   await Flame.images
-      .load("sprite_sheets/player/player_walking_sprite_sheet.png");
+      .load('sprite_sheets/player/player_walking_sprite_sheet.png');
 
-  await Flame.images.load("sprite_sheets/player/player_idle_sprite_sheet.png");
+  await Flame.images.load('sprite_sheets/player/player_idle_sprite_sheet.png');
 
-  await Flame.images.load("sprite_sheets/blocks/block_sprite_sheet.png");
+  await Flame.images.load('sprite_sheets/blocks/block_sprite_sheet.png');
 
-  await Flame.images.load("sprite_sheets/item/item_sprite_sheet.png");
+  await Flame.images.load('sprite_sheets/item/item_sprite_sheet.png');
 
-  await Flame.images.load("sprite_sheets/mobs/sprite_sheet_zombie.png");
+  await Flame.images.load('sprite_sheets/mobs/sprite_sheet_zombie.png');
 
-  await Flame.images.load("sprite_sheets/mobs/sprite_sheet_spider.png");
+  await Flame.images.load('sprite_sheets/mobs/sprite_sheet_spider.png');
 
   await Hive.openBox(worldDataBox);
 

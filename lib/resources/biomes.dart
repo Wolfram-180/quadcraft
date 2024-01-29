@@ -1,7 +1,7 @@
-import 'package:flutter_flame_minecraft/resources/blocks.dart';
-import 'package:flutter_flame_minecraft/resources/structures.dart';
-import 'package:flutter_flame_minecraft/structures/plants.dart';
-import 'package:flutter_flame_minecraft/structures/trees.dart';
+import 'package:quadcraft/resources/blocks.dart';
+import 'package:quadcraft/resources/structures.dart';
+import 'package:quadcraft/structures/plants.dart';
+import 'package:quadcraft/structures/trees.dart';
 
 enum Biomes { desert, birchForest }
 
