@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:hive/hive.dart';
 import 'package:flutter_flame_minecraft/global/global_game_reference.dart';
-import 'package:flutter_flame_minecraft/screens/menu_screen.dart';
 import 'package:flutter_flame_minecraft/utils/constants.dart';
 import 'dart:io';
 
@@ -18,7 +17,7 @@ class QuitAndSaveButton extends StatelessWidget {
           padding: const EdgeInsets.only(right: 20),
           child: IconButton(
             onPressed: () {
-              //saving world
+              //saving world and exiting
               Future.delayed(const Duration(milliseconds: 100)).then(
                 (_) async {
                   await Hive.box(worldDataBox)
