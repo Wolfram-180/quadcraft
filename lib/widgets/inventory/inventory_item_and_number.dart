@@ -47,7 +47,7 @@ class InventoryItemAndNumberWidget extends StatelessWidget {
                           style: TextStyle(
                               color: Colors.white,
                               fontSize: GameMethods.instance.slotSize / 4,
-                              fontFamily: 'MinecraftFont',
+                              fontFamily: "MinecraftFont",
                               shadows: const [
                                 BoxShadow(
                                     color: Colors.black, offset: Offset(1, 1))

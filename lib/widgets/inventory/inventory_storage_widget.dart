@@ -33,7 +33,7 @@ class InventoryStorageWidget extends StatelessWidget {
                     child: FittedBox(
                       fit: BoxFit.fill,
                       child: Image.asset(
-                          'assets/images/inventory/inventory_background.png'),
+                          "assets/images/inventory/inventory_background.png"),
                     ),
                   ),
 

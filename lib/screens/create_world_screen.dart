@@ -30,7 +30,7 @@ class _CreateWorldScreenState extends State<CreateWorldScreen> {
   void initState() {
     super.initState();
 
-    worldNameController.text = 'New World';
+    worldNameController.text = "New World";
     seedController.text = GameMethods.instance.getRandomSeed().toString();
   }
 
@@ -48,7 +48,7 @@ class _CreateWorldScreenState extends State<CreateWorldScreen> {
         height: screenSize.height,
         decoration: const BoxDecoration(
           image: DecorationImage(
-            image: AssetImage('assets/images/launcher/dirt_background.png'),
+            image: AssetImage("assets/images/launcher/dirt_background.png"),
             fit: BoxFit.fill,
           ),
         ),
@@ -56,14 +56,14 @@ class _CreateWorldScreenState extends State<CreateWorldScreen> {
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
             Text(
-              'Create New World',
+              "Create New World",
               style: GameMethods.instance.minecraftTextStyle,
             ),
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  'World Name',
+                  "World Name",
                   style: GameMethods.instance.minecraftTextStyle,
                 ),
                 space,
@@ -76,7 +76,7 @@ class _CreateWorldScreenState extends State<CreateWorldScreen> {
                 ),
                 space,
                 Text(
-                  'Your world will be saved to this name',
+                  "Your world will be saved to this name",
                   style: GameMethods.instance.minecraftTextStyle.copyWith(
                       color: Colors.white.withOpacity(0.7), fontSize: 17),
                 )
@@ -86,7 +86,7 @@ class _CreateWorldScreenState extends State<CreateWorldScreen> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  'Seed',
+                  "Seed",
                   style: GameMethods.instance.minecraftTextStyle,
                 ),
                 space,
@@ -99,7 +99,7 @@ class _CreateWorldScreenState extends State<CreateWorldScreen> {
                 ),
                 space,
                 Text(
-                  'This value will defines the terrain generation',
+                  "This value will defines the terrain generation",
                   style: GameMethods.instance.minecraftTextStyle.copyWith(
                       color: Colors.white.withOpacity(0.7), fontSize: 17),
                 )
@@ -109,7 +109,7 @@ class _CreateWorldScreenState extends State<CreateWorldScreen> {
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
                 MinecraftButtonWidget(
-                    text: 'Back',
+                    text: "Back",
                     onPressed: () {
                       Navigator.pushReplacement(
                           context,
@@ -117,7 +117,7 @@ class _CreateWorldScreenState extends State<CreateWorldScreen> {
                               builder: (context) => const WorldSelectScreen()));
                     }),
                 MinecraftButtonWidget(
-                    text: 'Create World',
+                    text: "Create World",
                     onPressed: () {
                       int seed = int.parse(seedController.text);
                       Hive.box(worldDataBox).put(

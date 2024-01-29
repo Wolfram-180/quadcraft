@@ -1,3 +1,4 @@
+
 import 'package:flame/game.dart';
 import 'package:flame/input.dart';
 import 'package:flutter/material.dart';
@@ -58,6 +59,9 @@ class MainGame extends FlameGame
 
   @override
   void update(double dt) {
+    //10ps
+    //0.1
+
     super.update(dt);
 
     worldData.skyTimer.updateTimer(dt);
@@ -71,6 +75,7 @@ class MainGame extends FlameGame
     worldData.chunksThatShouldBeRendered
         .asMap()
         .forEach((int index, int chunkIndex) {
+      //chunks isnt rendered
       if (!worldData.currentlyRenderedChunks.contains(chunkIndex)) {
         //for rightWorldChunks
         if (chunkIndex >= 0) {
@@ -105,6 +110,7 @@ class MainGame extends FlameGame
   }
 
   void itemRenderingLogic() {
+    //logic
     worldData.items.asMap().forEach((int index, ItemComponent item) {
       if (!item.isMounted) {
         if (worldData.chunksThatShouldBeRendered.contains(GameMethods.instance
@@ -202,6 +208,7 @@ class MainGame extends FlameGame
   ) {
     super.onKeyEvent(event, keysPressed);
 
+    //Keys that makes the player go right
     if (keysPressed.contains(LogicalKeyboardKey.arrowRight) ||
         keysPressed.contains(LogicalKeyboardKey.keyD)) {
       worldData.playerData.componentMotionState =

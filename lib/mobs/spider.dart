@@ -8,7 +8,7 @@ import 'package:flutter_flame_minecraft/utils/game_methods.dart';
 class Spider extends HostileEntity {
   Spider({required super.spawnIndexPosition})
       : super(
-          path: 'sprite_sheets/mobs/sprite_sheet_spider.png',
+          path: "sprite_sheets/mobs/sprite_sheet_spider.png",
           srcSize: Vector2(131, 60),
         ) {
     doFallDamage = false;

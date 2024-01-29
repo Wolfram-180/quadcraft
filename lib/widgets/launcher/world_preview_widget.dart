@@ -36,7 +36,7 @@ class WorldPreViewWidget extends StatelessWidget {
                     Padding(
                       padding: const EdgeInsets.only(right: 8.0),
                       child: Image.asset(
-                          'assets/images/launcher/new_world_icon.jpg'),
+                          "assets/images/launcher/new_world_icon.jpg"),
                     ),
                     Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
@@ -47,7 +47,7 @@ class WorldPreViewWidget extends StatelessWidget {
                               .copyWith(color: Colors.grey[400]),
                         ),
                         Text(
-                          'Seed: $seed',
+                          "Seed: $seed",
                           style: GameMethods.instance.minecraftTextStyle
                               .copyWith(color: Colors.grey, fontSize: 15),
                         )

@@ -70,7 +70,7 @@ class PlayerInventoryCraftingGridWidget extends StatelessWidget {
                 SizedBox(
                     height: (GameMethods.instance.slotSize * 9.5) / 8,
                     child: Image.asset(
-                        'assets/images/inventory/inventory_arrow.png')),
+                        "assets/images/inventory/inventory_arrow.png")),
                 InventorySlotWidget(
                     slotType: SlotType.craftingOutput,
                     inventorySlot: GlobalGameReference

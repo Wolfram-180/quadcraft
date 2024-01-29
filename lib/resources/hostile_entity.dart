@@ -141,7 +141,7 @@ class HostileEntity extends Entity with Tappable {
   void onRemove() {
     super.onRemove();
     GlobalGameReference.instance.gameReference.worldData.mobs.totalMobs--;
-    //print('decrementing total mob count');
+    print("decrementing total mob count");
   }
 
   void animationLogic() {
