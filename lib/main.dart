@@ -44,6 +44,8 @@ void main() async {
 
   await Hive.openBox(worldDataBox);
 
+  // await Hive.box(worldDataBox).clear();
+
   runApp(const MaterialApp(
     debugShowCheckedModeBanner: false,
     home: MenuScreen(),
