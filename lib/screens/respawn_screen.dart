@@ -24,7 +24,7 @@ class RespawnScreen extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               const Text(
-                'You died!',
+                'You Died!',
                 style: TextStyle(
                   fontSize: 50,
                   color: Colors.white,

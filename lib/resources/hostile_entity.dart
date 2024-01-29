@@ -41,6 +41,7 @@ class HostileEntity extends Entity with Tappable {
 
   @override
   void onCollision(Set<Vector2> intersectionPoints, PositionComponent other) {
+    //block collision
     if (other is BlockComponent &&
         BlockData.getBlockDataFor(other.block).isCollidable) {
       super.onCollision(intersectionPoints, other);
@@ -140,6 +141,7 @@ class HostileEntity extends Entity with Tappable {
   void onRemove() {
     super.onRemove();
     GlobalGameReference.instance.gameReference.worldData.mobs.totalMobs--;
+    //print('decrementing total mob count');
   }
 
   void animationLogic() {
