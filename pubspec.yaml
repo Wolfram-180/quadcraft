@@ -41,7 +41,10 @@ dependencies:
   hive: 
   hive_flutter: 
   panorama: 0.4.1
+  just_audio:
+  audio_service:
 
+ 
 
 dependency_overrides:
  motion_sensors:
