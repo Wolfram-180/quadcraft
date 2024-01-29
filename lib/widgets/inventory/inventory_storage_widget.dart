@@ -15,9 +15,7 @@ class InventoryStorageWidget extends StatelessWidget {
     double inventoryStorageSize = GameMethods.instance.slotSize * 9.5;
     return Row(
       children: [
-        //dragtarge here
         getDragTarget(Direction.left),
-
         Padding(
           padding: EdgeInsets.only(bottom: GameMethods.instance.slotSize / 1.5),
           child: SizedBox(
@@ -26,7 +24,6 @@ class InventoryStorageWidget extends StatelessWidget {
             child: FittedBox(
               child: Stack(
                 children: [
-                  //This is the background image
                   SizedBox(
                     width: inventoryStorageSize,
                     height: inventoryStorageSize,
@@ -36,7 +33,6 @@ class InventoryStorageWidget extends StatelessWidget {
                           "assets/images/inventory/inventory_background.png"),
                     ),
                   ),
-
                   Positioned.fill(
                     child: Align(
                         alignment: Alignment.bottomCenter,
@@ -59,8 +55,6 @@ class InventoryStorageWidget extends StatelessWidget {
             ),
           ),
         ),
-
-        //dragtarge here
         getDragTarget(Direction.right)
       ],
     );
@@ -70,7 +64,6 @@ class InventoryStorageWidget extends StatelessWidget {
     return Expanded(
         child: InkWell(
       onTap: () {
-        //if crafting inventory i sopen
         if (GlobalGameReference.instance.gameReference.worldData.craftingManager
             .craftingInventoryIsOpen.value) {
           GlobalGameReference.instance.gameReference.worldData.craftingManager

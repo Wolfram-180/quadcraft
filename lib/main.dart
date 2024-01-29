@@ -28,7 +28,6 @@ void main() async {
   Hive.registerAdapter(SkyTimerAdapter());
   Hive.registerAdapter(SkyTimerEnumAdapter());
 
-  //load
   await Flame.images
       .load("sprite_sheets/blocks/block_breaking_sprite_sheet.png");
 
@@ -47,12 +46,9 @@ void main() async {
 
   await Hive.openBox(worldDataBox);
 
-  //int seed = GameMethods.instance.getRandomSeed();
+  // await Hive.box(worldDataBox).deleteFromDisk();
 
-  /* Hive.box(worldDataBox)
-      .put(seed, WorldData(seed: seed, worldName: "New World Test")); */
-
-  print(Hive.box(worldDataBox).keys);
+  // print(Hive.box(worldDataBox).keys);
 
   runApp(const MaterialApp(
     debugShowCheckedModeBanner: false,

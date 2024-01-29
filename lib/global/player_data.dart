@@ -18,8 +18,7 @@ class PlayerDataSave {
 class PlayerData {
   late Rx<double> playerHealth = playerDataSave.playerHealth.obs;
   late Rx<double> playerHunger = playerDataSave.playerHunger.obs;
-  //hunger
-  //staate- walkingLeft, walkingRight, idle
+
   ComponentMotionState componentMotionState = ComponentMotionState.idle;
 
   late Rx<bool> playerIsDead = playerDataSave.playerIsDead.obs;

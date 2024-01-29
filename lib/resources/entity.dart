@@ -40,8 +40,6 @@ class Entity extends SpriteAnimationComponent with CollisionCallbacks {
     super.onCollision(intersectionPoints, other);
 
     for (var individualIntersectionPoint in intersectionPoints) {
-      //player is colliding with the ground
-
       //Ground collision
       if (individualIntersectionPoint.y > (position.y - (size.y * 0.3)) &&
           (intersectionPoints.first.x - intersectionPoints.last.x).abs() >
@@ -63,7 +61,7 @@ class Entity extends SpriteAnimationComponent with CollisionCallbacks {
         isCollidingTop = true;
       }
 
-      //horizonatal collision
+      //horizontal collision
       if (individualIntersectionPoint.y < (position.y - (size.y * 0.3))) {
         //Right Collision
         if (individualIntersectionPoint.x > position.x) {
@@ -120,7 +118,7 @@ class Entity extends SpriteAnimationComponent with CollisionCallbacks {
 
         return false;
       case ComponentMotionState.walkingRight:
-        print("inside move $isCollidingRight");
+        // print("inside move $isCollidingRight");
         if (!isCollidingRight) {
           position.x += speed;
           if (!isFacingRight) {

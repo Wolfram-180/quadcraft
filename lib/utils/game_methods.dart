@@ -104,16 +104,13 @@ class GameMethods {
   void addChunkToWorldChunks(
       List<List<Blocks?>> chunk, bool isInRightWorldChunks) {
     if (isInRightWorldChunks) {
-      //chunk
       chunk.asMap().forEach((int yIndex, List<Blocks?> value) {
-        //
         GlobalGameReference
             .instance.gameReference.worldData.rightWorldChunks[yIndex]
             .addAll(value);
       });
     } else {
       chunk.asMap().forEach((int yIndex, List<Blocks?> value) {
-        //
         GlobalGameReference
             .instance.gameReference.worldData.leftWorldChunks[yIndex]
             .addAll(value);
@@ -131,8 +128,6 @@ class GameMethods {
         chunk.add(rowOfBlocks.sublist(
             chunkWidth * chunkIndex, chunkWidth * (chunkIndex + 1)));
       });
-
-      //leftWorldChunks
     } else {
       GlobalGameReference.instance.gameReference.worldData.leftWorldChunks
           .asMap()
@@ -155,7 +150,7 @@ class GameMethods {
     );
     for (var x = 0; x < rawNoise.length; x++) {
       for (var y = 0; y < rawNoise[0].length; y++) {
-        int value = (0x80 + 0x80 * rawNoise[x][y]).floor(); // grayscale
+        int value = (0x80 + 0x80 * rawNoise[x][y]).floor();
         processedNoise[x][y] = value;
       }
     }
@@ -164,14 +159,10 @@ class GameMethods {
   }
 
   void replaceBlockAtWorldChunks(Blocks? block, Vector2 blockIndex) {
-    //Replace in the rightWorlChunks
     if (blockIndex.x >= 0) {
       GlobalGameReference.instance.gameReference.worldData
           .rightWorldChunks[blockIndex.y.toInt()][blockIndex.x.toInt()] = block;
-
-      //left world chunks
     } else {
-      //
       GlobalGameReference.instance.gameReference.worldData
               .leftWorldChunks[blockIndex.y.toInt()]
           [blockIndex.x.toInt().abs() - 1] = block;
@@ -191,10 +182,7 @@ class GameMethods {
     if (blockIndex.x >= 0) {
       return GlobalGameReference.instance.gameReference.worldData
           .rightWorldChunks[blockIndex.y.toInt()][blockIndex.x.toInt()];
-
-      //left world chunks
     } else {
-      //
       return GlobalGameReference.instance.gameReference.worldData
               .leftWorldChunks[blockIndex.y.toInt()]
           [blockIndex.x.toInt().abs() - 1];
@@ -277,7 +265,6 @@ class GameMethods {
       }
     }
 
-    //4
     return Vector2((spawnXPosition.toDouble()) + (chunkIndex * chunkWidth),
         spawnYPosition.toDouble());
   }
@@ -302,7 +289,6 @@ class GameMethods {
       }
     }
 
-    //4
     return Vector2((spawnXPosition.toDouble()) + (chunkIndex * chunkWidth),
         spawnYPosition.toDouble());
   }

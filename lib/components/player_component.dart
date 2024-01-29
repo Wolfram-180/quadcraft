@@ -127,7 +127,6 @@ class PlayerComponent extends Entity {
   }
 
   void changeHungerBy(double value) {
-    //currentHunger
     double hunger = GlobalGameReference
         .instance.gameReference.worldData.playerData.playerHunger.value;
 
@@ -146,7 +145,6 @@ class PlayerComponent extends Entity {
   }
 
   void healthAndHungerLogic() {
-    //regeneraitionLogic
     if (GlobalGameReference
             .instance.gameReference.worldData.playerData.playerHunger.value >
         9) {
@@ -155,7 +153,6 @@ class PlayerComponent extends Entity {
   }
 
   void movementLogic(double dt) {
-    //Moving left
     if (GlobalGameReference
             .instance.gameReference.worldData.playerData.componentMotionState ==
         ComponentMotionState.walkingLeft) {
@@ -173,7 +170,6 @@ class PlayerComponent extends Entity {
       }
     }
 
-    //Moving right
     if (GlobalGameReference
             .instance.gameReference.worldData.playerData.componentMotionState ==
         ComponentMotionState.walkingRight) {

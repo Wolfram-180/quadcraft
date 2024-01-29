@@ -72,8 +72,6 @@ class ChunkGenerationMethods {
 
   List<List<Blocks?>> generatePrimarySoil(
       List<List<Blocks?>> chunk, List<int> yValues, Biomes biome) {
-    //primary soil function blah blah
-
     yValues.asMap().forEach((int index, int value) {
       chunk[value][index] = BiomeData.getBiomeDataFor(biome).primarySoil;
     });
@@ -83,8 +81,6 @@ class ChunkGenerationMethods {
 
   List<List<Blocks?>> generateSecondarySoil(
       List<List<Blocks?>> chunk, List<int> yValues, Biomes biome) {
-    //primary soil function blah blah
-
     yValues.asMap().forEach((int index, int value) {
       for (int i = value + 1;
           i <= GameMethods.instance.maxSecondarySoilExtent;

@@ -34,15 +34,11 @@ class Spider extends HostileEntity {
           GlobalGameReference.instance.gameReference.playerComponent.position.x;
 
       if ((playerXPosition - position.x).abs() > 10) {
-        //if to the left
         if (position.x < playerXPosition) {
-          //Move to the right
           if (!move(ComponentMotionState.walkingRight, dt,
               ((playerSpeed * GameMethods.instance.blockSize.x) * dt) / 3)) {
             jumpForce += GameMethods.instance.blockSize.x * 0.25;
           }
-
-          //move to the left
         } else {
           if (!move(ComponentMotionState.walkingLeft, dt,
               ((playerSpeed * GameMethods.instance.blockSize.x) * dt) / 3)) {

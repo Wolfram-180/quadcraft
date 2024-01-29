@@ -43,9 +43,7 @@ int getDamage() {
           worldData.inventoryManager.currentSelectedInventorySlot.value]
       .block;
 
-  //If what the player holding is a tool, and a suitable tool to be exact, pi
   if (currentHeldItem is Items) {
-    //wooden tier sitable tool
     if (woodenTierWeapons.contains(currentHeldItem)) {
       return 2;
     } else if (stoneTierWeapons.contains(currentHeldItem)) {

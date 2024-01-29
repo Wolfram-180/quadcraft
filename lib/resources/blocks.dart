@@ -80,8 +80,6 @@ enum Blocks {
 
 class BlockData {
   final bool isCollidable;
-
-  //seconds
   final double baseMiningSpeed;
   final bool breakable;
 

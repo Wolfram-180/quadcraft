@@ -19,8 +19,6 @@ class InventorySlotWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     switch (slotType) {
-
-      //item bar
       case SlotType.itemBar:
         return GestureDetector(
           onTap: () {
@@ -35,7 +33,6 @@ class InventorySlotWidget extends StatelessWidget {
           child: getChild(),
         );
 
-      //inventory
       case SlotType.inventory:
         return GestureDetector(
           onLongPress: () {
@@ -55,8 +52,6 @@ class InventorySlotWidget extends StatelessWidget {
                 index: inventorySlot.index,
               ),
               data: inventorySlot,
-
-              //core part of our inventory slot
               child: getChild()),
         );
 
@@ -84,8 +79,6 @@ class InventorySlotWidget extends StatelessWidget {
                     .checkForRecipe();
               },
               data: inventorySlot,
-
-              //core part of our inventory slot
               child: getChild()),
         );
 
@@ -196,8 +189,6 @@ class InventorySlotWidget extends StatelessWidget {
               inventorySlot.count.value = draggingInventorySlot.count.value;
 
               draggingInventorySlot.emptySlot();
-
-              //if both have the same block, and if the total additive sum is less than or equal to a stack
             } else if (draggingInventorySlot.block == inventorySlot.block &&
                 draggingInventorySlot.count.value + inventorySlot.count.value <=
                     getStack(draggingInventorySlot.block)) {

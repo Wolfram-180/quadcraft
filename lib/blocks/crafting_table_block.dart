@@ -13,7 +13,7 @@ class CraftingTableBlock extends BlockComponent {
 
   @override
   bool onTapDown(TapDownInfo info) {
-    //PLayer is not holding anyhting
+    //PLayer is not holding anything
     if (inventoryManager
             .inventorySlots[inventoryManager.currentSelectedInventorySlot.value]
             .block ==

@@ -2,12 +2,36 @@ import 'package:flutter/material.dart';
 import 'package:flutter_flame_minecraft/screens/world_select_screen.dart';
 import 'package:flutter_flame_minecraft/widgets/launcher/minecraft_button.dart';
 import 'package:panorama/panorama.dart';
+import 'package:just_audio/just_audio.dart';
+
+bool isMusicPlaying = false;
+
+// created at https://creators.aiva.ai/
+
+final playlist = ConcatenatingAudioSource(
+  children: [
+    AudioSource.asset('assets/audio/track1.mp3'),
+    AudioSource.asset('assets/audio/track2.mp3'),
+    AudioSource.asset('assets/audio/track3.mp3'),
+    AudioSource.asset('assets/audio/track4.mp3'),
+    AudioSource.asset('assets/audio/track5.mp3'),
+  ],
+);
 
 class MenuScreen extends StatelessWidget {
   const MenuScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    if (!isMusicPlaying) {
+      final player = AudioPlayer();
+      player.setAudioSource(playlist,
+          initialIndex: 0, initialPosition: Duration.zero);
+      player.setLoopMode(LoopMode.all);
+      player.play();
+      isMusicPlaying = true;
+    }
+
     Size screenSize = MediaQuery.of(context).size;
     return Scaffold(
       body: Stack(
@@ -27,7 +51,6 @@ class MenuScreen extends StatelessWidget {
                     'assets/images/launcher/logo.png',
                     height: screenSize.height / 1.5,
                   ),
-
                   MinecraftButtonWidget(
                     text: 'Singleplayer',
                     onPressed: () {
@@ -42,18 +65,7 @@ class MenuScreen extends StatelessWidget {
                   const SizedBox(
                     height: 30,
                   ),
-                  //MinecraftButtonWidget(text: 'Multiplayer', onPressed: () {}),
                   Expanded(child: Container()),
-/*                   Padding(
-                    padding: const EdgeInsets.only(bottom: 5),
-                    child: Text(
-                      'This is an expiremental game made for education. Check out the actual game- Minecraft',
-                      style: TextStyle(
-                          color: Colors.yellow.withOpacity(0.75),
-                          fontSize: 10,
-                          fontFamily: 'MinecraftFont'),
-                    ),
-                  ) */
                 ],
               ),
             ),
