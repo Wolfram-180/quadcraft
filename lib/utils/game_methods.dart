@@ -25,7 +25,7 @@ class GameMethods {
 
   Vector2 get blockSize {
     return Vector2.all(getScreenSize().width / chunkWidth);
-    //return Vector2.all(30);
+    // return Vector2.all(30);
   }
 
   double get slotSize {
@@ -80,14 +80,14 @@ class GameMethods {
   SpriteSheet getBlockSpriteSheet() {
     return SpriteSheet(
         image: Flame.images
-            .fromCache('sprite_sheets/blocks/block_sprite_sheet.png'),
+            .fromCache("sprite_sheets/blocks/block_sprite_sheet.png"),
         srcSize: Vector2.all(60));
   }
 
   SpriteSheet getItemSpriteSheet() {
     return SpriteSheet(
         image:
-            Flame.images.fromCache('sprite_sheets/item/item_sprite_sheet.png'),
+            Flame.images.fromCache("sprite_sheets/item/item_sprite_sheet.png"),
         srcSize: Vector2.all(60));
   }
 
@@ -104,6 +104,7 @@ class GameMethods {
   void addChunkToWorldChunks(
       List<List<Blocks?>> chunk, bool isInRightWorldChunks) {
     if (isInRightWorldChunks) {
+      //chunk
       chunk.asMap().forEach((int yIndex, List<Blocks?> value) {
         //
         GlobalGameReference
@@ -112,6 +113,7 @@ class GameMethods {
       });
     } else {
       chunk.asMap().forEach((int yIndex, List<Blocks?> value) {
+        //
         GlobalGameReference
             .instance.gameReference.worldData.leftWorldChunks[yIndex]
             .addAll(value);
@@ -313,7 +315,7 @@ class GameMethods {
   TextStyle get minecraftTextStyle {
     return const TextStyle(
       color: Colors.white,
-      fontFamily: 'MinecraftFont',
+      fontFamily: "MinecraftFont",
       fontSize: 20,
       shadows: [
         BoxShadow(

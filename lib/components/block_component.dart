@@ -47,7 +47,7 @@ class BlockComponent extends SpriteComponent with Tappable {
 
     animationBlockSpriteSheet = SpriteSheet(
       image: Flame.images
-          .fromCache('sprite_sheets/blocks/block_breaking_sprite_sheet.png'),
+          .fromCache("sprite_sheets/blocks/block_breaking_sprite_sheet.png"),
       srcSize: Vector2.all(60),
     );
 
@@ -82,11 +82,14 @@ class BlockComponent extends SpriteComponent with Tappable {
     super.onTapDown(info);
 
     if (BlockData.getBlockDataFor(block).breakable) {
+      //Adding component twice
       if (!blockBreakingComponent.isMounted) {
         blockBreakingComponent.animation!.reset();
 
         add(blockBreakingComponent);
       }
+
+      //Add block breaking animation and stuff
     }
     return true;
   }
@@ -95,6 +98,7 @@ class BlockComponent extends SpriteComponent with Tappable {
   bool onTapUp(TapUpInfo info) {
     super.onTapUp(info);
 
+    //stop block braking animation removeing
     if (blockBreakingComponent.isMounted) {
       remove(blockBreakingComponent);
     }
@@ -104,6 +108,7 @@ class BlockComponent extends SpriteComponent with Tappable {
 
   @override
   bool onTapCancel() {
+    //sotp block breaking animation
     if (blockBreakingComponent.isMounted) {
       remove(blockBreakingComponent);
     }

@@ -42,10 +42,12 @@ double getMiningSpeedChange(Blocks block) {
           worldData.inventoryManager.currentSelectedInventorySlot.value]
       .block;
 
+  //If what the player holding is a tool, and a suitable tool to be exact, pi
   if (currentHeldItem is Items &&
       ItemData.getItemDataForItem(currentHeldItem).toolType != Tools.none &&
       ItemData.getItemDataForItem(currentHeldItem).toolType ==
           BlockData.getBlockDataFor(block).suitableTool) {
+    //wooden tier sitable tool
     if (woodenTools.contains(currentHeldItem)) {
       return 0.6;
     } else if (stoneTools.contains(currentHeldItem)) {

@@ -19,6 +19,7 @@ class PlayerInventoryWidget extends StatelessWidget {
                 children: [
                   InventoryStorageWidget(),
                   PlayerInventoryCraftingGridWidget()
+                  //StandardCraftingGrid()
                 ],
               ),
             ),
