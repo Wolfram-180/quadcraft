@@ -12,6 +12,8 @@ import 'package:quadcraft/utils/constants.dart';
 
 // dart run build_runner build --delete-conflicting-outputs
 
+// dart run flutter_launcher_icons
+
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
