@@ -16,6 +16,8 @@ import 'package:flutter_flame_minecraft/resources/sky_timer.dart';
 import 'package:flutter_flame_minecraft/utils/chunk_generation_methods.dart';
 import 'package:flutter_flame_minecraft/utils/constants.dart';
 import 'package:flutter_flame_minecraft/utils/game_methods.dart';
+// import 'package:flame_audio/flame_audio.dart';
+// import 'package:audioplayers/audioplayers.dart';
 
 class MainGame extends FlameGame
     with HasCollisionDetection, HasTappables, HasKeyboardHandlerComponents {
@@ -31,6 +33,11 @@ class MainGame extends FlameGame
 
   SkyComponent skyComponent = SkyComponent();
 
+  // void startBgmMusic() {
+  //   FlameAudio.bgm.initialize();
+  //   FlameAudio.bgm.play('track1.mp3');
+  // }
+
   @override
   Future<void> onLoad() async {
     super.onLoad();
@@ -38,6 +45,8 @@ class MainGame extends FlameGame
     add(playerComponent);
 
     add(skyComponent);
+
+    //startBgmMusic();
   }
 
   void renderChunk(int chunkIndex) {
