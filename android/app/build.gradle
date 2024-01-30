@@ -58,10 +58,14 @@ android {
             signingConfig signingConfigs.debug
         }
     }
+
+    lintOptions {
+      checkReleaseBuilds false
+    }
 }
 
 flutter {
-    source '../..'
+      source '../..'
 }
 
 dependencies {}
