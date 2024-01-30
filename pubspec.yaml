@@ -2,7 +2,7 @@ name: quadcraft
 description: "Quadcraft made using Flutter & Flame (with GetX, Hive)"
 publish_to: 'none'
 
-version: 1.1.1+1
+version: 1.0.2+1
 
 environment:
   sdk: '>=3.2.4 <4.0.0'
